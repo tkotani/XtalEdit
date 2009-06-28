@@ -1,0 +1,54 @@
+### Let you import this with LMF-import, and try to push Rasmol ###
+HEADER  NiO antiferromagnetic II
+LMFJOB  lmfa nio >out.lmf.nio
+        lmf nio >>out.lmf.nio
+GWJOB   lmfgw nio >out.lmfgw.nio
+        echo nio | lmf2gw >>out.lmfgw.nio
+LDADOS  lmf  nio -vsig=0 -vmet=2 -vnk=12 -vmdos=0 --pdos:mode=1:sites=1,3 --rs=1,0 -vnit=1 --pr31,31
+        cp dos.nio tdos.nio
+        echo 2001 / | lmdos nio -vsig=0 -vmet=2 -vnk=12 -vmdos=0 --pdos:mode=1:sites=1,3 --rs=1,0
+GWDOS   lmf  nio -vsig=12 -vmet=2 -vnk=12 -vmdos=0 --pdos:mode=1:sites=1,3 --rs=1,0 -vnit=1 --pr31,31
+        cp dos.nio tdos.nio
+        echo 2001 / | lmdos nio -vsig=0 -vmet=2 -vnk=12 -vmdos=0 --pdos:mode=1:sites=1,3 --rs=1,0
+VERS    LMF-6.10 LMASA-6.10 LMFP-5
+IO      SHOW=f HELP=F VERBOS=51 51
+OPTIONS NSPIN=2 CCOR=T ADNF=F BEGATOM=T NITATOM=115 CHARGE=F REL=T
+        NPAN=2
+SYMGRP  R3D R2(1,-1,0) M(1,-1,0)
+GW      NKABC=4 4 4 GCUTB=2.7 GCUTX=2.2
+HAM     RDSIG=12 RSRNGE=5.5
+        FTMESH=27 ELIND=-.7 QASA=3 TOL=1e-5 NMTO=0 KMTO=-.2 .2 .5 .8 EWALD=T
+        SIGP:1,6,0,0,2,.2,.08,0
+
+BZ      NKABC=4 4 4 METAL=0 TOL=1D-13 DOS=-1.7 1.5 NPTS=2001 SAVDOS=t
+        EFMAX=999 NEVMX=999
+STR     RMAX=3.5
+STRUC   NBAS=4 NSPEC=3 NL=5 NN=1
+        ALAT=7.88 PLAT= 0.5 0.5 1.0  0.5 1.0 0.5  1.0 0.5 0.5
+CLASS   ATOM=Mnup Z=28 R/W=.9512 LMX=4 IDXDN=1 1 1 1 MMOM=0,0,1  EREF=-3036.182
+                  LFOCA=0
+                  P=4.5 4.5 3.75 4.5 5.5 IDMOD=1 1 0 1 1
+                  RSMH= 2.0,2.0,.9,1.8 EH= -0.40,-0.40,-0.40,-0.40 LMXF=6 LMXB=321
+                  RSMH2=1.7,1.7,.9     EH2=-1.2,-2.2,-1.2
+                  PZ=0,3.9,4.4
+        ATOM=Mndn Z=28 R/W=.9512 LMX=4 IDXDN=1 1 1 1 MMOM=0,0,-1 EREF=-3036.182
+                  LFOCA=0
+                  P=4.5 4.5 3.75 4.5 5.5 IDMOD=1 1 0 1 1
+                  RSMH= 2.0,2.0,.9,1.8 EH= -0.40,-0.40,-0.40,-0.40 LMXF=6 LMXB=321
+                  RSMH2=1.7,1.7,.9     EH2=-1.2,-2.2,-1.2
+                  PZ=0,3.9,4.4
+        ATOM=O    Z= 8  R/W=.656 LMX=2 IDXDN=1 1 1 3 1 IDMOD=0 0 1 1 1 EREF=-149.1822
+                  P=2.8 2.7 3.25 4.5 5.5
+                  RSMH= 0.90,0.90,1.00 EH= -1.0,-0.40,-0.40 LMXA=4 LMXF=6 LMXB=221
+                  LFOCA=0
+                  RSMH2=-1.0,0.9       EH2=-1.0,-1.2
+SITE    ATOM=Mnup POS=  .0   .0   .0
+        ATOM=Mndn POS= 1.0  1.0  1.0
+        ATOM=O    POS=  .5   .5   .5
+        ATOM=O    POS= 1.5  1.5  1.5
+MIX     MODE=A6,k=3,b=.6 CONV=1e-4 ELIND=-1 AMIX=t BETA=.3
+START   NIT=20 BROY=F WC=3.0 NMIX=2 BETA=1 CNVG=1.D-7 CNVGET=1.D-7
+        BEGMOM=0 CNTROL=0
+MASTER JOB 1
+JOB    1 20
+#rdfiln generated 52 records.

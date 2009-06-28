@@ -1,0 +1,226 @@
+#!/usr/bin/python
+# For LMF
+import sys
+import os
+from Numeric import *
+import string
+import re
+
+def sitestringPV(s1,s2,s3):
+	add=' '
+	if string.find(s1,'-')==0: add=''
+	sitedata= add+s1+ " *a*EX"
+	add=' +'
+	if string.find(s2,'-')==0: add=' '
+	sitedata = sitedata + add + s2+ " *a*EY"
+	add=' +'
+	if string.find(s3,'-')==0: add=' '
+	sitedata = sitedata + add + s3+ " *a*EZ"
+	return sitedata
+
+def getblock(wtext,key):
+	out=''
+	print 'ssssssssssss len=',len(key)
+	ix=0
+	for iline in wtext:
+		if(string.find(iline,'#')==0): continue
+		if ix==1 and string.strip(iline[0:1])!="":	
+			break
+		if iline[0:len(key)]==key:	ix=1
+		if(ix==1): out=out+iline
+	sss1=string.replace(out[len(key):], '=',' = ')
+	sss2=string.replace(sss1, ',',' ')
+	return string.split(sss2)
+
+def getdat(wtext,category,token,nsize):
+	ic=-1
+	if nsize!=1 :
+		dat=['None']*nsize
+	for sss in getblock(wtext,category):
+		if sss==token: ic=0
+		if ic>=1 and ic<=nsize:
+			if nsize!=1: 
+				dat[ic-1]=sss
+				ic=ic+1
+			else:
+				dat=sss
+				break
+		if ic==0 and sss=='='	 : ic=1
+	return dat
+
+
+#############################################################
+## Main Routinue ############################################
+if __name__ == '__main__':
+	
+	### 1. User set CSY File PATH
+	csyFilePath = "./temp/xxx.csy1"
+	fr=open(csyFilePath,"rt")
+	wtext = fr.read()
+	wtext = string.split(wtext, "\n")
+
+
+# skip structure-related sections
+#	lmfsec='<lmf>\n'
+#	ix=1
+#	for iline in wtext:
+#		if iline[0:1]=="#":	continue
+#		if ix==0 and iline[0:1]!=" ":	ix=1
+#		if iline[0:4]=="SITE":	ix=0
+#		if iline[0:5]=="CONST":	ix=0
+#		if ix==1:	lmfsec=lmfsec+iline+"\n"
+#	lmfsec= lmfsec + '</lmf>'+ "\n" + "\n"
+#
+	lmfsec=''	
+
+	print ' ===== start LMFimport ======'
+	sss=''
+	for iline in wtext:
+		if(string.find(iline,'#')==0): continue
+		sss = sss+iline+'\n'
+
+	sss = string.replace(sss, '=','= ')
+	sss = string.split(sss)
+
+#	for x in sss:
+#		print x
+
+### CONST section ###
+	constdat0 = getblock(wtext,"CONST")
+	constdat=''
+	idat =''
+	ixold=''
+	for ix in constdat0:
+		print ix
+		if ix=='=':
+			constdat= constdat+idat+'\n'
+			idat=''
+		idat = idat +ixold
+		ixold=ix
+	constdat = constdat +idat+ix+'\n'
+
+### CONST section ###
+#	constdat=''
+#	outdata=''
+#	iat=0
+#	ix=0
+#	sss=getblock(wtext,"CONST")
+#	for iline in wtext:
+#		if(string.find(iline,'#')==0): continue
+#		if iline[0:5]=="CONST":	
+#			constdat=  constdat + string.replace(iline[6:], '=',' = ')
+#			ix=1
+#		elif ix==1 and string.strip(iline[0:1])!="":
+#			break
+#		elif ix==1:
+#			sss = string.replace(iline, '=',' = ')
+#			constdat =  constdat + sss+ ' '
+#
+#	constdat0 = string.split(constdat)
+#
+#	constdat=''
+#	idat=''
+#	ixold=''
+#	for ix in constdat0:
+#		if ix=='=':
+#			constdat= constdat+idat+'\n'
+#			idat=''
+#
+#		idat = idat +ixold
+#		ixold=ix
+#	constdat= constdat +idat+ix+'\n'
+#
+#	### invert order. firster is used.
+#	sss=string.split(constdat)
+#	constdat=''
+#	for ix in sss:
+#		constdat= ix +'\n' + constdat
+##	print constdat0
+
+
+### PV section ###
+	iat=0
+	ix=0
+	plat=['None']*9
+	ic=10
+	icp=0
+	for sss in getblock(wtext,"STRUC"):
+		print sss
+		ic=ic+1
+		if sss=='PLAT': ic=0
+		if ic>=2 and ic<=10:
+			plat[ic-2]=sss
+		if icp==2: 
+			alat=sss
+			icp=3
+		if icp==1 and sss=='='	 : icp=2
+		if icp==0 and sss=='ALAT': icp=1
+	print plat[0:9]
+
+	alat = getdat(wtext,"STRUC","ALAT",1)
+	plat = getdat(wtext,"STRUC","PLAT",9)
+
+	alatline=  'alat=%s' % alat
+	platline1= 'PV1= alat*(%s)*EX + alat*(%s)*EY + alat*(%s)*EZ\n' % (plat[0],plat[1],plat[2])
+	platline2= 'PV2= alat*(%s)*EX + alat*(%s)*EY + alat*(%s)*EZ\n' % (plat[3],plat[4],plat[5])
+	platline3= 'PV3= alat*(%s)*EX + alat*(%s)*EY + alat*(%s)*EZ\n' % (plat[6],plat[7],plat[8])
+	platline= platline1+platline2+platline3 + 'CV1=PV1\nCV2=PV2\nCV3=PV3\n'
+
+
+### SITE section ###
+	outdata=''
+	iat=0
+	ix=0
+	for x in getblock(wtext,"SITE"):
+		if(iat==10): 
+			iat=iat+1
+	 	elif(iat==11):
+			ccc=x
+			iat=0
+
+		if(iat==1):  
+			iat=iat+1
+		elif(iat==2) : 
+			pos1=x
+			iat=3
+		elif(iat==3) : 
+			pos2=x
+			iat=4
+		elif(iat==4) : 
+			pos3=x
+			iat=0
+			outdata = outdata+ 'SITE TYPE=%s, POS= (%s) *a*EX+ (%s) *a*EY + (%s) *a*EZ \n' % (ccc,pos1,pos2,pos3)
+		if(x=='ATOM'):  iat=10
+		if(x=='POS') :	iat=1
+
+### CLASS section ###
+	for x in getblock(wtext,"CLASS"):
+		print x
+		if(iat==10): 
+			iat=iat+1
+	 	elif(iat==11):
+			ccc=x
+			iat=0
+		if(x=='ATOM'):  iat=10
+
+		print x
+		if(iat==20): 
+			iat=iat+1
+	 	elif(iat==21):
+			zzz=x
+			iat=0
+			outdata = outdata+ 'TYPE %s ATOM=(%s:1.0) \n' % (ccc,zzz)
+		if(x=='Z'):  iat=20
+		if(x=='POS') :	iat=1
+
+
+	
+	fedit = open("./result/EditWindow.dat","wt")
+	fedit.write(constdat + '\n'  + alatline + '\n'+ platline + '\n' +outdata + '\n' + lmfsec)
+#	fedit.write(constdat)
+#	fedit.write( outdata )
+
+	flog  = open("./result/ResultWindow.dat","wt")
+	flog.write("O.K! LMF input is transformed to *.csy\n")
+	flog.close()
+

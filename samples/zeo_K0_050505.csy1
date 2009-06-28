@@ -1,0 +1,138 @@
+
+a=23.21985922
+nk=1
+ral1=1.8
+ral2=1.57
+ro=1.4
+rsi=1.65
+rk1=3
+rk2=3.5
+facr=1
+rsmal=2.0
+rsmo=.8
+rsmsi=1.1
+rsmk=3.5
+
+alat=a
+PV1= alat*(1.0)*EX + alat*(0)*EY + alat*(0)*EZ
+PV2= alat*(0)*EX + alat*(1.0)*EY + alat*(0)*EZ
+PV3= alat*(0)*EX + alat*(0)*EY + alat*(1.0)*EZ
+CV1=PV1
+CV2=PV2
+CV3=PV3
+
+SITE TYPE=Al1, POS= (0.3762)*alat*EX+ (0.0000)*alat*EY + (0.1864)*alat*EZ 
+SITE TYPE=Al2, POS= (-0.3762)*alat*EX+ (-0.0000)*alat*EY + (0.1864)*alat*EZ 
+SITE TYPE=Al3, POS= (0.3762)*alat*EX+ (-0.0000)*alat*EY + (-0.1864)*alat*EZ 
+SITE TYPE=Al4, POS= (-0.3762)*alat*EX+ (0.0000)*alat*EY + (-0.1864)*alat*EZ 
+SITE TYPE=Al1, POS= (0.1864)*alat*EX+ (0.3762)*alat*EY + (0.0000)*alat*EZ 
+SITE TYPE=Al2, POS= (0.1864)*alat*EX+ (-0.3762)*alat*EY + (-0.0000)*alat*EZ 
+SITE TYPE=Al3, POS= (-0.1864)*alat*EX+ (0.3762)*alat*EY + (-0.0000)*alat*EZ 
+SITE TYPE=Al4, POS= (-0.1864)*alat*EX+ (-0.3762)*alat*EY + (0.0000)*alat*EZ 
+SITE TYPE=Al1, POS= (0.0000)*alat*EX+ (0.1864)*alat*EY + (0.3762)*alat*EZ 
+SITE TYPE=Al2, POS= (-0.0000)*alat*EX+ (0.1864)*alat*EY + (-0.3762)*alat*EZ 
+SITE TYPE=Al3, POS= (-0.0000)*alat*EX+ (-0.1864)*alat*EY + (0.3762)*alat*EZ 
+SITE TYPE=Al4, POS= (0.0000)*alat*EX+ (-0.1864)*alat*EY + (-0.3762)*alat*EZ 
+SITE TYPE=O1, POS= (0.2416)*alat*EX+ (0.0000)*alat*EY + (0.5000)*alat*EZ 
+SITE TYPE=O2, POS= (-0.2416)*alat*EX+ (-0.0000)*alat*EY + (0.5000)*alat*EZ 
+SITE TYPE=O3, POS= (-0.0000)*alat*EX+ (0.2416)*alat*EY + (-0.5000)*alat*EZ 
+SITE TYPE=O4, POS= (0.0000)*alat*EX+ (-0.2416)*alat*EY + (-0.5000)*alat*EZ 
+SITE TYPE=O1, POS= (0.5000)*alat*EX+ (0.2416)*alat*EY + (0.0000)*alat*EZ 
+SITE TYPE=O2, POS= (0.5000)*alat*EX+ (-0.2416)*alat*EY + (-0.0000)*alat*EZ 
+SITE TYPE=O3, POS= (-0.5000)*alat*EX+ (-0.0000)*alat*EY + (0.2416)*alat*EZ 
+SITE TYPE=O4, POS= (-0.5000)*alat*EX+ (0.0000)*alat*EY + (-0.2416)*alat*EZ 
+SITE TYPE=O1, POS= (0.0000)*alat*EX+ (0.5000)*alat*EY + (0.2416)*alat*EZ 
+SITE TYPE=O2, POS= (-0.0000)*alat*EX+ (0.5000)*alat*EY + (-0.2416)*alat*EZ 
+SITE TYPE=O3, POS= (0.2416)*alat*EX+ (-0.5000)*alat*EY + (-0.0000)*alat*EZ 
+SITE TYPE=O4, POS= (-0.2416)*alat*EX+ (-0.5000)*alat*EY + (0.0000)*alat*EZ 
+SITE TYPE=O5, POS= (0.2812)*alat*EX+ (0.0000)*alat*EY + (0.2916)*alat*EZ 
+SITE TYPE=O6, POS= (-0.2812)*alat*EX+ (-0.0000)*alat*EY + (0.2916)*alat*EZ 
+SITE TYPE=O7, POS= (0.2812)*alat*EX+ (-0.0000)*alat*EY + (-0.2916)*alat*EZ 
+SITE TYPE=O8, POS= (-0.2812)*alat*EX+ (0.0000)*alat*EY + (-0.2916)*alat*EZ 
+SITE TYPE=O5, POS= (0.2916)*alat*EX+ (0.2812)*alat*EY + (0.0000)*alat*EZ 
+SITE TYPE=O6, POS= (0.2916)*alat*EX+ (-0.2812)*alat*EY + (-0.0000)*alat*EZ 
+SITE TYPE=O7, POS= (-0.2916)*alat*EX+ (0.2812)*alat*EY + (-0.0000)*alat*EZ 
+SITE TYPE=O8, POS= (-0.2916)*alat*EX+ (-0.2812)*alat*EY + (0.0000)*alat*EZ 
+SITE TYPE=O5, POS= (0.0000)*alat*EX+ (0.2916)*alat*EY + (0.2812)*alat*EZ 
+SITE TYPE=O6, POS= (-0.0000)*alat*EX+ (0.2916)*alat*EY + (-0.2812)*alat*EZ 
+SITE TYPE=O7, POS= (-0.0000)*alat*EX+ (-0.2916)*alat*EY + (0.2812)*alat*EZ 
+SITE TYPE=O8, POS= (0.0000)*alat*EX+ (-0.2916)*alat*EY + (-0.2812)*alat*EZ 
+SITE TYPE=O9, POS= (0.1180)*alat*EX+ (0.1112)*alat*EY + (-0.3644)*alat*EZ 
+SITE TYPE=O9, POS= (-0.3644)*alat*EX+ (0.1180)*alat*EY + (0.1112)*alat*EZ 
+SITE TYPE=O9, POS= (0.1112)*alat*EX+ (-0.3644)*alat*EY + (0.1180)*alat*EZ 
+SITE TYPE=O10, POS= (-0.1180)*alat*EX+ (-0.1112)*alat*EY + (-0.3644)*alat*EZ 
+SITE TYPE=O10, POS= (-0.3644)*alat*EX+ (-0.1180)*alat*EY + (-0.1112)*alat*EZ 
+SITE TYPE=O10, POS= (-0.1112)*alat*EX+ (-0.3644)*alat*EY + (-0.1180)*alat*EZ 
+SITE TYPE=O11, POS= (-0.1180)*alat*EX+ (0.1112)*alat*EY + (0.3644)*alat*EZ 
+SITE TYPE=O11, POS= (0.3644)*alat*EX+ (-0.1180)*alat*EY + (0.1112)*alat*EZ 
+SITE TYPE=O11, POS= (0.1112)*alat*EX+ (0.3644)*alat*EY + (-0.1180)*alat*EZ 
+SITE TYPE=O12, POS= (0.1180)*alat*EX+ (-0.1112)*alat*EY + (0.3644)*alat*EZ 
+SITE TYPE=O12, POS= (0.3644)*alat*EX+ (0.1180)*alat*EY + (-0.1112)*alat*EZ 
+SITE TYPE=O12, POS= (-0.1112)*alat*EX+ (0.3644)*alat*EY + (0.1180)*alat*EZ 
+SITE TYPE=O13, POS= (0.1228)*alat*EX+ (0.1160)*alat*EY + (0.3406)*alat*EZ 
+SITE TYPE=O14, POS= (-0.1228)*alat*EX+ (-0.1160)*alat*EY + (0.3406)*alat*EZ 
+SITE TYPE=O15, POS= (0.1228)*alat*EX+ (-0.1160)*alat*EY + (-0.3406)*alat*EZ 
+SITE TYPE=O16, POS= (-0.1228)*alat*EX+ (0.1160)*alat*EY + (-0.3406)*alat*EZ 
+SITE TYPE=O13, POS= (0.1160)*alat*EX+ (0.3406)*alat*EY + (0.1228)*alat*EZ 
+SITE TYPE=O14, POS= (-0.1160)*alat*EX+ (0.3406)*alat*EY + (-0.1228)*alat*EZ 
+SITE TYPE=O15, POS= (-0.1160)*alat*EX+ (-0.3406)*alat*EY + (0.1228)*alat*EZ 
+SITE TYPE=O16, POS= (0.1160)*alat*EX+ (-0.3406)*alat*EY + (-0.1228)*alat*EZ 
+SITE TYPE=O13, POS= (0.3406)*alat*EX+ (0.1228)*alat*EY + (0.1160)*alat*EZ 
+SITE TYPE=O14, POS= (0.3406)*alat*EX+ (-0.1228)*alat*EY + (-0.1160)*alat*EZ 
+SITE TYPE=O15, POS= (-0.3406)*alat*EX+ (0.1228)*alat*EY + (-0.1160)*alat*EZ 
+SITE TYPE=O16, POS= (-0.3406)*alat*EX+ (-0.1228)*alat*EY + (0.1160)*alat*EZ 
+SITE TYPE=Si1, POS= (0.1834)*alat*EX+ (-0.0000)*alat*EY + (0.3738)*alat*EZ 
+SITE TYPE=Si2, POS= (-0.1834)*alat*EX+ (0.0000)*alat*EY + (0.3738)*alat*EZ 
+SITE TYPE=Si3, POS= (0.1834)*alat*EX+ (0.0000)*alat*EY + (-0.3738)*alat*EZ 
+SITE TYPE=Si4, POS= (-0.1834)*alat*EX+ (-0.0000)*alat*EY + (-0.3738)*alat*EZ 
+SITE TYPE=Si1, POS= (0.3738)*alat*EX+ (0.1834)*alat*EY + (-0.0000)*alat*EZ 
+SITE TYPE=Si2, POS= (0.3738)*alat*EX+ (-0.1834)*alat*EY + (0.0000)*alat*EZ 
+SITE TYPE=Si3, POS= (-0.3738)*alat*EX+ (0.1834)*alat*EY + (0.0000)*alat*EZ 
+SITE TYPE=Si4, POS= (-0.3738)*alat*EX+ (-0.1834)*alat*EY + (-0.0000)*alat*EZ 
+SITE TYPE=Si1, POS= (-0.0000)*alat*EX+ (0.3738)*alat*EY + (0.1834)*alat*EZ 
+SITE TYPE=Si2, POS= (0.0000)*alat*EX+ (0.3738)*alat*EY + (-0.1834)*alat*EZ 
+SITE TYPE=Si3, POS= (0.0000)*alat*EX+ (-0.3738)*alat*EY + (0.1834)*alat*EZ 
+SITE TYPE=Si4, POS= (-0.0000)*alat*EX+ (-0.3738)*alat*EY + (-0.1834)*alat*EZ 
+SITE TYPE=K1, POS= (0.2380)*alat*EX+ (0.2380)*alat*EY + (0.2380)*alat*EZ 
+SITE TYPE=K2, POS= (-0.2380)*alat*EX+ (-0.2380)*alat*EY + (0.2380)*alat*EZ 
+SITE TYPE=K2, POS= (0.2380)*alat*EX+ (-0.2380)*alat*EY + (-0.2380)*alat*EZ 
+SITE TYPE=K2, POS= (-0.2380)*alat*EX+ (0.2380)*alat*EY + (-0.2380)*alat*EZ 
+SITE TYPE=K3, POS= (-0.1800)*alat*EX+ (-0.1800)*alat*EY + (-0.1800)*alat*EZ 
+SITE TYPE=K4, POS= (0.1800)*alat*EX+ (0.1800)*alat*EY + (-0.1800)*alat*EZ 
+SITE TYPE=K4, POS= (-0.1800)*alat*EX+ (0.1800)*alat*EY + (0.1800)*alat*EZ 
+SITE TYPE=K4, POS= (0.1800)*alat*EX+ (-0.1800)*alat*EY + (0.1800)*alat*EZ 
+SITE TYPE=K5, POS= (-0.5000)*alat*EX+ (-0.5000)*alat*EY + (0.0000)*alat*EZ 
+SITE TYPE=K5, POS= (0.0000)*alat*EX+ (-0.5000)*alat*EY + (-0.5000)*alat*EZ 
+SITE TYPE=K5, POS= (-0.5000)*alat*EX+ (0.0000)*alat*EY + (-0.5000)*alat*EZ 
+SITE TYPE=K6, POS= (-0.5000)*alat*EX+ (-0.5000)*alat*EY + (0.5000)*alat*EZ 
+TYPE Al1 ATOM=(13:1.0)  ,RMT=ral1
+TYPE Al2 ATOM=(13:1.0)  ,RMT=ral2
+TYPE Al3 ATOM=(13:1.0)  ,RMT=ral1
+TYPE Al4 ATOM=(13:1.0)  ,RMT=ral2
+TYPE O1 ATOM=(8:1.0)  ,RMT=ro
+TYPE O2 ATOM=(8:1.0)  ,RMT=ro
+TYPE O3 ATOM=(8:1.0)  ,RMT=ro
+TYPE O4 ATOM=(8:1.0)  ,RMT=ro
+TYPE O5 ATOM=(8:1.0)  ,RMT=ro
+TYPE O6 ATOM=(8:1.0)  ,RMT=ro
+TYPE O7 ATOM=(8:1.0)  ,RMT=ro
+TYPE O8 ATOM=(8:1.0)  ,RMT=ro
+TYPE O9 ATOM=(8:1.0)  ,RMT=ro
+TYPE O10 ATOM=(8:1.0)  ,RMT=ro
+TYPE O11 ATOM=(8:1.0)  ,RMT=ro
+TYPE O12 ATOM=(8:1.0)  ,RMT=ro
+TYPE O13 ATOM=(8:1.0)  ,RMT=ro
+TYPE O14 ATOM=(8:1.0)  ,RMT=ro
+TYPE O15 ATOM=(8:1.0)  ,RMT=ro
+TYPE O16 ATOM=(8:1.0)  ,RMT=ro
+TYPE Si1 ATOM=(14:1.0)  ,RMT=rsi
+TYPE Si2 ATOM=(14:1.0)  ,RMT=rsi
+TYPE Si3 ATOM=(14:1.0)  ,RMT=rsi
+TYPE Si4 ATOM=(14:1.0)  ,RMT=rsi
+TYPE K1 ATOM=(19:1.0)  ,RMT=rk1
+TYPE K2 ATOM=(19:1.0)  ,RMT=rk1
+TYPE K3 ATOM=(19:1.0)  ,RMT=rk1
+TYPE K4 ATOM=(19:1.0)  ,RMT=rk1
+TYPE K5 ATOM=(19:1.0)  ,RMT=rk2
+TYPE K6 ATOM=(19:1.0)  ,RMT=rk2
+

@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<HTML>
+<HEAD>
+<META name="GENERATOR" http-equiv="Last-Modified" content="<!--#flastmod file='index.htm'-->">
+
+<TITLE>XtalEdit</TITLE>
+</HEAD>
+
+<FONT size="+1">
+<BODY bgcolor="#d2fcff">
+<P><B><FONT size="+4">XtalEdit </FONT>(version 0.90*)</B><br>
+--- A flexible crystal-structure modelling tool--- <br>
+<BR></P>
+<BR>
+
+<br>
+<P align="right"><B>
+Takefumi Sora, Ichiro Fukumoto, Ryuichi Goto, Yukihiro Okuno (The Japan Research Institute, Limited.)<br>
+Takao Kotani (Osaka University)<br>
+Mark van Schilfgaarde (Arizona State University)<br>
+</p></B>
+<br>
+
+<P align="left"><U><FONT size="+2">
+
+<A href="#Intro">
+* Introduction</A><br>
+
+<A href="#INSTALL">
+* Download and Install</A><br>
+
+<A href="./tutorial.htm">
+* Getting Started (a small tutorial)</A><br>
+
+<A href="./indexuse.htm">
+* Usage </A><br>
+
+<A href="./indexuse.htm#customize">
+* Customization. How to add your module on menu?</A><br>
+
+<A href="#ACKNOWLEDGEMENT">
+* Acknowledgment</A><br>
+
+<A href="#LICENCE">
+* Licence</A><br>
+
+<br>
+
+<A href="http://sham.phys.sci.osaka-u.ac.jp/~kkr/XtalEdit/">
+* XtalEdit HomePage</A><br>
+
+</p>
+</FONT></U><BR>
+<br>
+<br>
+
+
+<h2><B><A name="Intro">Introduction</A></H2></B></h2>
+XtalEdit is a flexible crystal-structure modelling tool,
+especially for electronic structure calculations.<br>
+<br>
+In ab-initio electronic structure calculation for solids, 
+we have to make crystal-structure models at first.
+These are not only for ideal crystals but also for 
+somehow virtual situations.
+For example, we have to add a bit of displacements for atoms,
+to insert impurities, to make a surface with atoms, and so on.
+XtalEdit is to build these models.
+<br><br>
+
+XtalEdit is with simple GUI, which consists of 
+EditWindow, ResultWindow, and Buttons of functions.
+With these, you can interactively make your models.
+
+For example, a crystal structure is described in our 
+format (csy1 file) as
+<pre>
+---------------- from here ------------------------------------------
+au=0.529177
+a =  3.82/au   #  a is in a.u.
+c =  6.26/au   #  c  is in a.u.
+CV1 = 1/2.* a * EX - 1/2. *sqrt(3) * a * EY
+CV2 = 1/2.* a * EX + 1/2. *sqrt(3) * a * EY
+CV3 = c * EZ
+
+PV1 =  CV1
+PV2 =  CV2
+PV3 =  CV3
+
+SITE TYPE=    ZnFe, POS=  1/3. *PV1 + 2/3. *PV2 +  PV3
+SITE TYPE=    ZnFe, POS=  2/3. *PV1 + 1/3. *PV2 + 1/2.   *PV3
+u= 3./8
+SITE TYPE=    S, POS=  1/3. *PV1 + 2/3. *PV2 +   u  *PV3
+SITE TYPE=    S, POS=  2/3. *PV1 + 1/3. *PV2 + ( u +1/2. ) *PV3
+
+TYPE ZnFe  LMX=3, ATOM = (Zn:0.9)(Fe:0.1)
+TYPE S     LMX=3, ATOM = (S:1.0)
+----------------- to here ---------------------------------------------.
+</pre>
+
+I think that you can guess what this means. keywords are<br>
+EX,EY,EZ:  Cartesian orthnormal basis<br>
+CV1,CV2,CV3: Conventional cell vectors<br>
+PV1,PV2,PV3: Primitive cell vectors<br>
+SITE : atomic site. <br> 
+TYPE : atomic type (equivalent sites)<br>
+<br>
+XtalEdit recognize this csy1 format.
+There are tools to do <br>
+(1)Check symmetry operations of this system <br>
+(2)Add new atoms based on symmetry operations<br>
+(3)Supercell button can generate supercell<br>
+(4)View with Rasmol<br>
+(5)I/O of input files as for AkaiKKR, lmf(testing), ABINIT(testing version).<br>
+and so.
+
+Further it is so easy to customize it, and to write and add your own module.
+
+In addition, it contains 230 space-group templates *.csy1 
+(with full lists of Wycoff positions). 
+Thus you can easily set up the above *.csy1 file if 
+you know the required parameters as taken from databases.
+<br>
+See<A href="./indexuse.htm"> Usage </A>for detail.
+<br>
+
+<pre>
+<HR>
+<h2><B><A name="ACKNOWLEDGEMENT">ACKNOWLEDGEMENT</A></H2></B><BR></h2>
+XtalEdit is mainly developed based on <br>
+ * python2.2 + Numerical python (not included in the XtalEdit package)
+
+ * csymtool
+   A fortran routine as for spece-group symmetry.
+   It is constructed from subroutine packages originally from:
+   " The STUTTGART TB-LMTO-ASA program.
+     http://www.mpi-stuttgart.mpg.de/andersen/docs/lmto_program.html
+     http://www.mpi-stuttgart.mpg.de/andersen/LMTODOC/LMTODOC.html
+     For the symmetry part of the program, 
+     mostly written by Georges Krier MPI-FKF."
+   We thank Prof.Dr.O.K.Andesen to allow us to use them in XtalEdit.
+
+ * TSPACE(Dr.Yanase. We generated space-group samples from it), 
+
+ * <A href="http://olymp.phys.chemie.uni-muenchen.de/ak/ebert/xband.html">XBAND (H.Ebert,Munich)</a> We learned so much from it.
+
+ * <A href="http://www.bernstein-plus-sons.com/software/rasmol/README.html">Rasmol (molecule viewer)</A>.<br>
+We thank to them so much.
+Further, we also leaned so much from stuffs on Web and so.<br>
+<br>
+In addition, we really appreciate strong support from Mr. Shinji T Shibano 
+ (The Japan Research Institute, Limited.).<br>
+
+<HR>
+<h2><B><A name="LICENCE">LICENCE</A></H2></B></h2>
+You are allowed to use, modify, and redistribute 
+this software (XtalEdit) to anyone within limitations as follows.<br>
+
+1. When you redistribute XtalEdit (or its modification, or something which includes XtalEdit) to others, 
+   you have to clealy show that it includes XtalEdit (or based on XtalEdit by us).
+   Further, you have to clealy show that XtalEdit includes crystal-symmetry codes
+   from Andersen Group, and rasmol. Follow restrictions for each licence documents in doc directory.
+   (Include all things in doc directory in your redistribution package. 
+    And try to show these are included clearely).
+
+2. When you redistribute XtalEdit (or its modification) to others in a public way
+   (e.g. through a CD-ROM book, through Web site or so), please inform us of it.
+   
+3. If you sell software which include a part(or all) of XtalEdit (or its modifications),
+   please ask us. It is not allowed without our permission.
+
+4. We expect that you will somwhow support our activity on XtalEdit in your own way.
+
+<HR>
+<h2><B><A name="INSTALL">DownLoad and Install</A></H2></B><BR></h2>
+Out package is for Windows and Linux+Pentirum.
+XtalEdit should work with python2.2 + numerical python + java for any platform.
+However, our package include rasmol for binaries (csymtool)
+only for them. Thus you have to do some job by yourself if your platform is not
+Windows neither Linux+Pentium.
+<br><br>
+
+===For Windows===
+  At first, get a package XtalEdit090*.tar.gz or so. From the
+  <A href="http://sham.phys.sci.osaka-u.ac.jp/~kkr/XtalEdit/download">XtalEdit download Page</A>. Usually, latest in better.
+  The package is for both of Windows and Linux-pentium.
+
+1. Install Jave runtime environment (JRE). Java1.4.1 or Higher.
+   You can do it easily through <A href="http://java.sun.com/j2se/1.4.2/download.html"> java.sun.com</A>.
+
+2. Install python2.2 or above.
+   Lower versions of python does not work with Numerical python.
+   In Linux, type "python" or "python2" or "python2.2" from console and check the version.
+  * python download: <A href="http://www.python.org/2.2.2/">English version</A>.
+                     <A href="http://www.python.jp/Zope/download/pythoncore">Japanease version</A>.
+
+3. Install Numerical python on it. Take Numeric-22.0.win32-py2.2.exe or so and install.
+  * <A href="http://www.pfdubois.com/numpy/">Numerical python Homepage</A>.
+  * <A href="http://prdownloads.sourceforge.net/numpy/Numeric-22.0.win32-py2.2.exe?download">Numeric-22.0.win32-py2.2.exe</a>
+4. Just expand the package in a directory (XtalEdit's root directory).
+
+5. Invoke XtalEdit with XtalEdit.bat in the XtalEdit's root directory.
+
+
+===For Linux(Pentium)===
+1. Install Jave runtime environment (JRE). Java1.4.1 or Higher.
+   You can do it easily through <A href="http://java.sun.com/j2se/1.4.2/download.html"> java.sun.com</A>.
+
+Then you have to get a installer <A href="http://sham.phys.sci.osaka-u.ac.jp/~kkr/XtalEdit/download/XtalEdit_Install_for_Linux">XtalEdit_Install_for_Linux</A>.
+The followings are almost automatic.
+
+2. Install python2.2 or above. and
+3. Install Numerical python on it.
+4. Just expand the package in a directory (XtalEdit's root directory).
+   As for these procedures you can use the Installer script
+   <A href="http://sham.phys.sci.osaka-u.ac.jp/~kkr/XtalEdit/download/XtalEdit_Install_for_Linux">XtalEdit_Install_for_Linux</A>.
+   It invokes "wget" so as to get required packages, expand them and install them
+   under the directory which you invoke XtalEdit_Install_for_Linux.
+   You may have to see and modify it a bit.
+   Then it makes a starter script XtalEdit in the directory.
+   Edit the starter script XtalEdit so as to set the correct path to java.
+
+Even without using the installer, XtalEdit should work if python2.2, Numerical python and
+java correctly. So you don't need to stick the above procedure.
+However, python is sometimes assigned as python2 (in Redhat and so) 
+and system configulation may be a bit different.
+Such a thing sometimes may cause trouble. So we recommend you to follow the above procedure.
+The script compile python and numerical python. So it will take 5 to 10 minutes.
+<HR>
+<!--#echo var="LAST_MODIFIED"-->
+<address>contact to <a href="mailto:kotani@phys.sci.osaka-u.ac.jp">kotani@phys.sci.osaka-u.ac.jp</a></address>
+</BODY>
+</HTML>

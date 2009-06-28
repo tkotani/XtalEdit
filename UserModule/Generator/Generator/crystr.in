@@ -1,0 +1,22 @@
+     0  !mode switch for computation. Next line is generators
+                 r2(1,0,-1)
+         1.00000000000000 !alat 
+         0.500000000000000        0.500000000000000        1.000000000000000  !prvec1 
+         0.500000000000000        1.000000000000000        0.500000000000000  !prvec2 
+         1.000000000000000        0.500000000000000        0.500000000000000  !prvec3 
+     3  !nbas 
+         0.000000000000000        0.000000000000000        0.000000000000000    1 !bas site_type for site    1
+         2.500000000000000        2.000000000000000        2.500000000000000    2 !bas site_type for site    2
+         0.500000000000000        0.500000000000000        0.500000000000000    3 !bas site_type for site    3
+     3  ! ntyp 
+        Mnup         00000  ! Name for site_type    1
+        Mndn         00000  ! Name for site_type    2
+        O(1)         00000  ! Name for site_type    3
+#-------------------------------------------------------
+ mode = 0 !Search site positions for given generator.
+          !Then find additional symmetry generator.
+          !You can start from no given generators 
+      = 1 !Search site positions for given generator.
+      = 2 !Check consistency. Use given symmetry generator.
+
+        -0.500000000000000       -0.500000000000000       -0.500000000000000    3 !bas site_type for site    4

@@ -1,0 +1,18 @@
+#http://sham.phys.sci.osaka-u.ac.jp/~kkr/bbs/akaikkr/bbs0052.html
+#--- Li0.6CoO2 ---
+ go    data/Li06CoO2
+ trg    9.50 1.0 1.0 33.4 33.4 33.4
+ 0.001  2.2  nrl  mjwasa  mag  2nd
+ update 5 50 0.015
+ 3
+ Co  1  0  0  2  27   100
+ Li  2  0  0  2   3    60
+                  0    40
+ O   1  0  0  2   8   100
+ 4 
+   0.00000  0.00000  0.00000   Co
+   0.00000  0.00000  1.41502   Li
+   0.00000  0.00000  0.73014   O
+   0.00000  0.00000  2.09988   O
+
+

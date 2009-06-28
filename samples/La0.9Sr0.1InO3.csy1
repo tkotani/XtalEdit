@@ -1,0 +1,50 @@
+Bohr_R	= 0.529177249  # [BohrRadius/Angstrom]
+PI = 3.14159265358979323846
+# a, as a scale of system, is a required key word!
+a =  5.946/Bohr_R         # give in unit of Bohr_R(=atomic unit).
+b =  8.307/Bohr_R
+c =  5.801/Bohr_R
+CV1 = a * EX
+CV2 = b * EY
+CV3 = c * EZ
+
+PV1 =  CV1
+PV2 =  CV2
+PV3 =  CV3
+
+
+SITE TYPE=    In, POS=                       +1/2. *CV3  #  4b
+SITE TYPE=    In, POS=  1/2. *CV1 +1/2. *CV2             #  4b
+SITE TYPE=    In, POS=            +1/2. *CV2 +1/2. *CV3  #  4b
+SITE TYPE=    In, POS=  1/2. *CV1                        #  4b
+
+x= -0.0450
+z= -0.0100
+SITE TYPE=    LaSr, POS= +x                 *CV1 +1/4. *CV2 +z                 *CV3  #  4c
+SITE TYPE=    LaSr, POS=   ( +x     +1/2. ) *CV1 +1/4. *CV2 + ( -z     +1/2. ) *CV3  #  4c
+SITE TYPE=    LaSr, POS= -x                 *CV1 +3/4. *CV2 -z                 *CV3  #  4c
+SITE TYPE=    LaSr, POS=   ( -x     +1/2. ) *CV1 +3/4. *CV2 + ( +z     +1/2. ) *CV3  #  4c
+
+x= 0.5208
+z= 0.0895
+SITE TYPE=    O1, POS= +x                 *CV1 +1/4. *CV2 +z                 *CV3  #  4c
+SITE TYPE=    O1, POS=   ( +x     +1/2. ) *CV1 +1/4. *CV2 + ( -z     +1/2. ) *CV3  #  4c
+SITE TYPE=    O1, POS= -x                 *CV1 +3/4. *CV2 -z                 *CV3  #  4c
+SITE TYPE=    O1, POS=   ( -x     +1/2. ) *CV1 +3/4. *CV2 + ( +z     +1/2. ) *CV3  #  4c
+
+x= 0.204
+y= 0.051
+z= 0.808
+SITE TYPE=    O2, POS= +x                 *CV1 +y                 *CV2 +z                 *CV3  #  8d
+SITE TYPE=    O2, POS=   ( +x     +1/2. ) *CV1 + ( -y     +1/2. ) *CV2 + ( -z     +1/2. ) *CV3  #  8d
+SITE TYPE=    O2, POS= -x                 *CV1 + ( +y     +1/2. ) *CV2 -z                 *CV3  #  8d
+SITE TYPE=    O2, POS=   ( -x     +1/2. ) *CV1 -y                 *CV2 + ( +z     +1/2. ) *CV3  #  8d
+SITE TYPE=    O2, POS= -x                 *CV1 -y                 *CV2 -z                 *CV3  #  8d
+SITE TYPE=    O2, POS=   ( -x     +1/2. ) *CV1 + ( +y     +1/2. ) *CV2 + ( +z     +1/2. ) *CV3  #  8d
+SITE TYPE=    O2, POS= +x                 *CV1 + ( -y     +1/2. ) *CV2 +z                 *CV3  #  8d
+SITE TYPE=    O2, POS=   ( +x     +1/2. ) *CV1 +y                 *CV2 + ( -z     +1/2. ) *CV3  #  8d
+
+TYPE LaSr ATOM=(Sr:0.1)(La:0.9) ,LMX = 2 ,RWS = 2.072263
+TYPE In ATOM=(In:1.0) ,LMX = 2 ,RWS = 1.734226
+TYPE O1 ATOM=(O:1.0) ,LMX = 2 ,RWS = 0.998494
+TYPE O2 ATOM=(O:1.0) ,LMX = 2 ,RWS = 0.998494

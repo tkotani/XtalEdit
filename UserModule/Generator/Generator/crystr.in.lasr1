@@ -1,0 +1,22 @@
+     0  !mode switch for computation. Next line is generators
+            i r2z::(1/2,0,-1/2) r2y::(0,-1/2,0)
+   10.36510
+    1.00000  0.00000  0.00000
+    0.00000  1.41659  0.00000
+    0.00000  0.00000  1.00693
+ 4
+      0.00000000   0.00000000   0.50346400  1 type=Ga      
+      0.99010000   0.35414767   1.00400790  2 type=LaSr    
+      0.49800000   0.35414767   0.06041568  3 type=O_aVc   
+      0.22900000   0.05241386   0.76727913  4 type=O_b     
+4
+ Ga    2.2
+ LaSr  2.2
+ O_aVc 2.2
+ O_b   2.2
+#-------------------------------------------------------
+ mode = 0 !Search site positions for given generator.
+          !Then find additional symmetry generator.
+          !You can start from no given generators 
+      = 1 !Search site positions for given generator.
+      = 2 !Check consistency. Use given symmetry generator.

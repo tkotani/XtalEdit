@@ -1,0 +1,27 @@
+# NiO
+
+alat=7.88
+PV1= alat*(0.5)*EX + alat*(0.5)*EY + alat*(1.0)*EZ
+PV2= alat*(0.5)*EX + alat*(1.0)*EY + alat*(0.5)*EZ
+PV3= alat*(1.0)*EX + alat*(0.5)*EY + alat*(0.5)*EZ
+CV1=PV1
+CV2=PV2
+CV3=PV3
+
+SITE TYPE=Niup, POS= (.0)*alat*EX+ (.0)*alat*EY + (.0)*alat*EZ 
+SITE TYPE=Nidn, POS= (1.0)*alat*EX+ (1.0)*alat*EY + (1.0)*alat*EZ 
+SITE TYPE=O, POS= (.5)*alat*EX+ (.5)*alat*EY + (.5)*alat*EZ 
+SITE TYPE=O, POS= (1.5)*alat*EX+ (1.5)*alat*EY + (1.5)*alat*EZ 
+TYPE Niup ATOM=(28:1.0)  ,LMX=4
+TYPE Nidn ATOM=(28:1.0)  ,LMX=4
+TYPE O ATOM=(8:1.0)  ,LMX=2
+
+
+<RASMOL>
+BondMax  =    4.5000 
+RangeMin = [ -0.2000,  -0.2000,  -0.2000]  #[-0.0001,-0.0001,-0.0001]
+RangeMax = [  2.2000,   2.2000,   2.2000]  #[ 0.9999, 0.9999, 0.9999]
+Type Niup Color=1
+Type Nidn Color=2
+Type O Color=3
+</RASMOL>

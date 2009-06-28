@@ -1,0 +1,48 @@
+===These buttons are for space-group operations.===
+
+  Gen 0   !Search site positions for given generator.
+          !Then find additional symmetry generator.
+          !You can start from no given generators 
+  Gen 1   !Search site positions for given generator.
+  Gen 2   !Check consistency. Use given symmetry generator.
+
+These functions add a line,e.g,
+  GEN i*r3(1,1,-1)::(1/4,1/4,1/4) r4x::(1/4,1/4,1/4)
+at the top of *.csy file. Or read them and do something as wrtten above.
+Each thing after GEN means space-group generators.
+
+--- How to read the expression of space-group generators?---
+A symbol describing a generator for a point group operation has
+the form O(nx,ny,nz) where O is one of M, I or Rj for mirror,
+inversion and j-fold rotation; and nx,ny,nz are a triplet of
+indices specifying the axis of operation.  It can be integer 
+or real numbers. You may use X, Y, Z or
+D as shorthand for (1,0,0), (0,1,0), (0,0,1), (1,1,1).  
+You may also enter products, such as I*R4X.
+
+As for space-group operation, we have to add translation
+after rotation in some cases. 
+They should be given by appending a string in the
+form `::(p1,p2,p3)' to the point group operation.
+These defines the translation \Delta
+in prvec(1:3,1),prvec(1:3,2),prvec(1:3,3) in unit alat.
+\Delta(1:3) = p1*prvec(1:3,1) +p2*prvec(1:3,2) + p3*prvec((1:3,3)
+Parser routine is subs/psymop.f 
+An example for Si is
+    i*r3(1,1,-1)::(1/4,1/4,1/4) r4x::(1/4,1/4,1/4)
+
+ag in SYMOPS.ops is in Cartasian.
+So ag(1:3) = \Delta(1:3) = p1*prvec(1:3,1) +p2*prvec(1:3,2) + p3*prvec((1:3,3)
+
+
+!!!Note!!! This version might not work well when given primitive vectors 
+PV* are not the smallest translations. (so note in cases supercell and so).
+
+============================================
+See Module/Generator/README in detals.
+The format of Generators are originally from LMTO packages
+in Anderson group in MPI Stuttgart.
+
+Tha matrix elements of space group operations are in SYMOPS.out.
+
+

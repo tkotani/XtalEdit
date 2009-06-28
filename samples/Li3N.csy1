@@ -1,0 +1,52 @@
+<RASMOL>
+BondMax  =    4.5000 
+RangeMin = [ -0.2000,  -0.2000,  -0.2000]  #[-0.0001,-0.0001,-0.0001]
+RangeMax = [  2.2000,   2.2000,   2.2000]  #[ 0.9999, 0.9999, 0.9999]
+TYPE Vc Color=0
+TYPE Li_a Color=2
+TYPE Li_b Color=2
+TYPE N Color=4
+</RASMOL>
+
+a= 6.894
+coa=1.062
+boa=1.
+PV1=    0.500000000000     *a*EX + -0.866025403784     *a*EY +  0.000000000000     *a*EZ
+PV2=    0.500000000000*boa *a*EX +  0.866025403784*boa *a*EY +  0.000000000000*boa *a*EZ
+PV3=    0.000000000000*coa *a*EX +  0.000000000000*coa *a*EY +  1.000000000000*coa *a*EZ
+
+CV1=PV1
+CV2=PV2
+CV3=PV3
+
+SITE TYPE=N, POS=  0.00000000 *a*EX +0.00000000 *a*EY +0.00000000 *a*EZ
+SITE TYPE=Li_a, POS=  0.00000000 *a*EX +0.00000000 *a*EY +0.50000000 *PV3
+SITE TYPE=Li_b, POS=  0.33333333 *PV1 +0.66666666 *PV2 +0.00000000 *a*EZ
+SITE TYPE=Li_b, POS=  0.66666666 *PV1 +0.33333333 *PV2 +0.00000000 *a*EZ
+SITE TYPE=Vc, POS=  0.33333333 *PV1 +0.66666666 *PV2 +0.50000000 *PV3
+SITE TYPE=Vc, POS=  0.66666666 *PV1 +0.33333333 *PV2 +0.50000000 *PV3
+
+TYPE Vc ATOM=(0:100), LMX=1, RMT=0
+TYPE Li_a ATOM=(3:100), LMX=2, RMT=0
+TYPE Li_b ATOM=(3:100), LMX=2, RMT=0
+TYPE N ATOM=(7:100), LMX=2, RMT=0
+
+<AkaiKKR>
+go ='go'
+fname = 'data/Li3N'
+edelta = 0.001
+ewidth = 1.2
+reltyp = 'nrl'
+sdftyp = 'vwn'
+magtyp = 'nmag'
+record = '2nd'
+outtyp = 'update'
+bzqlty = '4'
+maxitr = 50
+pmix   = 0.020
+TYPE Vc field=0.0
+TYPE Li_a field=0.0
+TYPE Li_b field=0.0
+TYPE N field=0.0
+</AkaiKKR>
+

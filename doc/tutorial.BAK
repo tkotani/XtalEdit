@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<HTML>
+<HEAD>
+<META name="GENERATOR" http-equiv="Last-Modified" content="<!--#flastmod file='index.htm'-->">
+
+<TITLE>XtalEdit_USAGE</TITLE>
+</HEAD>
+
+<FONT size="+1">
+<BODY bgcolor="#d2fcff">
+<P><B><FONT size="+3">Tutorial for XtalEdit </FONT>(version 0.90*)</B></P>
+(This is too short, and may not so good enough... We will improve it soon. Sorry...)
+<BR><BR>
+
+At first, please see <A href="indexuse.htm#Basic">Basic</A> in Usage.<br><BR>
+
+-------------------------------------------<br>
+<ol>
+<li>Read in a sample LaMnO3_FullDistortion.csy1 in sample directory with File-Open.</li>
+<li>Push Generator-mode0. Then it will calculate generators for space-group operations of the system.<br>
+Result will appear in ResultWindow.<br>
+At the same time, generators <br>
+&lt;GEN&gt;<br>
+ i r2z::(1/2,0,1/2) r2y::(0,-1/2,0)<br>
+&lt;/GEN&gt;<br>
+are added to EditWindow. These are space-group generator.</li>
+<li>For example, remove three Mn sites. And push Generator-mode0.
+Then atomic positions are recovered because this function see
+the generators in &\lt;GEN&\gt; and complement atomic positions.</li>
+<li>Run Vierwer-Rasmol. It will show crystals.
+Try to modify &lt;RASMOL&gt; section so as to change view.</li>
+<li>Run KKR(Akai)-export. It generate input file for AkaiKKR.</li>
+
+</ol>
+<br>
+-------------------------------------------<br>
+How to construct *.csy1 file from crystallogrphic data ?<br>
+<A href="tut1jap.txt">a bit detailed tutorial in japanease.</A><br><BR>
+
+<ol>
+<li>Readin space-group sample from samples/TSPACE.
+You need to know the space-group number.</li>
+<li>Supply data to define primitive cell (and conventional cell).</li>
+<li>Choose Wykoff positions. Delete not required block. 
+You may have to duplicate some blocks.</li>
+<li>Replace name of TYPE='name of Wykoff position' in SITE.</li>
+<li>Write TYPE definition. Pushing ChkType will generate a templete.</li>
+</ol>
+Also you can use the samples in samples/TSPACE to learn Wykoff positions.
+Then you don't need to define TYPE.
+
+</BODY>
+</HTML>
+
+
+

@@ -1,0 +1,31 @@
+a= 5.42
+boa=1.
+coa=1.
+PV1=   -0.500000000000     *a*EX +  0.500000000000     *a*EY +  0.500000000000     *a*EZ
+PV2=    0.500000000000*boa *a*EX + -0.500000000000*boa *a*EY +  0.500000000000*boa *a*EZ
+PV3=    0.500000000000*coa *a*EX +  0.500000000000*coa *a*EY + -0.500000000000*coa *a*EZ
+
+CV1=PV1 #these are dummy for rasmol
+CV2=PV2
+CV3=PV3
+
+SITE TYPE=Fe, POS=  0.00000000 *EX +0.00000000 *EY +0.00000000 *EZ
+
+TYPE Fe ATOM=(26:100), LMX=2, RMT=0
+
+<AkaiKKR>
+go ='dos'
+fname = 'data/Fe'
+edelta = 0.002
+ewidth = 1.0
+reltyp = 'sra'
+sdftyp = 'vwn'
+magtyp = 'mag'
+record = '2nd'
+outtyp = 'update'
+bzqlty = '5'
+maxitr = 990
+pmix   = 0.010
+TYPE Fe field=0.0
+</AkaiKKR>
+

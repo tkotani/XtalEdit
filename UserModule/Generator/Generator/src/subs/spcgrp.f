@@ -1,0 +1,262 @@
+      logical function spgeql2(g1,a1,g2,a2,qb)
+c  determines whether g1 is equal to g2
+C     implicit none
+c: takao only compare rotational part------
+      double precision g1(9),g2(9),a1(3),a2(3),qb(3,3),c,ca,dc
+      integer m,iq,iac
+      spgeql2=.true.
+      do 10 m=1,9
+      if(dabs(g1(m)-g2(m)).gt.1.d-5) then
+        spgeql2=.false.
+        return
+      endif
+  10  continue
+      end
+
+
+
+      subroutine spcgrp(mode,gen,ngen,plat,nbas,bas,ips,ngmx,g,ag,ng)
+C- Sets up space group given point group generators gen
+C ----------------------------------------------------------------------
+Ci  mode  a compressed set of switches, by digit:
+Ci    1s digit add inversion to list of generators (from time-reversal
+Ci             symmetry); assume ag is zero.  THIS OPTION COMMENTED OUT
+Ci   10s digit 0 stop if any gen is missing a translation.
+Ci             1 continue anyway, making the point group.
+Ci  gen,ngen: generators of the point group, and number
+Ci  plat,nbas,bas: primitive lattice vectors and basis vectors
+Ci  ips species pointer table
+Ci  ngmx: maximum allowed number of group operations
+Co  g,ag,ng: space group that defined by operation on vector v
+Co   (g,ag)(v) as g*v + ag, with g a 3x3 matrix and vector ag.
+Co  ng < 0 spcgrp could not find translations for generator -ng
+C ----------------------------------------------------------------------
+C     implicit none
+      integer mode,ips(1),ngmx,ngen,ng,nbas
+      double precision plat(3,3),gen(9,ngen),g(9,ngmx),ag(3,ngmx),
+     .  bas(3,nbas)
+      integer lok,ig,ib,jb,i1mach,iprint
+      double precision xx,qb(3,3),trans(3,50)
+C      integer awrite
+C      character*80 outs
+
+      if (ngen .gt. 50) call rx('spcgrp: ngen gt 50')
+
+C --- Find non-primitive translations for each generator ---
+      call pshpr(iprint()-30)
+      call dinv33(plat,1,qb,xx)
+      do  20  ig = 1, ngen
+        do  19  ib = 1, nbas
+          do  18  jb = 1, ib
+            call trysop(ib,jb,gen(1,ig),nbas,ips,bas,plat,qb,lok,
+     .        trans(1,ig))
+            if (lok .eq. 1 .and. iprint() .gt. 20) call awrit2(
+     .        ' spcgrp gen %i: found trans =%3:1;6d',' ',80,i1mach(2),
+     .        ig,trans(1,ig))
+            if (lok .eq. 1) goto 20
+   18     continue
+   19   continue
+        if (mod(mode/10,10) .eq. 0) call fexit(-1,111,
+     .    '%N  SPCGRP: no translation found for generator %i',ig)
+        call dpzero(trans(1,ig),3)
+   20 continue
+      call poppr
+
+C --- Add inversion ---
+C      if (mod(mode,10) .eq. 1) then
+C        ngen = ngen+1
+C        call dpzero(trans(1,ngen),3)
+C        call dpzero(gen(1,ngen),9)
+C        gen(1,ngen) = -1
+C        gen(5,ngen) = -1
+C        gen(9,ngen) = -1
+C        ib = awrite('%x%N SPCGRP: added inversion to group operations'
+C     .    ,outs,80,0,0,0,0,0,0,0,0,0)
+C        if (iprint() .ge. 30) call cwrite(outs,0,ib-1,0)
+C      endif
+
+C --- Make the space group ---
+      call sgroup(gen,trans,ngen,g,ag,ng,ngmx,qb)
+      end
+
+      subroutine sgroup(gen,agen,ngen,g,ag,ng,ngmx,qb)
+C- Sets up space group given generators (gen,agen).
+C  Operations are defined as (g,a)(v):=g*v+a,
+c  where g is a (3x3) matrix, a is a vector.
+C  Always returns the identity operation as the one.
+C ----------------------------------------------------------------------
+C     implicit none
+      integer ngen,ng,ngmx
+      double precision gen(9,ngen),g(9,ngmx),h(9),hh(9),e(9),sig(9)
+     .  ,asig(3),agen(3,ngen),ag(3,ngmx),qb(3,3),ah(3),ahh(3),ae(3)
+      integer ipr,igen,ig,itry,iord,nnow,j,ip,i,k,n2,m1,m2,is,nnew,n,m,
+     .  i1mach
+      logical spgeql,spgeql2
+      character*80 sout
+      data e/1d0,0d0,0d0, 0d0,1d0,0d0, 0d0,0d0,1d0/, ae/0d0,0d0,0d0/
+      call getpr(ipr)
+      if (ipr .ge. 30) print *
+      sout = ' '
+      call spgcop(e,ae,g,ag)
+      ng = 1
+      do 80 igen=1,ngen
+      call spgcop(gen(1,igen),agen(1,igen),sig,asig)
+C --- Extend the group by all products with sig ----
+      do 9 ig=1,ng
+c      if(spgeql(g(1,ig),ag(1,ig),sig,asig,qb)) then
+ctakao
+      if(spgeql2(g(1,ig),ag(1,ig),sig,asig,qb)) then
+        if (ipr .gt. 30) call awrit2(' Generator %i already in group '//
+     .    'as element %i',' ',80,i1mach(2),igen,ig)
+C        write(6,650) igen,ig
+C  650   format(' generator',i3,'  is already in group as element',i3)
+        goto 80
+      endif
+    9 continue
+C ... Determine order
+      call spgcop(sig,asig,h,ah)
+      do 1 itry=1,100
+      iord=itry
+c      if(spgeql(h,ah,e,ae,qb)) goto 2
+ctakao
+      if(spgeql2(h,ah,e,ae,qb)) goto 2
+    1 call spgprd(sig,asig,h,ah,h,ah)
+C ... Products of type  g1 sig**p g2
+    2 nnow=ng
+      if(ipr .ge. 40) call awrit2('%a  %i is %i,',sout,80,0,igen,iord)
+      do 8 j=1,ng
+      call spgcop(g(1,j),ag(1,j),h,ah)
+      do 10 ip=1,iord-1
+      call spgprd(sig,asig,h,ah,h,ah)
+      do 11 i=1,ng
+      call spgprd(g(1,i),ag(1,i),h,ah,hh,ahh)
+      do 12 k=1,nnow
+c        if( spgeql(g(1,k),ag(1,k),hh,ahh,qb) ) goto 11
+ctakao
+        if( spgeql2(g(1,k),ag(1,k),hh,ahh,qb) ) goto 11
+   12 continue
+   13 nnow=nnow+1
+      if(nnow.gt.ngmx) goto 99
+      call spgcop(hh,ahh,g(1,nnow),ag(1,nnow))
+   11 continue
+   10 continue
+    8 if(j.eq.1) n2=nnow
+C ... Products with more than one sandwiched sigma-factor
+      m1=ng+1
+      m2=nnow
+      do 20 is=2,50
+       nnew=0
+       do 21 n=ng+1,n2
+       do 21 m=m1,m2
+       call spgprd(g(1,n),ag(1,n),g(1,m),ag(1,m),h,ah)
+       do 22 k=1,nnow
+c         if(spgeql(g(1,k),ag(1,k),h,ah,qb)) goto 21
+ctakao
+         if(spgeql2(g(1,k),ag(1,k),h,ah,qb)) goto 21
+   22  continue
+       nnew=nnew+1
+       nnow=nnow+1
+      if(nnow.gt.ngmx) goto 99
+       call spgcop(h,ah,g(1,nnow),ag(1,nnow))
+   21 continue
+       m1=m2+1
+       m2=nnow
+       if(nnew.eq.0) goto 25
+   20 continue
+   25 continue
+      ng=nnow
+   80 continue
+
+C --- Printout ---
+      if (ipr .ge. 30) then
+        if (sout .ne. ' ' .and. ipr .ge. 60) call awrit0
+     .    (' Order of generator'//sout//'%a%b',' ',80,i1mach(2))
+        call awrit2(' SGROUP: %i symmetry operations from %i '//
+     .    'generators',' ',80,i1mach(2),ng,ngen)
+      endif
+      return
+   99 call rx('SGROUP: ng greater than ngmx: probably bad translation')
+      end
+
+      logical function spgeql(g1,a1,g2,a2,qb)
+c  determines whether g1 is equal to g2
+C     implicit none
+      double precision g1(9),g2(9),a1(3),a2(3),qb(3,3),c,ca,dc
+      integer m,iq,iac
+      spgeql=.true.
+      do 10 m=1,9
+      if(dabs(g1(m)-g2(m)).gt.1.d-5) then
+        spgeql=.false.
+        return
+      endif
+  10  continue
+      do 20 iq=1,3
+      c=(a1(1)-a2(1))*qb(1,iq)+(a1(2)-a2(2))*qb(2,iq)
+     .   +(a1(3)-a2(3))*qb(3,iq)
+      ca=dabs(c)
+      iac=ca+0.5d0
+      dc=ca-iac
+      if(dabs(dc).gt.1.d-5) then
+        spgeql=.false.
+        return
+      endif
+  20  continue
+      return
+      end
+
+      subroutine spgprd(g1,a1,g2,a2,g,a)
+C     implicit none
+      double precision
+     .  g1(3,3),g2(3,3),g(3,3),sum,a1(3),a2(3),a(3),h(3,3),ah(3)
+      integer i,j,k
+      do 10 i=1,3
+      do 10 j=1,3
+      sum=0.d0
+      do 11 k=1,3
+  11  sum=sum+g1(i,k)*g2(k,j)
+  10  h(i,j)=sum
+      do 13 j=1,3
+      do 13 i=1,3
+  13  g(i,j)=h(i,j)
+      do 12 i=1,3
+      ah(i)=a1(i)
+      do 12 j=1,3
+  12  ah(i)=ah(i)+g1(i,j)*a2(j)
+      do 14 i=1,3
+  14  a(i)=ah(i)
+      return
+      end
+      subroutine spgcop(g,ag,h,ah)
+      double precision h(9),g(9),ag(3),ah(3)
+      do 10 i=1,9
+      h(i)=g(i)
+  10  if(dabs(h(i)).lt.1.d-10) h(i)=0.d0
+      do 11 i=1,3
+      ah(i)=ag(i)
+  11  if(dabs(ah(i)).lt.1.d-10) ah(i)=0.d0
+      return
+      end
+      subroutine gpfndx(g,ag,ia,ja,pos,nrc,rb,qb)
+C- Finds atom ja which is transformed into ia by group operation g,ag.
+C     implicit none
+      integer ia,ja
+      double precision g(3,3),ag(3),pos(3,1),d(3),rb(3,3),qb(3,3)
+      integer ka,nrc,m,k
+C     integer mode(3)
+C      mode(1) = 2
+C      mode(2) = 2
+C      mode(3) = 2
+      ja = 0
+      do  11  ka = 1, nrc
+        do  2  m = 1, 3
+        d(m) = ag(m) - pos(m,ia)
+        do  2  k = 1, 3
+    2   d(m) = d(m) + g(m,k)*pos(k,ka)
+        call shorbz(d,d,rb,qb)
+C       call shorps(1,rb,mode,d,d)
+        if (abs(d(1))+abs(d(2))+abs(d(3)) .lt. 1d-4) then
+          ja = ka
+          return
+        endif
+   11 continue
+      end

@@ -1,0 +1,17 @@
+     0  !mode switch for computation. Next line is generators
+
+         10.24 !alat 
+         0    0.5 0.5  !prvec1 
+         0.5  0   0.5  !prvec2 
+         0.5  0.5  0   !prvec3 
+     2  !nbas 
+          0 0 0            1
+	  .25 .25 .25      1
+     1  ! ntyp 
+        Si          2.2  ! Name for site_type    1
+#-------------------------------------------------------
+ mode = 0 !Search site positions for given generator.
+          !Then find additional symmetry generator.
+          !You can start from no given generators 
+      = 1 !Search site positions for given generator.
+      = 2 !Check consistency. Use given symmetry generator.

@@ -1,0 +1,43 @@
+<GEN>
+i r3z mx
+</GEN>
+a  = 9.50
+PI = 3.1415926535897932
+theta=  33.4 *PI/180.
+z   = sqrt( (.5+cos(theta))/(1.-cos(theta)) )
+snrm= sqrt(1.+z**2)
+PV1=   .5*sqrt(3)/snrm  *a*EX + .5/snrm  *a*EY + z/snrm  *a*EZ
+PV2=  -.5*sqrt(3)/snrm  *a*EX + .5/snrm  *a*EY + z/snrm  *a*EZ
+PV3=                           -1./snrm  *a*EY + z/snrm  *a*EZ
+
+CV1=PV1 
+CV2=PV2
+CV3=PV3
+
+SITE TYPE=Co, POS= 0.
+SITE TYPE=Li, POS= 1.41502 *a*EZ
+SITE TYPE=O,  POS= 0.73014 *a*EZ
+SITE TYPE=O,  POS= 2.09988 *a*EZ
+
+TYPE Co ATOM=(27:100), LMX=2
+TYPE O ATOM=(8:100), LMX=2
+TYPE Li ATOM=(3:60)(0:40), LMX=2
+
+<AkaiKKR>
+go ='go'
+fname = 'data/Li06CoO2'
+edelta = 0.001
+ewidth = 2.2
+reltyp = 'nrl'
+sdftyp = 'mjwasa'
+magtyp = 'mag'
+record = '2nd'
+outtyp = 'update'
+bzqlty = '5'
+maxitr = 50
+pmix   = 0.015
+TYPE Co field=0
+TYPE O field=0
+TYPE Li field=0
+</AkaiKKR>
+

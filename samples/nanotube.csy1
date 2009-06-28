@@ -1,0 +1,49 @@
+# This is a saple to generate carbon nanotube 
+# You can push Rasmol to see nanotube.
+# Generator mode1 take a minutes or so.
+# We have not checked results by this file! 
+# Actually this is only for demonstration!
+# At first, push Rasmol to see a picture!
+
+a = 20.0
+CV1 = a*EX
+CV2 = a*EY
+CV3 = .5*a*EZ
+PV1 = CV1
+PV2 = CV2
+PV3 = CV3
+trans0=0.5*(CV1+CV2+CV3)
+
+from makeNanoTube import *    
+#  makeNanoTube.py is in UserModule/common
+
+nano = NanoTubeMaker(5,5,4)
+nano.makeCoordinates()
+N = nano.N
+natom = 2 * N * nano.numUnit
+
+for i in range(0,natom/2):
+	x = nano.AposAll[i][0]
+	y = nano.AposAll[i][1]
+	z = nano.AposAll[i][2]
+	SITE TYPE=C1, POS=x*EX+y*EY+z*EZ + trans0
+
+for i in range(0,natom/2):
+	x = nano.BposAll[i][0]
+	y = nano.BposAll[i][1]
+	z = nano.BposAll[i][2]
+	SITE TYPE=C2, POS=x*EX+y*EY+z*EZ + trans0
+
+
+TYPE C1 ATOM=(C:1.0) ,LMX = 2 ,RWS = 1.953982
+TYPE C2 ATOM=(C:1.0) ,LMX = 2 ,RWS = 1.953982
+
+
+
+<RASMOL>
+BondMax  =    4.5000 
+RangeMin = [ -0.0001,  -0.0001,  -0.0001]  #[-0.0001,-0.0001,-0.0001]
+RangeMax = [  0.9999,   0.9999,   0.9999]  #[ 0.9999, 0.9999, 0.9999]
+Type C2 Color=1
+Type C1 Color=2
+</RASMOL>

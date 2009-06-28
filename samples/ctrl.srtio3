@@ -1,0 +1,71 @@
+[takao@henry:~/Inna]$ cat ctrl.srtio3_showp
+ -----------------------  START LMF (80000K)  -----------------------
+HEADER  SrTiO3 cubic Sr 4p and Ti 4p with using local orbitals
+VERS  LMF-6.10 LMASA-6.10
+IO  SHOW=F VERBOS=verb
+TESTLMF lmfa -vfrz=f -vtiz=.00 srtio3
+ lmf  -vfrz=f -vtiz=.00 srtio3
+ rm mixm.srtio3
+ lmf  -vfrz=f -vtiz=.01 srtio3 --rs=11,1,1
+CLEAN  rm -f ctrl.srtio3 wkp.srtio3 save.srtio3 out.lmf.srtio3 log.srtio3 atm.srtio3 moms.srtio3 rst.srtio3 mixm.srtio3
+CONST  ro=1.45 rti=2.33 rsr=2.8
+ verb=40 au=0.529177
+ d0=1.95/au a0=2*d0 v0=a0^3 vfrac=1 v=v0*vfrac a1=v^(1/3) da=0
+ d1=a1/2 rf=0.9 rfsr=0.9
+STRUC  NBAS=5 NL=5 NSPEC=3 ALAT=a1 DALAT=da PLAT=1 0 0  0 1 0  0 0 1
+
+
+SPEC    ATOM=Sr Z=38 R=rsr LMX=4 LMXA=5 A=.025 KMXA=5 EREF=-6351.4281 LFOCA=1 FRZWF=f
+                RSMH=2.0,2.0,2.0,2.0,2.0*0 EH=-.3,-.3,-.3,-.3,-.3
+                RSMH2=2.0,2.0,2.0  EH2=-1,-1,-1
+                P=5.5,5.3,4.3,4.18,5.15  IDMOD=0 0 1 1 1 1
+                PZ=14.94,14.93 Q=0 0 2
+
+        ATOM=Ti Z=22 R=rti LMXA=5 KMXA=5 EREF=-1703.4890
+                PZ=0,13.93,4.5 Q=2 0 2 LFOCA=1
+                RSMH=1.8,1.8,1.0,1.8,1.8*0 EH=-.3,-.3,-.3,-.3,-.3,-.3
+                RSMH2=1.8,1.0,1.0 EH2=-1.2,-1.2,-1.2
+                P=4.5,4.3,3.3,4.18,5.15  IDMOD=0 0 0 1 1 1
+
+
+        ATOM=O  Z=8  R=ro  LMX=3 LMXA=5 LFOCA=0 EREF=-149.1822
+                  RSMH= 0.85,0.75,0.95,0.95 EH= -.3,-.3,-.3,-.3
+                  RSMH2=0.80 0.8 0.8 EH2= -1.2 -1.2 -1.2
+                  P=0,0,3.25,4.15,5.1 IDMOD=0 0 1 1 1
+
+SPEC    ATOM=Sr Z=38 R=rsr LMX=4 LMXA=5 A=.025 KMXA=5 EREF=-6351.4281 LFOCA=1 FRZWF=f
+                RSMH=1.0,1.0,1.0,1.0,1.0 EH=-.3,-.3,-.3,-.3,-.3
+                RSMH2=1.0,1.0,1.0  EH2=-1,-.8,-1
+                PZ=14.94,14.93 Q=0 0 2
+                PZ=4.9,4.9 Q=0 0 2
+                P=5.5 5.3 4.3  PZ=0,4.9 IDMOD=0 1 1 1 1
+
+        ATOM=Ti Z=22 R=rti LMXA=5 KMXA=5 EREF=-1703.4890
+                Q=2 0 2 LFOCA=1
+                RSMH=1.8,1.0,1.0,1.0 EH=-.3,-.3,-.3,-.3
+                RSMH2=1.8,1.0,1.0 EH2=-1.2,-1.2,-1.2
+                P=4.5,4.3,3.3 PZ=0,13.93,4.5 IDMOD=0 1 1 1 1
+                P=4.5,4.3,3.3 PZ=0,3.9,4.5 IDMOD=0 1 1 1 1
+
+        ATOM=O  Z=8  R=ro  LMX=3 LMXA=5 LFOCA=0 EREF=-149.1822
+
+                  RSMH= 0.85,0.75,0.95,0.95 EH= -.3,-.3,-.3,-.3
+                  RSMH2= 0.8 0.8 0.8 EH2= -1.2 -1.2 -1.2
+                  P=0,0,3.25 IDMOD=0 0 1
+
+SITE    ATOM=Sr POS=1/2 1/2 1/2
+        ATOM=Ti POS= 0   0   0+0
+        ATOM=O  POS=1/2  0   0
+        ATOM=O  POS= 0  1/2  0
+        ATOM=O  POS= 0   0  1/2
+
+BZ      NKABC=4 4 4 BZJOB=0 METAL=0 TETRA=1
+.MIX     MODE=A0,b=.5 CONV=1e-5 CONVC=3e-6
+MIX     MODE=A2,b=.5 CONV=1e-5 CONVC=3e-6
+MIX     MODE=A2,b=.5,n=3;A0,b=.5,n=3 CONV=1e-5 CONVC=3e-6
+START   NIT=100
+HAM     ELIND=-.8 FTMESH=36 36 36 FORCES=0 12 FRZ=0
+        RSRNGE=6
+        RDSIG=12 SIGP:3,0,0,0,3,.14,.05,0
+GW      NKABC=4 GCUTB=2.7 GCUTX=2.2 MKSIG=3 ECUTS=2
+#rdfiln generated 68 records.

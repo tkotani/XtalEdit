@@ -1,0 +1,28 @@
+#fcc spacegruop 225
+a= 7.6
+CV1= a*EX
+CV2= a*EY
+CV3= a*EZ
+PV1=                           0.500000000000 *CV2 +  0.500000000000 *CV3
+PV2=    0.500000000000 *CV1                        +  0.500000000000 *CV3
+PV3=    0.500000000000 *CV1 +  0.500000000000 *CV2 
+
+SITE TYPE=AlFe, POS=  0.00000000 *EX +0.00000000 *EY +0.00000000 *EZ
+
+TYPE AlFe ATOM=(Fe:100)(Al:0) ,LMX = 2 ,RWS = 2.970052 ,RMT = 0
+
+<AkaiKKR>
+go ='go'
+fname = 'Al0Fe100'
+edelta = 0.001
+ewidth = 1.2
+reltyp = 'sra'
+sdftyp = 'vwn'
+magtyp = 'mag'
+record = '2nd'
+outtyp = 'update'
+bzqlty = '5'
+maxitr = 100
+pmix   = 0.020
+TYPE AlFe field=0.0
+</AkaiKKR>

@@ -1,0 +1,30 @@
+### Note the definition of SV1,SV2,SV3, which
+### are target supercell button!
+#
+# Try supercell button!
+# Then try Rasmol button to view it!
+# change a Si as SiCTR and calculate generator!
+a = 8.24   # in a.u.
+CV1 = a * EX
+CV2 = a * EY
+CV3 = a * EZ
+
+SV1= 2*CV1
+SV2= 2*CV2
+SV3= 2*CV3
+
+PV1 =             + 1/2. * CV2 + 1/2. * CV3
+PV2 =  1/2. * CV1              + 1/2. * CV3
+PV3 =  1/2. * CV1 + 1/2. * CV2 
+
+
+SITE TYPE=   Si, POS=0. *PV1          
+SITE TYPE=    C, POS=  1/4. *PV1 +1/4. *PV2 +1/4. *PV3
+SITE TYPE=    Vc1, POS=  1/2. *PV1 +1/2. *PV2 +1/2. *PV3
+SITE TYPE=    Vc2, POS=  3/4. *PV1 +3/4. *PV2 +3/4. *PV3
+
+TYPE Si   LMX=3, ATOM = (Si:1.0)
+TYPE C   LMX=3, ATOM = (C:1.0)
+TYPE Vc1 ATOM = (Vc:1.0)
+TYPE Vc2 ATOM = (Vc:1.0)
+

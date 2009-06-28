@@ -1,0 +1,8 @@
+This button can make supercell from SV vector.
+Give SV* (supercell vectors) after PV are defined.
+And push this botton.
+Then the SV* is taken as new PV*(primitive vector),
+and atom in the cell are given.
+
+Anyway try it.
+

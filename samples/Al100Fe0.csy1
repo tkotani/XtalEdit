@@ -1,0 +1,33 @@
+<GEN>
+i*r3(1,1,-1) r4x
+</GEN>
+a = 7.60   # in a.u.
+CV1 = a * EX
+CV2 = a * EY
+CV3 = a * EZ
+
+# fcc lattice
+PV1 =             + 1/2. * CV2 + 1/2. * CV3
+PV2 =  1/2. * CV1              + 1/2. * CV3
+PV3 =  1/2. * CV1 + 1/2. * CV2 
+
+SITE TYPE=AlFe, POS=0.
+
+TYPE AlFe LMX=2, ATOM=(Fe:0.0)(Al:1.0)
+
+<AkaiKKR>
+go='go'
+edelt = .001
+ewidth= 1.2
+reltyp= "sra"
+sdftyp= "vwn"
+magtyp= "mag"
+bzqlty= "5"
+fname='AlFePotential.pot'
+record='2nd'
+outtyp='update'
+maxitr=40
+pmix= 0.002
+TYPE AlFe field=0.00
+</AkaiKKR>
+

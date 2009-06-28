@@ -1,0 +1,61 @@
+################################################################################
+## Change Base Vector ##########################################################
+SiteNum  = len(Site)
+TypeNum = len(Type)
+fw = open("./UserModule/SiteAch/Site.dat","w")
+
+#print 'uuuuuuuuuuu111'
+#print transpose(array([PV1,PV2,PV3]))
+#print 'uuuuuuuuuuu222'
+#print inv(transpose(array([PV1,PV2,PV3])))
+
+try:
+	if	arg ==0:	#	to EX
+		BVec	=	[" *EX "," *EY "," *EZ "]
+		blank	=	"                   "
+	elif arg==1:	#	to PV
+		BVec	=	[" *PV1 "," *PV2 "," *PV3 "]
+		blank	=	"                    "
+		mat= inv(transpose(array([PV1,PV2,PV3])))
+	else:				#	to CV
+		BVec	=	[" *CV1 "," *CV2 "," *CV3 "]
+		blank	=	"                    "
+		mat= inv(transpose(array([CV1,CV2,CV3])))
+except:
+	sys.exit(0)
+
+
+for i in range(SiteNum):
+	if arg!=0:
+		print i, Site[i]["PosData"] 
+		a	=	dot(mat, Site[i]["PosData"] )
+	else:
+		a	=	Site[i]["PosData"]
+
+	#print 'a=',a
+	Sign= ["Z","Z","Z"]
+	b	=	["","",""]
+	for i2 in range(3):
+		if a[i2]<0:
+			Sign[i2]="-"
+			a[i2]	=	-a[i2]
+		elif a[i2]>0:
+			Sign[i2]="+"
+		s = "%13.10f" % a[i2]
+		b[i2] = s
+
+	if Sign[0]=="-":
+		Pos = " -"+b[0]+BVec[0]
+	elif Sign[0]=="+":
+		Pos = "  "+b[0]+BVec[0]
+	else:
+		Pos = blank
+	for i2 in (1,2):
+		if Sign[i2]!="Z":
+			Pos = Pos+Sign[i2]+b[i2]+BVec[i2]
+		else:
+			Pos = Pos+blank
+	if string.strip(Pos)=="":
+		Pos	=	"0."
+	fw.write("SITE TYPE=%s, POS=%s\n" % (Site[i]["TYPE"], Pos))
+fw.close()

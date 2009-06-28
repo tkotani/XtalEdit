@@ -1,0 +1,27 @@
+cc = cos (60.0/180.* pi)
+ss = sin (60.0/180.* pi)
+
+print '---axis-- k'
+x = 1.
+y =  .0
+print cc * x + ss*y
+print -ss * x +cc*y
+
+
+print '-------- k'
+x = .33333
+y =  .57735
+print cc * x + ss*y
+print -ss * x +cc*y
+
+print '-------- M'
+x = .0
+y =  .57735
+print cc * x + ss*y
+print -ss * x +cc*y
+
+print '-------- A'
+x = .33333
+y =  .57735
+print cc * x + ss*y
+print -ss * x +cc*y

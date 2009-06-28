@@ -1,0 +1,25 @@
+       0  !mode switch for computation. Next line is generators
+          r6z::(0,0,1/3) R2X::(0,0,1/3) 
+      10 !alat 
+               0.86602540 -.50000000 0.00000000 
+               0.00000000 1.00000000 0.00000000 
+               0.00000000 0.00000000 1.43369176 
+     9  !nbas 
+             0.4330127 0.25000000 -.23894863 1
+             0.0000000 0.50000000 0.23894863 1
+             0.4330127 -.25000000 0.71684588 1
+             0.2886751 0.00000000 0.23894863 2
+             -.2886751 0.00000000 0.23894863 2
+             -.1443375 0.25000000 -.23894863 2
+             0.1443375 -.25000000 -.23894863 2
+             0.1443375 0.25000000 0.71684588 2
+             -.1443375 -.25000000 0.71684588 2
+     2  ! ntyp 
+        Cr          2.5 ! Name for site_type    1
+        Si          2   ! Name for site_type    2
+#-------------------------------------------------------
+ mode = 0 !Search site positions for given generator.
+          !Then find additional symmetry generator.
+          !You can start from no given generators 
+      = 1 !Search site positions for given generator.
+      = 2 !Check consistency. Use given symmetry generator.

@@ -1,0 +1,345 @@
+ 13-Sep-2002
+    meshr  mse    ng     mxl
+      400     35     15      3
+
+
+
+   data read in
+   go=go   file=data/inmn3mn3as0as                  
+   brvtyp=fcc  a= 11.45000  c/a=0.00000  b/a=0.00000
+   alpha=  0.0  beta=  0.0  gamma=  0.0
+   edelt= 0.0010  ewidth=  1.400  reltyp=nrl    sdftyp=mjw        magtyp=mag 
+   record=2nd   outtyp=update  bzqlty=4   maxitr= 40  pmix=0.02400
+   ntyp= 4  natm= 4  ncmpx= 7
+
+
+   complex energy mesh
+   1( -1.4000, 0.0000)   2( -1.3998, 0.0033)   3( -1.3989, 0.0077) 
+   4( -1.3968, 0.0133)   5( -1.3923, 0.0206)   6( -1.3838, 0.0299) 
+   7( -1.3685, 0.0415)   8( -1.3426, 0.0555)   9( -1.3009, 0.0718) 
+  10( -1.2376, 0.0897)  11( -1.1477, 0.1076)  12( -1.0290, 0.1236) 
+  13( -0.8850, 0.1350)  14( -0.7254, 0.1399)  15( -0.5645, 0.1374) 
+  16( -0.4167, 0.1280)  17( -0.2926, 0.1138)  18( -0.1964, 0.0972) 
+  19( -0.1268, 0.0804)  20( -0.0793, 0.0647)  21( -0.0483, 0.0511) 
+  22( -0.0289, 0.0398)  23( -0.0170, 0.0306)  24( -0.0099, 0.0234) 
+  25( -0.0057, 0.0178)  26( -0.0032, 0.0135)  27( -0.0018, 0.0102) 
+  28( -0.0010, 0.0077)  29( -0.0006, 0.0058)  30( -0.0003, 0.0043) 
+  31( -0.0002, 0.0032)  32( -0.0001, 0.0024)  33( -0.0001, 0.0018) 
+  34(  0.0000, 0.0014)  35(  0.0000, 0.0010) 
+
+   file to be accessed=data/inmn3mn3as0as                  
+   rmt( 1)=   1.00000  rmt( 1)=   1.00000
+ ***wrn in chklat...given rmt's conflict; reduced
+   rmt( 1)=   0.35355  rmt( 2)=   0.35355
+ ***wrn in chklat...given rmt's conflict; reduced
+
+   lattice constant
+   bravais=fcc   a= 11.45000   c/a=1.0000   b/a=1.0000
+   alpha=  90.00   beta=  90.00   gamma=  90.00
+
+   primitive translation vectors
+   a=(  0.00000  0.50000  0.50000)
+   b=(  0.50000  0.00000  0.50000)
+   c=(  0.50000  0.50000  0.00000)
+
+   type of site
+   type=InMn      rmt=0.21651  field=  0.000   lmxtyp=  2
+                  component= 1  anclr=  49.  conc= 0.9400
+                  component= 2  anclr=  25.  conc= 0.0300
+                  component= 3  anclr=  25.  conc= 0.0300
+                  component= 4  anclr=  33.  conc= 0.0000
+   type=As        rmt=0.21651  field=  0.000   lmxtyp=  2
+                  component= 1  anclr=  33.  conc= 1.0000
+   type=Vc1       rmt=0.21651  field=  0.000   lmxtyp=  0
+                  component= 1  anclr=   0.  conc= 1.0000
+   type=Vc2       rmt=0.21651  field=  0.000   lmxtyp=  0
+                  component= 1  anclr=   0.  conc= 1.0000
+
+   atoms in the unit cell
+   position=   0.00000000   0.00000000   0.00000000  type=InMn    
+   position=   0.25000000   0.25000000   0.25000000  type=As      
+   position=   0.50000000   0.50000000   0.50000000  type=Vc1     
+   position=   0.75000000   0.75000000   0.75000000  type=Vc2     
+
+   ew=  -0.21252  ez=   0.90000
+
+   preta= 0.44780  eta= 0.44780
+   isymop= 1-1-1-1 1 1 1-1-1-1 1 1 1 1 1 1 1 1-1-1-1-1-1-1
+
+   last= 243   np= 15   nt= 169   nrpt= 141   nk=   29   nd=   7
+
+   record 1 will be overlaied by input and
+   record 2 will be replaced by new output.
+
+   core configuration for Z= 49
+   state  1s 2s 2p 3s 3p 3d 4s 4p 4d 5s 5p 4f 5d 6s 6p 5f 6d 7s
+    up     1  1  3  1  3  5  1  3  5  0  0  0  0  0  0  0  0  0
+   down    1  1  3  1  3  5  1  3  5  0  0  0  0  0  0  0  0  0
+
+   core configuration for Z= 25
+   state  1s 2s 2p 3s 3p 3d 4s 4p 4d 5s 5p 4f 5d 6s 6p 5f 6d 7s
+    up     1  1  3  1  3  0  0  0  0  0  0  0  0  0  0  0  0  0
+   down    1  1  3  1  3  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+   core configuration for Z= 25
+   state  1s 2s 2p 3s 3p 3d 4s 4p 4d 5s 5p 4f 5d 6s 6p 5f 6d 7s
+    up     1  1  3  1  3  0  0  0  0  0  0  0  0  0  0  0  0  0
+   down    1  1  3  1  3  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+   core configuration for Z= 33
+   state  1s 2s 2p 3s 3p 3d 4s 4p 4d 5s 5p 4f 5d 6s 6p 5f 6d 7s
+    up     1  1  3  1  3  5  1  0  0  0  0  0  0  0  0  0  0  0
+   down    1  1  3  1  3  5  1  0  0  0  0  0  0  0  0  0  0  0
+
+   core configuration for Z= 33
+   state  1s 2s 2p 3s 3p 3d 4s 4p 4d 5s 5p 4f 5d 6s 6p 5f 6d 7s
+    up     1  1  3  1  3  5  1  0  0  0  0  0  0  0  0  0  0  0
+   down    1  1  3  1  3  5  1  0  0  0  0  0  0  0  0  0  0  0
+
+   core configuration for Z=  0
+   state  1s 2s 2p 3s 3p 3d 4s 4p 4d 5s 5p 4f 5d 6s 6p 5f 6d 7s
+    up     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+   down    0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+   core configuration for Z=  0
+   state  1s 2s 2p 3s 3p 3d 4s 4p 4d 5s 5p 4f 5d 6s 6p 5f 6d 7s
+    up     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+   down    0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+   ***** self-consistent iteration starts *****
+      InMnAsVc1Vc2
+   itr=  1 neu=  0.0056  moment=  0.0003  te= -15389.1818709  err= -0.363
+   itr=  2 neu=  0.0052  moment= -0.0001  te= -15389.1819271  err= -0.577
+   itr=  3 neu=  0.0044  moment= -0.0005  te= -15389.1819574  err= -1.217
+   itr=  4 neu=  0.0031  moment= -0.0006  te= -15389.1819542  err= -1.005
+   itr=  5 neu=  0.0015  moment= -0.0004  te= -15389.1819501  err= -0.822
+   itr=  6 neu=  0.0000  moment= -0.0001  te= -15389.1819620  err= -0.994
+   itr=  7 neu= -0.0011  moment=  0.0001  te= -15389.1819706  err= -1.391
+   itr=  8 neu= -0.0015  moment=  0.0003  te= -15389.1819727  err= -1.719
+   itr=  9 neu= -0.0015  moment=  0.0003  te= -15389.1819706  err= -1.328
+   itr= 10 neu= -0.0010  moment=  0.0002  te= -15389.1819686  err= -1.332
+   itr= 11 neu= -0.0004  moment=  0.0001  te= -15389.1819680  err= -1.540
+   itr= 12 neu=  0.0001  moment= -0.0001  te= -15389.1819682  err= -2.121
+   itr= 13 neu=  0.0004  moment= -0.0001  te= -15389.1819688  err= -1.973
+   itr= 14 neu=  0.0005  moment= -0.0001  te= -15389.1819692  err= -1.774
+   itr= 15 neu=  0.0004  moment= -0.0001  te= -15389.1819697  err= -1.846
+   itr= 16 neu=  0.0002  moment= -0.0001  te= -15389.1819701  err= -2.138
+   itr= 17 neu=  0.0001  moment=  0.0000  te= -15389.1819704  err= -2.226
+   itr= 18 neu=  0.0000  moment=  0.0000  te= -15389.1819706  err= -2.295
+   itr= 19 neu= -0.0001  moment=  0.0000  te= -15389.1819706  err= -2.208
+   itr= 20 neu= -0.0001  moment=  0.0000  te= -15389.1819706  err= -2.331
+   itr= 21 neu=  0.0000  moment=  0.0000  te= -15389.1819705  err= -2.580
+   itr= 22 neu=  0.0000  moment=  0.0000  te= -15389.1819704  err= -2.552
+   itr= 23 neu=  0.0000  moment=  0.0000  te= -15389.1819704  err= -2.653
+   itr= 24 neu=  0.0000  moment=  0.0000  te= -15389.1819704  err= -2.691
+   itr= 25 neu=  0.0000  moment=  0.0000  te= -15389.1819705  err= -2.845
+   itr= 26 neu=  0.0000  moment=  0.0000  te= -15389.1819706  err= -3.285
+   itr= 27 neu=  0.0000  moment=  0.0000  te= -15389.1819706  err= -3.117
+   itr= 28 neu=  0.0000  moment=  0.0000  te= -15389.1819706  err= -3.108
+   itr= 29 neu=  0.0000  moment=  0.0000  te= -15389.1819706  err= -3.145
+   itr= 30 neu=  0.0000  moment=  0.0000  te= -15389.1819706  err= -3.306
+   itr= 31 neu=  0.0000  moment=  0.0000  te= -15389.1819706  err= -3.563
+   itr= 32 neu=  0.0000  moment=  0.0000  te= -15389.1819705  err= -3.910
+   itr= 33 neu=  0.0000  moment=  0.0000  te= -15389.1819706  err= -3.663
+   itr= 34 neu=  0.0000  moment=  0.0000  te= -15389.1819706  err= -3.635
+   itr= 35 neu=  0.0000  moment=  0.0000  te= -15389.1819706  err= -3.789
+   itr= 36 neu=  0.0000  moment=  0.0000  te= -15389.1819706  err= -4.024
+   itr= 37 neu=  0.0000  moment=  0.0000  te= -15389.1819706  err= -4.481
+   itr= 38 neu=  0.0000  moment=  0.0000  te= -15389.1819706  err= -4.128
+   itr= 39 neu=  0.0000  moment=  0.0000  te= -15389.1819706  err= -4.087
+   itr= 40 neu=  0.0000  moment=  0.0000  te= -15389.1819706  err= -4.161
+   *** no convergence
+   interval= 40     cpu time=    233.47 sec
+   sdftyp=mjw     reltyp=nrl     dmpc=0.024
+      InMnAsVc1Vc2
+   itr= 40  neu  0.0000  chr,spn 17.6400  0.0000  intc,ints  3.0233  0.0002
+   rms err= -5.528 -4.161 -4.223 -4.826 -5.293 -4.874
+            -4.647 -5.553 -4.166 -4.218 -4.815 -5.292
+            -4.865 -4.636
+   ef=   0.4860065   0.4859901  def=   2.7931297   2.7961653
+   total energy= -15389.1819706
+
+
+
+
+
+
+
+                             *** type-InMn     In (z= 49.0) ***
+   core charge in the muffin-tin sphere =35.9942782
+   valence charge in the cell (spin up  ) =     0.32742(s)   0.27561(p)   4.85948(d)
+   valence charge in the cell (spin down) =     0.32761(s)   0.27579(p)   4.85944(d)
+   total charge=  46.91963   valence charge (up/down)=   5.46251   5.46284
+   spin moment=  -0.00033  orbital moment=   0.00000
+
+   core level  (spin up  )
+     -1966.4465996 Ry(1s)      -287.3699364 Ry(2s)      -268.4750521 Ry(2p) 
+       -53.6661303 Ry(3s)       -45.9172816 Ry(3p)       -31.5050544 Ry(3d) 
+        -7.3554726 Ry(4s)        -4.8213473 Ry(4p)        -0.6870503 Ry(4d)*
+   core level  (spin down)
+     -1966.4466177 Ry(1s)      -287.3699528 Ry(2s)      -268.4750690 Ry(2p) 
+       -53.6661477 Ry(3s)       -45.9172991 Ry(3p)       -31.5050716 Ry(3d) 
+        -7.3554907 Ry(4s)        -4.8213663 Ry(4p)        -0.6870738 Ry(4d)*
+
+   hyperfine field of InMn    
+       -2.727 KG (core=     0.008 KG  valence=    -2.736 KG )
+   core contribution
+      -0.003 KG(1s)      -0.008 KG(2s)       0.001 KG(3s)       0.019 KG(4s)
+
+   charge density at the nucleus
+       81825.6937 (core=    81808.7524  valence=       16.9413 )
+   core contribution
+       72562.2871(1s)        7531.0340(2s)        1431.1802(3s)         284.2511(4s)
+
+
+
+                             *** type-InMn     Mn (z= 25.0) ***
+   core charge in the muffin-tin sphere =17.9852625
+   valence charge in the cell (spin up  ) =     0.15588(s)   0.15327(p)   4.48466(d)
+   valence charge in the cell (spin down) =     0.12657(s)   0.11505(p)   0.32202(d)
+   total charge=  23.34272   valence charge (up/down)=   4.79381   0.56364
+   spin moment=   4.23017  orbital moment=   0.00000
+
+   core level  (spin up  )
+      -466.3502067 Ry(1s)       -52.7723691 Ry(2s)       -45.1540554 Ry(2p) 
+        -5.2737800 Ry(3s)        -3.1000901 Ry(3p) 
+   core level  (spin down)
+      -466.3491159 Ry(1s)       -52.6220267 Ry(2s)       -45.0391001 Ry(2p) 
+        -4.9489053 Ry(3s)        -2.7823179 Ry(3p) 
+
+   hyperfine field of InMn    
+     -244.194 KG (core=  -448.565 KG  valence=   204.372 KG )
+   core contribution
+     -27.699 KG(1s)    -791.145 KG(2s)     370.278 KG(3s)
+
+   charge density at the nucleus
+       10480.5840 (core=    10477.4740  valence=        3.1101 )
+   core contribution
+        9501.0576(1s)         853.5866(2s)         122.8298(3s)
+
+
+
+                             *** type-InMn     Mn (z= 25.0) ***
+   core charge in the muffin-tin sphere =17.9852651
+   valence charge in the cell (spin up  ) =     0.12651(s)   0.11502(p)   0.32239(d)
+   valence charge in the cell (spin down) =     0.15602(s)   0.15324(p)   4.48411(d)
+   total charge=  23.34255   valence charge (up/down)=   0.56391   4.79337
+   spin moment=  -4.22946  orbital moment=   0.00000
+
+   core level  (spin up  )
+      -466.3494475 Ry(1s)       -52.6223920 Ry(2s)       -45.0394606 Ry(2p) 
+        -4.9492308 Ry(3s)        -2.7826355 Ry(3p) 
+   core level  (spin down)
+      -466.3505727 Ry(1s)       -52.7727412 Ry(2s)       -45.1544292 Ry(2p) 
+        -5.2740781 Ry(3s)        -3.1003822 Ry(3p) 
+
+   hyperfine field of InMn    
+      242.854 KG (core=   448.467 KG  valence=  -205.614 KG )
+   core contribution
+      27.685 KG(1s)     790.997 KG(2s)    -370.215 KG(3s)
+
+   charge density at the nucleus
+       10480.5861 (core=    10477.4749  valence=        3.1112 )
+   core contribution
+        9501.0575(1s)         853.5866(2s)         122.8308(3s)
+
+
+
+                             *** type-InMn     As (z= 33.0) ***
+   core charge in the muffin-tin sphere =27.9903965
+   valence charge in the cell (spin up  ) =     0.72123(s)   0.81646(p)   0.03936(d)
+   valence charge in the cell (spin down) =     0.72132(s)   0.81729(p)   0.03934(d)
+   total charge=  31.14540   valence charge (up/down)=   1.57705   1.57796
+   spin moment=  -0.00091  orbital moment=   0.00000
+
+   core level  (spin up  )
+      -845.8656243 Ry(1s)      -105.3869764 Ry(2s)       -94.2575956 Ry(2p) 
+       -12.6651968 Ry(3s)        -8.9070554 Ry(3p)        -2.2874492 Ry(3d) 
+         0.7144748 Ry(4s)*
+   core level  (spin down)
+      -845.8656464 Ry(1s)      -105.3869958 Ry(2s)       -94.2576166 Ry(2p) 
+       -12.6652205 Ry(3s)        -8.9070803 Ry(3p)        -2.2874786 Ry(3d) 
+         0.7143815 Ry(4s)*
+
+   hyperfine field of InMn    
+       -1.146 KG (core=     0.037 KG  valence=    -1.183 KG )
+   core contribution
+       0.025 KG(1s)      -0.012 KG(2s)       0.024 KG(3s)
+
+   charge density at the nucleus
+       24506.5739 (core=    24478.3401  valence=       28.2338 )
+   core contribution
+       22024.1035(1s)        2125.8592(2s)         328.3775(3s)
+
+
+
+                             *** type-As       As (z= 33.0) ***
+   core charge in the muffin-tin sphere =27.9891560
+   valence charge in the cell (spin up  ) =     0.75223(s)   1.09032(p)   0.01974(d)
+   valence charge in the cell (spin down) =     0.75227(s)   1.09006(p)   0.01976(d)
+   total charge=  31.71354   valence charge (up/down)=   1.86230   1.86208
+   spin moment=   0.00022  orbital moment=   0.00000
+
+   core level  (spin up  )
+      -845.7151083 Ry(1s)      -105.2529605 Ry(2s)       -94.1214899 Ry(2p) 
+       -12.5365337 Ry(3s)        -8.7788878 Ry(3p)        -2.1635872 Ry(3d) 
+        -0.2453627 Ry(4s)*
+   core level  (spin down)
+      -845.7151236 Ry(1s)      -105.2529765 Ry(2s)       -94.1215053 Ry(2p) 
+       -12.5365488 Ry(3s)        -8.7789027 Ry(3p)        -2.1636012 Ry(3d) 
+        -0.2453610 Ry(4s)*
+
+   hyperfine field of As      
+       -0.506 KG (core=    -0.012 KG  valence=    -0.494 KG )
+   core contribution
+      -0.012 KG(1s)       0.003 KG(2s)      -0.003 KG(3s)
+
+   charge density at the nucleus
+       24506.2032 (core=    24477.9940  valence=       28.2092 )
+   core contribution
+       22023.9871(1s)        2125.7392(2s)         328.2678(3s)
+
+
+
+                             *** type-Vc1      Vc (z=  0.0) ***
+   core charge in the muffin-tin sphere = 0.0000000
+   valence charge in the cell (spin up  ) =     0.08255(s)
+   valence charge in the cell (spin down) =     0.08260(s)
+   total charge=   0.16516   valence charge (up/down)=   0.08255   0.08260
+   spin moment=  -0.00005  orbital moment=   0.00000
+
+
+   hyperfine field of Vc1     
+        0.000 KG
+
+   charge density at the nucleus
+           0.0017
+
+
+
+                             *** type-Vc2      Vc (z=  0.0) ***
+   core charge in the muffin-tin sphere = 0.0000000
+   valence charge in the cell (spin up  ) =     0.07646(s)
+   valence charge in the cell (spin down) =     0.07653(s)
+   total charge=   0.15299   valence charge (up/down)=   0.07646   0.07653
+   spin moment=  -0.00007  orbital moment=   0.00000
+
+
+   hyperfine field of Vc2     
+       -0.001 KG
+
+   charge density at the nucleus
+           0.0016
+
+
+
+
+
+ sbtime report
+  routine           1         2         3         4
+  count         25491     25491     25491        80
+  cpu(sec)      95.68     98.27      7.08      1.02
+
+ cpu used       235.42 sec
+
+

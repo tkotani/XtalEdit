@@ -1,0 +1,76 @@
+<GEN>
+ i r3z mx
+</GEN>
+
+a  = 9.50
+PI = 3.1415926535897932
+theta=  33.4 *PI/180.
+z   = sqrt( (.5+cos(theta))/(1.-cos(theta)) )
+snrm= sqrt(1.+z**2)
+
+
+PV1=   .5*sqrt(3)/snrm  *a*EX + .5/snrm  *a*EY + z/snrm  *a*EZ
+PV2=  -.5*sqrt(3)/snrm  *a*EX + .5/snrm  *a*EY + z/snrm  *a*EZ
+PV3=                           -1./snrm  *a*EY + z/snrm  *a*EZ
+
+CV1=PV1 
+CV2=PV2
+CV3=PV3
+
+
+SV1 =   +4 *PV1
+SV2 =   +4 *PV2
+SV3 =   +4 *PV3
+
+SITE TYPE=Co, POS=0.
+SITE TYPE=Li, POS=                                      +13.4426900001 *EZ 
+SITE TYPE=O, POS=                                      + 6.9363299990 *EZ 
+SITE TYPE=O, POS=                                      +19.9488600000 *EZ 
+
+TYPE Co ATOM=(Co:100) ,LMX = 2 ,RWS = 2.642028
+TYPE Li ATOM=(Vc:40)(Li:60) ,LMX = 2 ,RWS = 2.758124
+TYPE O ATOM=(O:100) ,LMX = 2 ,RWS = 1.992006
+
+for i in range(len(Site)):
+	print Site[i]
+
+
+
+#TYPE Co ATOM=(Co:100) ,LMX = 2 ,RWS = 2.642028
+#TYPE O ATOM=(O:100) ,LMX = 2 ,RWS = 1.992006
+#TYPE Li ATOM=(Vc:40)(Li:60) ,LMX = 2 ,RWS = 2.758124
+
+<AkaiKKR>
+go ='go'
+fname = 'data/Li06CoO2'
+edelta = 0.001
+ewidth = 2.2
+reltyp = 'nrl'
+sdftyp = 'mjwasa'
+magtyp = 'mag'
+record = '2nd'
+outtyp = 'update'
+bzqlty = '5'
+maxitr = 50
+pmix   = 0.015
+TYPE Co field=0
+TYPE O field=0
+TYPE Li field=0
+</AkaiKKR>
+
+
+
+
+
+
+
+
+
+<RASMOL>
+BondMax  =    4.5000 
+RangeMin = [ -0.2000,  -0.2000,  -0.2000]  #[-0.0001,-0.0001,-0.0001]
+RangeMax = [  1.2000,   1.2000,   1.2000]  #[ 0.9999, 0.9999, 0.9999]
+Type Co Color=1
+Type O Color=2
+Type Li Color=3
+</RASMOL>

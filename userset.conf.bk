@@ -1,0 +1,116 @@
+#####################
+### System Module ###
+#####################
+#
+#####  TITLE  #####
+{"System":"Title","Arg":"XtalEdit -- ver.0.91c (python2.5.4+numpy1.3.0)--- "}
+
+#####  FIlE   #####
+{"System":"Open","Menu":"File@Open"}
+{"System":"EditSaveAS","Menu":"File@EditWindowSaveAs"}
+{"System":"ResultSaveAS","Menu":"File@ResultWindowSaveAs"}
+{"System":"Exit","Menu":"File@Exit"}
+
+#####  EDIT   #####
+{"System":"Redo","Menu":"Edit@Redo","Button":"History@Redo","TextColor":"000000","BackColor":"ff3333"}
+{"System":"Undo","Menu":"Edit@Undo","Button":"History@Undo","TextColor":"000000","BackColor":"ff3333"}
+{"System":"History","Menu":"Edit@History","Button":"History@History","TextColor":"000000","BackColor":"ff3333"}
+{"System":"EditClear","Menu":"Edit@EditClear"}
+{"System":"ResultClear","Menu":"Edit@ResultClear"}
+
+##### RunPyhon #####
+{"System":"RunPython","Menu":"RunPython@RunPython","Button":"RunPython@RunPython","TextColor":"000000","BackColor":"ff3333"}
+
+##### Option #####
+{"System":"Divide","Menu":"Option@DivideVertically"}
+{"System":"Font","Menu":"Option@Font","Button":"Font@Font","TextColor":"000000","BackColor":"ff3333"}
+{"System":"EditIcon","Menu":"Option@EditIcon"}
+{"System":"ResultIcon","Menu":"Option@ResultIcon"}
+{"System":"ButtonPanel","Menu":"Option@ButtonPanel"}
+{"Next"}
+
+
+######################
+####  User Module ####
+######################
+### Generator ###
+{"Exe":"Generator/Generator.py","Arg":"0","Menu":"Generator@mode0","Button":"Generator@mode0"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+{"Exe":"Generator/Generator.py","Arg":"1","Menu":"Generator@mode1","Button":"Generator@mode1"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+{"Exe":"Generator/Generator.py","Arg":"2","Menu":"Generator@mode2","Button":"Generator@mode2"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+
+### ConvertAxis ###
+{"Exe":"SiteAch/Convertor.py","Arg":"1","Menu":"Structure@ConvToPV","Button":"ConverterAxis@PV"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+{"Exe":"SiteAch/Convertor.py","Arg":"2":"Menu":"Structure@ConvToCV","Button":"ConverterAxis@CV"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+{"Exe":"SiteAch/Convertor.py","Arg":"0","Menu":"Structure@ConvToEX","Button":"ConverterAxis@EV"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+### Rasmol ###
+{"Exe":"Rasmol/Rasmol.py","Menu":"Viewer@Rasmol","Button":"Rasmol@Rasmol"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+#### Jmol ### This does not work well...
+#{"Exe":"jmol/Rasmol.py","Menu":"Viewer@jmol","Button":"jmol@jmol"
+# ,"TextColor":"000000","BackColor":"0066FF"}
+### SuperCell ###
+{"Exe":"SuperCell/SuperCell.py","Menu":"Structure@SuperCell","Button":"SuperCell@SuperCell"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+### ChkType ###
+{"Exe":"ChkType/ChkType.py","Menu":"Structure@ChkType","Button":"ChkType@ChkType"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+
+### AkaiKKR ###
+{"Next"}
+{"Exe":"AkaiKKR/AkaiKKRexport.py","Menu":"KKR(Akai)@export","Button":"AkaiKKR@Export"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+{"Exe":"AkaiKKR/AkaiKKRimport.py","Menu":"KKR(Akai)@import","Button":"AkaiKKR@Import"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+
+### lmf ###
+{"Exe":"LMF/LMFexport.py","Menu":"LMF@export","Button":"LMF@Export"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+{"Exe":"LMF/LMFimport.py","Menu":"LMF@import","Button":"LMF@Import"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+
+### ABINIT ###
+{"Exe":"ABINIT/Abinit_export.py","Menu":"ABINIT@export","Button":"ABINIT@Export"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+{"Exe":"ABINIT/Abinit_import.py","Menu":"ABINIT@import","Button":"ABINIT@Import"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+{"Exe":"ABINIT/Import_AbinitOut.py","Menu":"ABINIT@Output_Import","Button":"ABINIT@Output_Import"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+
+### OpenMX ###
+{"Exe":"OpenMX/OpenMX_export.py","Menu":"Imp/Exp@OpemMXexpt","Button":"OpenMX@Export"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+{"Exe":"OpenMX/OpenMX_import.py","Menu":"Imp/Exp@OpenMXimp","Button":"OpenMX@Import"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+
+### Vasp ###
+{"Exe":"Vasp/Vasp_export.py","Menu":"Imp/Exp@OpemMXexpt","Button":"Vasp@Export"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+{"Exe":"Vasp/Vasp_import.py","Menu":"Imp/Exp@Vaspimp","Button":"Vasp@Import"
+ ,"TextColor":"000000","BackColor":"0066FF"}
+
+### UDF ###
+#{"Exe":"UDF/UDF_export.py","Menu":"Imp/Exp@UDFexp","Button":"UDF@Export"
+# ,"TextColor":"000000","BackColor":"0066FF"}
+
+### SuperCell2 ###
+#{"Exe":"SuperCell2/SuperCell2.py","Menu":"Imp/Exp@SuperCell2","Button":"SuperCell2@SuperCell2"
+# ,"TextColor":"000000","BackColor":"0066FF"}
+
+### HELP ###
+{"System":"View","Arg":"README.txt","Menu":"Help@See_doc_directory."}
+#{"System":"View","Arg":"SiteAch_Help.txt","Menu":"Help@SiteAch"}
+#{"System":"View","Arg":"Rasmol/Help.txt","Menu":"Help@Rasmol"}
+#{"System":"View","Arg":"SuperCell/Help.txt","Menu":"Help@SuperCell"}
+#{"System":"View","Arg":"ChkType/Help.txt","Menu":"Help@ChkType"}
+#{"System":"View","Arg":"AkaiKKR/Help.txt","Menu":"Help@AkaiKKR"}
+#{"System":"View","Arg":"Abinit/Help.txt","Menu":"Help@ABINIT"}
+#{"System":"View","Arg":"Abred/Help.txt","Menu":"Help@Abred"}
+#{"System":"View","Arg":"UDF/Help.txt","Menu":"Help@UDF"}
+
+ 

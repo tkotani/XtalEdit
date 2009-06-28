@@ -1,0 +1,49 @@
+You can specify these Keys in *.csy.
+e.g., (these are default values)
+<AkaiKKR>
+go  = 'go'
+edelt = 0.001
+ewidth= 1.0
+reltyp= 'sra'
+sdftyp= 'vwn'
+magtyp= 'nmag'
+record= '2nd'
+outtyp= 'update'
+bzqlty= 't'
+maxitr= 40
+pmix  = 0.020
+CLASS AlFe field=0.000  # Supply your name of CLASS instead of AlFe here.
+CLASS ...  field=...  
+</AkaiKKR>
+The order of keys are irrelevant.
+RMT=xxx in CLASS (in the crystal structure section), supplys 
+the MT radius used in AkaiKKR. If RMT is not given, it gets 
+to be zero. This means AkaiKKR automatically determine it within the code.
+
+Without <AkaiKKR> section, AkaiKKR button supplys default values.
+(These defalut values are not necessarily to be suitable. 
+ Especially note edelt and ewidth.)
+
+c-------------This is taken from readin.f and modified.------------------
+=== KeyWords can be used in <AkaiKKR> ===
+go:      process is to be executed or not (go/ngo/dos/dsp).
+fname:    Potential file name.
+edelt:   small imaginary part attached to the Fermi energy.
+
+ewidth:   width of the energy window covered by the energy contour.
+reltyp:  type of relativistic treatment (nrl/sra/nrlls/srals).
+sdftyp:  type of the parametrization of xc energy (vbh/mjw/vwn
+         /lmmjw/lmvbh/pymjw/pyvbh/pyvwn). Switch 'asa' can be
+         added, e.g., 'mjwasa' means that the atomic sphere
+         approximation (ASA) is to be exploited.
+magtyp:  magnetic state (mag/nmag/rvrs/-mag/kick) rvrs and -mag
+         are equvalent. kick is used to kick off the system
+         to be magnetic.
+record:  record used as input potential (init/1st/2nd).
+outtyp:  whether to update potential file or not (update/quit).
+bzqlty:  quality of BZ mesh (t/l/m/h/u or any integer number).
+maxitr:  maximum number of the iteration.
+pmix:    mixing parameter.
+
+CLASS {CLASS name} field:   external local magnetic field on this site.
+ 

@@ -1,0 +1,47 @@
+<RASMOL>
+BondMax  =    3.5000 
+RangeMin = [ -0.2000,  -0.2000,  -0.2000]  #[-0.0001,-0.0001,-0.0001]
+RangeMax = [  2.2000,   2.2000,   2.2000]  #[ 0.9999, 0.9999, 0.9999]
+TYPE Ni Color=1
+TYPE O Color=2
+TYPE H Color=3
+</RASMOL>
+
+a  = 5.92
+coa=1.479
+PV1=    0.500000000000     *a*EX + -0.866025403784     *a*EY +  0.000000000000     *a*EZ
+PV2=    0.500000000000     *a*EX +  0.866025403784     *a*EY +  0.000000000000     *a*EZ
+PV3=    0.000000000000*coa *a*EX +  0.000000000000*coa *a*EY +  1.000000000000*coa *a*EZ
+
+CV1=PV1 #these are dummy for rasmol
+CV2=PV2
+CV3=PV3
+
+SITE TYPE=Ni, POS=  0.
+SITE TYPE=O, POS=  1/3. *PV1 + 2/3. *PV2 + 0.24 *PV3
+SITE TYPE=O, POS=  2/3. *PV1 + 1/3. *PV2 + 0.76 *PV3
+SITE TYPE=H, POS=  1/3. *PV1 + 2/3. *PV2 + 0.47 *PV3
+SITE TYPE=H, POS=  2/3. *PV1 + 1/3. *PV2 + 0.53 *PV3
+
+TYPE Ni ATOM=(Ni:100), LMX=2
+TYPE O  ATOM=(O:100),  LMX=2
+TYPE H  ATOM=(H:100),  LMX=2
+
+<AkaiKKR>
+go ='go'
+fname = 'data/NiOH2'
+edelta = 0.0003
+ewidth = 2.0
+reltyp = 'nrl'
+sdftyp = 'vwn'
+magtyp = 'mag'
+record = 'init'
+outtyp = 'update'
+bzqlty = '3'
+maxitr = 20
+pmix   = 0.020
+TYPE Ni field=0
+TYPE O field=0
+TYPE H field=0
+</AkaiKKR>
+

@@ -1,0 +1,55 @@
+<RASMOL>
+BondMax  =    3.0000 
+RangeMin = [ -0.0001,  -0.0001,  -0.0010]  #[-0.0001,-0.0001,-0.0001]
+RangeMax = [  1.0001,   1.0001,   1.0001]  #[ 0.9999, 0.9999, 0.9999]
+CLASS P Color=1
+CLASS Vc2 Color=5
+CLASS Vc3 Color=3
+CLASS Ga Color=2
+CLASS Vc1 Color=4
+CLASS Ti Color=3
+</RASMOL>
+
+GEN i*r4z m(1,1,0) r3d
+
+a= 5.6035/.529177
+coa=1.
+boa=1.
+PV1=    1.000000000000     *a*EX +  0.000000000000     *a*EY +  0.000000000000     *a*EZ
+PV2=    0.000000000000*boa *a*EX +  1.000000000000*boa *a*EY +  0.000000000000*boa *a*EZ
+PV3=    0.000000000000*coa *a*EX +  0.000000000000*coa *a*EY +  1.000000000000*coa *a*EZ
+
+CV1=PV1 #these are dummy for rasmol
+CV2=PV2
+CV3=PV3
+
+u=.261
+SITE CLASS=Ti, POS=  0.0000 *a*EX +0.0000 *a*EY +0 *a*EZ
+SITE CLASS=P,  POS=  0.0000 *a*EX +0.5 *a*EY +0.5 *a*EZ
+SITE CLASS=P,  POS=  0.5 *a*EX +0.0000 *a*EY +0.5 *a*EZ
+SITE CLASS=P,  POS=  0.5 *a*EX +0.5 *a*EY +0.0000 *a*EZ
+SITE CLASS=Ga, POS=  u *a*EX  + u *a*EY +u *a*EZ
+SITE CLASS=Ga, POS=  u *a*EX  + (1.-u) *a*EY +(1.-u) *a*EZ
+SITE CLASS=Ga, POS=  (1.-u)*a*EX +u *a*EY    +(1.-u) *a*EZ
+SITE CLASS=Ga, POS=  (1.-u)* a*EX +(1.-u)* a*EY +u*a*EZ
+
+SITE CLASS=Vc1, POS=  .5 *a*EX  
+SITE CLASS=Vc1, POS=                     + 0.5000000000 *PV2
+SITE CLASS=Vc1, POS=                                         - 0.5000000000 *PV3
+
+SITE CLASS=Vc2, POS=  .5 *a*EX  +.5 *a*EY  +.5 *a*EZ
+
+SITE CLASS=Vc3, POS=  (1-u)*a*EX  +(1-u) *a*EY  +(1-u) *a*EZ
+
+SITE CLASS=Vc3, POS= - 0.2610000000 *PV1 + 0.2610000000 *PV2 + 0.2610000000 *PV3
+SITE CLASS=Vc3, POS=   0.2610000000 *PV1 + 0.2610000000 *PV2 - 0.2610000000 *PV3
+SITE CLASS=Vc3, POS=   0.2610000000 *PV1 - 0.2610000000 *PV2 + 0.2610000000 *PV3
+
+
+CLASS P ATOM=(O:100) ,LMX = 3 ,RWS = 2.722826 ,RMT = 1
+CLASS Ga ATOM=(La:100) ,LMX = 3 ,RWS = 2.722826 ,RMT = 1
+CLASS Ti ATOM=(Mn:100) ,LMX = 3 ,RWS = 3.315333 ,RMT = 1
+CLASS Vc1 ATOM=(Vc:1.0) ,LMX = 2 ,RWS = 2.364162 ,RMT = 1
+CLASS Vc2 ATOM=(Vc:1.0) ,LMX = 2 ,RWS = 2.364162 ,RMT = 1
+CLASS Vc3 ATOM=(Vc:1.0) ,LMX = 2 ,RWS = 2.364162 ,RMT = 1
+

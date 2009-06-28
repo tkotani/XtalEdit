@@ -1,0 +1,45 @@
+# readin <AkaiKKR>setion 
+# go ='go'
+# fname = 'Al0Fe100'
+# edelta = 0.001
+# ewidth = 1.2
+# reltyp = 'sra'
+# sdftyp = 'vwn'
+# magtyp = 'mag'
+# record = '2nd'
+# outtyp = 'update'
+# bzqlty = '5'
+# maxitr = 100
+# pmix   = 0.020
+# TYPE AlFe field=0.0
+# 
+
+#----------------------- input data    ----------------------------#
+# go/ngo/dos/dsp/spc    file name
+ go                     Al0Fe100
+
+#- primitive vector --------------------------------------#
+# this aux option is only effective for newest versions of AkaiKKR
+ aux
+    0.000000000000     0.500000000000     0.500000000000
+    0.500000000000     0.000000000000     0.500000000000
+    0.500000000000     0.500000000000     0.000000000000
+     7.600000000000             
+
+#- edelt  ewidth  nrl/sra mjw/vbh/vwn mag/nmag/-mag/rvrs/kick ------#
+   0.0010  1.2000  sra    vwn        mag                  
+
+#- init/1st/2nd quit/update  0/1/2/../t/l/m/h/u iteration  pmix -#
+    2nd         update          5                100       0.02000
+
+#- number of type   -----------------------------------------------#
+ 1
+# type components rtin  field l_max  Z  concentration----------#
+  AlFe   2         0  0.0   2     26 100.00 
+                                  13   0.00 
+
+#   number of atoms------------------------------------------------#
+ 1
+#-  position  ---------------------------------------------- type -#
+    0.000000000000a     0.000000000000b     0.000000000000c  AlFe 
+

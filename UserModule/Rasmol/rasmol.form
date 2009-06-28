@@ -1,0 +1,190 @@
+################################################################################
+## Form file of RASMOL module ##################################################
+from RasmolLib import *
+
+#### Set Result to File #####
+fedit = open("./result/EditWindow.dat","a+")
+flog  = open("./result/ResultWindow.dat","wt")
+
+if(det(array([PV1,PV2,PV3])))==0:
+	print "Error. PV list includes parallel lines"
+	sys.exit(0)
+
+enginekey='RASMOL'
+
+#### Check Type Keyword #####
+for i in range(len(Site)):
+	catm= Site[i]["TYPE"]
+	try:
+		test = Type[catm]
+	except KeyError,e:
+		Type[catm] ={}
+
+### Set default values. #	TypeKey = {'Color':'0.000'}
+ico=0
+for i in Type:
+	ico = ico+1
+	Type[i]['Color'+enginekey] = '%d' % ico
+reload(RasConf)
+RangeMin = RasConf.DefaultRangeMin
+RangeMax = RasConf.DefaultRangeMax
+BondMax  = RasConf.DefaultBondMax
+
+try:
+	Section	= os.path.join("./temp",enginekey+".sec")
+	fr=open(Section,"rt")
+	print '# readin <'+ enginekey + '>setion'
+	wtext = string.split(fr.read(), "\n")
+	for nline in range(len(wtext)):
+		s = wtext[nline]
+		if string.find(s,"#")>=0:	s=s[:string.find(s,"#")]
+		print '# ',s
+		outdata = ConvertTagSec(s,enginekey)
+		try: 
+			exec outdata
+		except: 
+			print ' <' + enginekey + '> section is wrong !',s
+			#return
+	fr.close()
+	#os.remove(Section)
+except:	pass
+
+#	print "RASMOL
+#	print "RASMOLRangeMax =%s" % RangeMax
+#	print "#RASMOLRangeMax =[0.9999,0.9999,0.9999]"
+#	RangeMax=RasConf.DefaultRangeMax
+
+### Write to file
+fedit.write("<RASMOL>\n")
+fedit.write("BondMax  =  %8.4f \n" % BondMax)
+fedit.write("RangeMin = [%8.4f, %8.4f, %8.4f]  #[-0.0001,-0.0001,-0.0001]\n" % (RangeMin[0],RangeMin[1],RangeMin[2]))
+fedit.write("RangeMax = [%8.4f, %8.4f, %8.4f]  #[ 0.9999, 0.9999, 0.9999]\n" % (RangeMax[0],RangeMax[1],RangeMax[2]))
+for i in Type:
+	fedit.write("Type %s Color=%s\n" % (i,Type[i]['Color'+enginekey] ))
+fedit.write("</RASMOL>\n")
+
+# Write rastest.pdb rastest.ras
+pdb = open('./UserModule/Rasmol/rastest.pdb','w')
+pdb.write('HEADER    xxx\n')
+pdb.write('SOURCE    Ecsym\n')   
+pdb.write('AUTHOR    I.Fukumoto and T.Kotani\n') 
+pdb.write('REMARK    We follow the method in xband by H.Ebert and coworkers.\n')
+##CV cell ######
+cu_color=2.2
+writepdbh(pdb, 1,(0,0,0),cu_color)
+writepdbh(pdb, 2,CV1   ,cu_color)
+writepdbh(pdb, 3,CV2   ,cu_color)
+writepdbh(pdb, 4,CV3   ,cu_color)
+writepdbh(pdb, 5,CV1+CV2 ,cu_color)
+writepdbh(pdb, 6,CV1+CV3 ,cu_color)
+writepdbh(pdb, 7,CV2+CV3 ,cu_color)
+writepdbh(pdb, 8,CV1+CV2+CV3 ,cu_color)
+writepdbh(pdb, 9, CV1*1.5  ,cu_color)
+writepdbh(pdb, 10,CV2*1.5  ,cu_color)
+writepdbh(pdb, 11,CV3*1.5  ,cu_color)
+
+ras = open('./UserModule/Rasmol/rastest.ras','w')
+
+ras.write("""
+load "rastest.pdb" 
+color temperature
+label true
+set fontsize 12
+\n""")
+
+ras.write("select 1\n")
+ras.write("label ''\n" )
+ras.write("select 2-8\n")
+ras.write("label '' \n")
+ras.write("select 9\n")
+ras.write("label 'X'\n" )
+ras.write("select 10\n")
+ras.write("label 'Y'\n" )
+ras.write("select 11\n")
+ras.write("label 'Z'\n" )
+
+
+################################################################################
+## Change Base to PV ###########################################################
+matp = array([PV1,PV2,PV3])
+vol  = abs(det(matp))
+mat  = inv(transpose(matp))
+CV1X,CV2X,CV3X=PV1,PV2,PV3
+print 'cv1=',CV1
+print 'cv2=',CV2
+print 'cv3=',CV3
+print 'vol=',vol
+if(abs(det(array([CV1,CV2,CV3])))>vol):
+	mat= inv(transpose(array([CV1,CV2,CV3])))
+	CV1X,CV2X,CV3X=CV1,CV2,CV3
+
+print 'cv1x=',CV1X
+print 'cv2x=',CV2X
+print 'cv3x=',CV3X
+print 'vol=',vol
+
+matinv =inv(mat)
+
+import supersub
+nnn,SV1t,SV2t,SV3t,Trans= supersub.GenSuperCell(CV1X,CV2X,CV3X,PV1,PV2,PV3)
+
+
+NSiteNum= 0
+j		=	0
+POSall=[]
+for i in range(len(Site)):
+	catm= Site[i]["TYPE"]
+	AI	= string.atof(Type[catm]['Color'+enginekey])
+		
+#	print catm,' Color= ',AI
+	if AI!=0:
+		for ttt in Trans:
+			Pos	= MoveAtomV(dot(mat,Site[i]["PosData"]+array(eval(ttt))))
+			j = CheckB(ras,pdb	,j,Pos, AI,Site[i]['TYPE'],matinv,RangeMin,RangeMax,POSall)
+
+### bond
+for i in range(len(POSall)):
+	for j in range(len(POSall)):
+		if i>= j and sum((POSall[i]-POSall[j])**2) <BondMax**2:
+			pdb.write('CONECT  %3d  %3d\n' % (i+12,j+12))
+
+##Connect  CV cell points  ######
+pdb.write('''
+CONECT    1    9
+CONECT    1   10
+CONECT    1   11
+CONECT    1    2
+CONECT    1    3
+CONECT    1    4
+CONECT    5    2
+CONECT    5    3
+CONECT    5    8
+CONECT    6    2
+CONECT    6    4
+CONECT    6    8
+CONECT    7    3
+CONECT    7    4
+CONECT    7    8
+END\n''')
+pdb.close()
+
+
+ras.write("""
+select all 
+wireframe 
+\n""")
+ras.close()
+
+fedit.close()
+
+### ResultWindow #####
+flog.write("====== RASMOL OK =====\n")
+flog.write("<RASMOL>\n")
+flog.write("BondMax  =  %8.4f \n" % BondMax)
+flog.write("RangeMin = [%8.4f, %8.4f, %8.4f]  #[-0.0001,-0.0001,-0.0001]\n" % (RangeMin[0],RangeMin[1],RangeMin[2]))
+flog.write("RangeMax = [%8.4f, %8.4f, %8.4f]  #[ 0.9999, 0.9999, 0.9999]\n" % (RangeMax[0],RangeMax[1],RangeMax[2]))
+for i in Type:
+	flog.write("Type %s Color=%s\n" % (i,Type[i]['Color'+enginekey] ))
+flog.write("</RASMOL>\n")
+flog.close()
+

@@ -1,0 +1,52 @@
+#===This is a test sample Samples/Cu.csy =========
+# Current version of XtalEdit (ver.0.8x) would not generally allow you to use 
+# compound statements like "if" or "for" in python language. 
+# However this works OK for AkaiKKRexport(but not for all button now). 
+#==================================
+
+Material="Ag"
+
+au =.529177
+if  (Material == "Cu"):
+	a= 3.61/au
+	TYPE atm ATOM=(Cu:100), LMX=2
+elif(Material == "Pd"):
+	a= 3.89/au
+	TYPE atm ATOM=(Pd:100), LMX=3
+elif(Material == "Ag"):
+	a= 4.09/au
+	TYPE atm ATOM=(Ag:100), LMX=3
+
+CV1= a*EX
+CV2= a*EY
+CV3= a*EZ
+PV1=                           0.500000000000 *CV2 +  0.500000000000 *CV3
+PV2=    0.500000000000 *CV1                        +  0.500000000000 *CV3
+PV3=    0.500000000000 *CV1 +  0.500000000000 *CV2 
+
+SITE TYPE=atm, POS=  0.
+
+
+<AkaiKKR>
+go ='go'
+fname = 'data/fcc'
+edelta = 0.001
+ewidth = 1.2
+reltyp = 'sra'
+sdftyp = 'vwn'
+magtyp = 'nmag'
+record = '2nd'
+outtyp = 'update'
+bzqlty = '5'
+maxitr = 100
+pmix   = 0.020
+TYPE atm field=0.0
+</AkaiKKR>
+
+
+<RASMOL>
+BondMax  =    4.5000 
+RangeMin = [ -0.2000,  -0.2000,  -0.2000]  #[-0.0001,-0.0001,-0.0001]
+RangeMax = [  1.2000,   1.2000,   1.2000]  #[ 0.9999, 0.9999, 0.9999]
+Type atm Color=1
+</RASMOL>

@@ -1,0 +1,65 @@
+### Note the definition of SV1,SV2,SV3, which
+### are target supercell button!
+#
+# Try supercell button!
+# Then try Rasmol button to view it!
+# change a Si as SiCTR and calculate generator!
+a = 8.24   # in a.u.
+CV1 = a * EX
+CV2 = a * EY
+CV3 = a * EZ
+
+
+PV1o =             + 1/2. * CV2 + 1/2. * CV3
+PV2o =  1/2. * CV1              + 1/2. * CV3
+PV3o =  1/2. * CV1 + 1/2. * CV2 
+SV1n =   - PV1o + PV2o + PV3o
+SV2n =   + PV1o - PV2o + PV3o
+SV3n =   + PV1o + PV2o - PV3o
+PV1 = SV1n
+PV2 = SV2n
+PV3 = SV3n
+
+Trans0 = 0.
+Trans1 =  + PV3o
+Trans2 =  + PV2o
+Trans3 =  + PV1o
+
+
+# SITE TYPE= Si, POS=0. *PV1          
+SITE TYPE= Si ,POS = 0. *PV1o + Trans0
+SITE TYPE= Si ,POS = 0. *PV1o + Trans1
+SITE TYPE= Si ,POS = 0. *PV1o + Trans2
+SITE TYPE= Si ,POS = 0. *PV1o + Trans3
+# SITE TYPE= C, POS=  1/4. *PV1 +1/4. *PV2 +1/4. *PV3
+SITE TYPE= C ,POS = 1/4. *PV1o +1/4. *PV2o +1/4. *PV3o + Trans0
+SITE TYPE= C ,POS = 1/4. *PV1o +1/4. *PV2o +1/4. *PV3o + Trans1
+SITE TYPE= C ,POS = 1/4. *PV1o +1/4. *PV2o +1/4. *PV3o + Trans2
+SITE TYPE= C ,POS = 1/4. *PV1o +1/4. *PV2o +1/4. *PV3o + Trans3
+# SITE TYPE= Vc1, POS=  1/2. *PV1 +1/2. *PV2 +1/2. *PV3
+SITE TYPE= Vc1 ,POS = 1/2. *PV1o +1/2. *PV2o +1/2. *PV3o + Trans0
+SITE TYPE= Vc1 ,POS = 1/2. *PV1o +1/2. *PV2o +1/2. *PV3o + Trans1
+SITE TYPE= Vc1 ,POS = 1/2. *PV1o +1/2. *PV2o +1/2. *PV3o + Trans2
+SITE TYPE= Vc1 ,POS = 1/2. *PV1o +1/2. *PV2o +1/2. *PV3o + Trans3
+# SITE TYPE= Vc2, POS=  3/4. *PV1 +3/4. *PV2 +3/4. *PV3
+SITE TYPE= Vc2 ,POS = 3/4. *PV1o +3/4. *PV2o +3/4. *PV3o + Trans0
+SITE TYPE= Vc2 ,POS = 3/4. *PV1o +3/4. *PV2o +3/4. *PV3o + Trans1
+SITE TYPE= Vc2 ,POS = 3/4. *PV1o +3/4. *PV2o +3/4. *PV3o + Trans2
+SITE TYPE= Vc2 ,POS = 3/4. *PV1o +3/4. *PV2o +3/4. *PV3o + Trans3
+
+TYPE Si   LMX=3, ATOM = (Si:1.0)
+TYPE C   LMX=3, ATOM = (C:1.0)
+TYPE Vc1 ATOM = (Vc:1.0)
+TYPE Vc2 ATOM = (Vc:1.0)
+
+
+
+<RASMOL>
+BondMax  =    4.5000 
+RangeMin = [ -0.2000,  -0.2000,  -0.2000]  #[-0.0001,-0.0001,-0.0001]
+RangeMax = [  1.2000,   1.2000,   1.2000]  #[ 0.9999, 0.9999, 0.9999]
+Type Vc2 Color=3
+Type Vc1 Color=1
+Type Si Color=2
+Type C Color=4
+</RASMOL>

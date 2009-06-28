@@ -1,0 +1,24 @@
+===Crystal structure viewer===
+I use RASMOL just as a tool to write ball and lines.
+This is in the similar way by XBAND(H.Ebert et al).
+
+The shown box is in CV*.
+
+<RASMOL>
+BondMax  =    4.5000 
+RangeMin = [ -0.2000,  -0.2000,  -0.2000]  #[-0.0001,-0.0001,-0.0001]
+RangeMax = [  1.2000,   1.2000,   1.2000]  #[ 0.9999, 0.9999, 0.9999]
+CLASS Vc2 Color=1
+CLASS Vc1 Color=2
+CLASS Si Color=3
+CLASS C Color=4
+</RASMOL>
+appears in EditorWindow after the first push of this button.
+
+You can change range to write atoms.(in CV unit. 
+However, PV is used if volume of CV* is smaller than PV*)
+
+In addition, colors of atoms can be controlled by Color=?.
+If RasmolColor=0, it means the atoms are not written.
+
+

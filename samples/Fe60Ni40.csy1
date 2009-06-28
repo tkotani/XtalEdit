@@ -1,0 +1,40 @@
+<RASMOL>
+BondMax  =    4.5000 
+RangeMin = [ -0.2000,  -0.2000,  -0.2000]  #[-0.0001,-0.0001,-0.0001]
+RangeMax = [  1.2000,   1.2000,   1.2000]  #[ 0.9999, 0.9999, 0.9999]
+TYPE FeNi Color=1
+</RASMOL>
+
+a= 5.3056
+boa=1.
+coa=1.
+
+CV1=a*EX #these are dummy for rasmol
+CV2=a*EY
+CV3=a*EZ
+
+PV1=   -0.500000000000     *a*EX +  0.500000000000     *a*EY +  0.500000000000     *a*EZ
+PV2=    0.500000000000*boa *a*EX + -0.500000000000*boa *a*EY +  0.500000000000*boa *a*EZ
+PV3=    0.500000000000*coa *a*EX +  0.500000000000*coa *a*EY + -0.500000000000*coa *a*EZ
+
+
+SITE TYPE=FeNi, POS=  0 *EX +0 *EY +0 *EZ
+
+TYPE FeNi ATOM=(26:60)(28:40), LMX=2, RMT=0
+
+<AkaiKKR>
+go ='go'
+fname = 'data/feni'
+edelta = 0.001
+ewidth = 1.0
+reltyp = 'nrl'
+sdftyp = 'mjw'
+magtyp = 'mag'
+record = '2nd'
+outtyp = 'update'
+bzqlty = '5'
+maxitr = 40
+pmix   = 0.024
+TYPE FeNi field=0
+</AkaiKKR>
+

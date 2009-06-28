@@ -1,0 +1,15 @@
+ 14-Aug-2002
+    meshr  mse    ng     mxl
+      400     35     15      3
+
+
+
+   data read in
+   go=go   file=data/MnAlB                          
+   brvtyp=st   a=  5.14000  c/a=1.27600  b/a=0.00000
+   alpha=  0.0  beta=  0.0  gamma=  0.0
+   edelt= 0.0000  ewidth=  1.300  reltyp=nrl    sdftyp=mjw        magtyp=mag 
+   record=2nd   outtyp=update  bzqlty=t   maxitr= 40  pmix=0.01800
+   ntyp= 2  natm= 2  ncmpx= 3
+
+

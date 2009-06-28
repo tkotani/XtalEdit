@@ -1,0 +1,65 @@
+# for lattice optimization 
+
+
+#optcel 1
+#dilatmx 1.06
+
+ionmov 1
+dtion 100.0
+vis 50.0
+#ntime 1000
+
+
+#Definition of the unit cell
+acell  11.322570056  16.039447611 11.401013107
+rprim  1.0  0.0  0.0   
+       0.0  1.0  0.0   
+       0.0  0.0  1.0
+
+#Definition of the atom types
+ntypat 3           
+znucl 57 13 8  # for La, Al, O
+
+#Definition of the atoms
+natom 20          
+typat 2 2 2 2 1 1 1 1 3 3 3 3 3 3 3 3 3 3 3 3              
+xred 
+        0.0000000000E+00  0.0000000000E+00  5.0000000000E-01
+        5.0000000000E-01  5.0000000000E-01  0.0000000000E+00
+        0.0000000000E+00  5.0000000000E-01  5.0000000000E-01
+        5.0000000000E-01  0.0000000000E+00  0.0000000000E+00
+        3.0566462754E-08  2.5000000000E-01 -2.2042332031E-03
+        5.0000003057E-01  2.5000000000E-01  5.0220423320E-01
+       -3.0566462754E-08  7.5000000000E-01  2.2042332031E-03
+        4.9999996943E-01  7.5000000000E-01  4.9779576680E-01
+        4.9999996530E-01  2.5000000000E-01  4.1507373679E-02
+        9.9999996530E-01  2.5000000000E-01  4.5849262632E-01
+       -4.9999996530E-01  7.5000000000E-01 -4.1507373679E-02
+        3.4699649470E-08  7.5000000000E-01  5.4150737368E-01
+        2.5000001456E-01  2.2248779302E-02  7.5000000735E-01
+        7.5000001456E-01  4.7775122070E-01 -2.5000000735E-01
+       -2.5000001456E-01  5.2224877930E-01 -7.5000000735E-01
+        2.4999998544E-01 -2.2248779302E-02  1.2500000073E+00
+       -2.5000001456E-01 -2.2248779302E-02 -7.5000000735E-01
+        2.4999998544E-01  5.2224877930E-01  1.2500000073E+00
+        2.5000001456E-01  4.7775122070E-01  7.5000000735E-01
+        7.5000001456E-01  2.2248779302E-02 -2.5000000735E-01
+
+#Definition of the planewave basis set
+#ndtset 10 ecut: 15.0  ecut+ 5
+ecut 50.0
+
+#Definition of the k-point grid
+kptopt 0
+nkpt 1 
+
+#Definition of the SCF procedure
+nstep  100          # Maximal number of SCF cycles
+toldfe 1.0d-6     # Will stop when, twice in a row, the difference 
+                  # between two consecutive evaluations of total energy 
+                  # differ by less than toldfe (in Hartree) 
+diemac 12.0       # Although this is not mandatory, it is worth to
+                  # precondition the SCF cycle. The model dielectric
+                  # function used as the standard preconditioner
+                  # is described in the "dielng" input variable section.
+                  # Here, we follow the prescription for bulk silicon.

@@ -1,0 +1,116 @@
+au=0.529177
+d0=1.95/au
+a0=2*d0
+v0=a0**3.
+vfrac=1.
+v=v0*vfrac
+alat=v**(1/3.)
+a=alat
+
+PV1o= alat*EX 
+PV2o= alat*EY 
+PV3o= alat*EZ
+
+CV1=PV1o
+CV2=PV2o
+CV3=PV3o
+SV1n =   +2 *PV1o
+SV2n =   +2 *PV2o
+SV3n =   +2 *PV3o
+PV1 = SV1n
+PV2 = SV2n
+PV3 = SV3n
+
+Trans0 = 0.
+Trans1 =  + PV3o
+Trans2 =  + PV2o
+Trans3 =  + PV2o + PV3o
+Trans4 =  + PV1o
+Trans5 =  + PV1o + PV3o
+Trans6 =  + PV1o + PV2o
+Trans7 =  + PV1o + PV2o + PV3o
+
+# SITE TYPE=Sr, POS= (1/2.)*alat*EX+ (1/2.)*alat*EY + (1/2.)*alat*EZ 
+SITE TYPE= Sr ,POS = (1/2.)*alat*EX+ (1/2.)*alat*EY + (1/2.)*alat*EZ + Trans0
+SITE TYPE= Sr ,POS = (1/2.)*alat*EX+ (1/2.)*alat*EY + (1/2.)*alat*EZ + Trans1
+SITE TYPE= Sr ,POS = (1/2.)*alat*EX+ (1/2.)*alat*EY + (1/2.)*alat*EZ + Trans2
+SITE TYPE= Sr ,POS = (1/2.)*alat*EX+ (1/2.)*alat*EY + (1/2.)*alat*EZ + Trans3
+SITE TYPE= Sr ,POS = (1/2.)*alat*EX+ (1/2.)*alat*EY + (1/2.)*alat*EZ + Trans4
+SITE TYPE= Sr ,POS = (1/2.)*alat*EX+ (1/2.)*alat*EY + (1/2.)*alat*EZ + Trans5
+SITE TYPE= Sr ,POS = (1/2.)*alat*EX+ (1/2.)*alat*EY + (1/2.)*alat*EZ + Trans6
+SITE TYPE= Sr ,POS = (1/2.)*alat*EX+ (1/2.)*alat*EY + (1/2.)*alat*EZ + Trans7
+# SITE TYPE=Ti, POS= 0
+SITE TYPE= Ti ,POS = 0 + Trans0
+SITE TYPE= Ti ,POS = 0 + Trans1
+SITE TYPE= Ti ,POS = 0 + Trans2
+SITE TYPE= Ti ,POS = 0 + Trans3
+SITE TYPE= Ti ,POS = 0 + Trans4
+SITE TYPE= Ti ,POS = 0 + Trans5
+SITE TYPE= Ti ,POS = 0 + Trans6
+SITE TYPE= TiCenter ,POS = 0 + Trans7
+# SITE TYPE=O, POS= (1/2.)*alat*EX
+SITE TYPE= O ,POS = (1/2.)*alat*EX + Trans0
+SITE TYPE= O,POS = (1/2.)*alat*EX + Trans1
+SITE TYPE= O ,POS = (1/2.)*alat*EX + Trans2
+SITE TYPE= O3 ,POS = (1/2.)*alat*EX + Trans3
+SITE TYPE= O ,POS = (1/2.)*alat*EX + Trans4
+SITE TYPE= O ,POS = (1/2.)*alat*EX + Trans5
+SITE TYPE= O ,POS = (1/2.)*alat*EX + Trans6
+SITE TYPE= O4 ,POS = (1/2.)*alat*EX + Trans7
+# SITE TYPE=O, POS= (1/2.)*alat*EY 
+SITE TYPE= O ,POS = (1/2.)*alat*EY + Trans0
+SITE TYPE= O,POS = (1/2.)*alat*EY + Trans1
+SITE TYPE= O ,POS = (1/2.)*alat*EY + Trans2
+SITE TYPE= O ,POS = (1/2.)*alat*EY + Trans3
+SITE TYPE= O,POS = (1/2.)*alat*EY + Trans4
+SITE TYPE= O1 ,POS = (1/2.)*alat*EY + Trans5
+SITE TYPE= O ,POS = (1/2.)*alat*EY + Trans6
+SITE TYPE= O2 ,POS = (1/2.)*alat*EY + Trans7
+# SITE TYPE=O, POS= (1/2.)*alat*EZ 
+SITE TYPE= O ,POS = (1/2.)*alat*EZ + Trans0
+SITE TYPE= O ,POS = (1/2.)*alat*EZ + Trans1
+SITE TYPE= O ,POS = (1/2.)*alat*EZ + Trans2
+SITE TYPE= O ,POS = (1/2.)*alat*EZ + Trans3
+SITE TYPE= O ,POS = (1/2.)*alat*EZ + Trans4
+SITE TYPE= O ,POS = (1/2.)*alat*EZ + Trans5
+SITE TYPE= O5 ,POS = (1/2.)*alat*EZ + Trans6
+SITE TYPE= O6 ,POS = (1/2.)*alat*EZ + Trans7
+
+TYPE Sr ATOM=(38:1.0)
+TYPE Ti ATOM=(22:1.0)
+TYPE O ATOM=(8:1.0) 
+
+
+
+
+
+
+
+
+
+CV1=PV1
+CV2=PV2
+CV3=PV3
+
+
+
+
+
+
+
+
+<RASMOL>
+BondMax  =    4.5000 
+RangeMin = [ -0.2000,  -0.2000,  -0.2000]  #[-0.0001,-0.0001,-0.0001]
+RangeMax = [  1.2000,   1.2000,   1.2000]  #[ 0.9999, 0.9999, 0.9999]
+Type O5 Color=0
+Type O6 Color=0
+Type O Color=2
+Type Ti Color=3
+Type Sr Color=1
+Type O1 Color=0
+Type O4 Color=0
+Type O3 Color=0
+Type O2 Color=0
+Type TiCenter Color=12
+</RASMOL>

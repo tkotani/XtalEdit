@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+
+<project name="test" default="all" basedir=".">
+  
+  <!-- *** Property *** -->
+
+  <!-- java source file directry -->
+  <property name="src.dir" value="src" />
+
+  <!-- java class file directory -->
+  <property name="classes.dir" value="classes" />
+  
+  <!-- log, result, temp directory -->
+  <property name="log.dir" value="log" />
+  <property name="result.dir" value="result" />
+  <property name="temp.dir" value="temp" />
+  
+  <!-- manifest directory -->
+  <property name="manifest" value="META-INF/MANIFEST.MF" />
+  
+  <!-- javadoc directory -->
+  <property name="javadoc"  value="javadoc" />
+  
+  <!-- jar file directory -->
+  <property name="jarname"  value="XtalEdit.jar" />
+  
+  
+  <!-- *** Target *** -->
+  
+  <!-- dafault target -->
+  <target name ="all" depends="clean,prepare,compile,jar" description="compile all" />
+  
+  <!-- prepare -->
+  <target name = "prepare" description="prepare compiling">
+    <tstamp/>
+    <mkdir dir ="${classes.dir}"/>
+    <mkdir dir ="${log.dir}"/>
+    <mkdir dir ="${result.dir}"/>
+    <mkdir dir ="${temp.dir}"/>
+  </target>
+  
+  <!-- compile -->
+  <target name="compile" depends="prepare" description="compiling all sources">
+    <javac srcdir="${src.dir}" destdir="${classes.dir}"/>
+  </target>
+  
+  <!-- clean all files and dirs -->
+  <target name = "clean" description="clean">
+    <delete dir = "${classes.dir}" />
+    <delete dir = "${javadoc}" />
+    <delete file = "${jarname}" />
+  </target>
+  
+  
+  <!-- create javadoc -->
+  <target name="javadoc" description="generate API">
+    <delete dir="${javadoc}" />
+    <mkdir dir ="${javadoc}" />
+    <javadoc destdir="${javadoc}">
+      <fileset dir="${src.dir}"/>
+    </javadoc>
+  </target>
+  
+  
+  <!-- create Jar File -->
+  <target name="jar" description="make jar file" depends="compile">
+    <jar jarfile="${jarname}" basedir="${classes.dir}" manifest="${manifest}"></jar>
+  </target>
+
+</project>
+  
+  
+  
+  
+  

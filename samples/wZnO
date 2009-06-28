@@ -1,0 +1,49 @@
+a=6.14933837
+q=1.603
+xwz=.0175
+xwz=0
+y=1-xwz/2.
+xx=1.
+wto=0
+alat=a
+
+PV1= alat*(0)*EX + alat*(-1.)*EY + alat*(0)*EZ
+PV2= alat*(sqrt(3.)/2)*EX + alat*(1/2.)*EY + alat*(0)*EZ
+PV3= alat*(0)*EX + alat*(0)*EY + alat*(q)*EZ
+CV1=PV1
+CV2=PV2
+CV3=PV3
+
+SITE TYPE=C1, POS= (0)*alat*EX+ (0)*alat*EY + (0*q)*alat*EZ 
+SITE TYPE=A1, POS= (0)*alat*EX+ (0)*alat*EY + (5./8*y*q)*alat*EZ 
+SITE TYPE=C1, POS= (1/sqrt(3.))*alat*EX+ (1./2*q)*alat*EZ 
+SITE TYPE=A1, POS= (1/sqrt(3.))*alat*EX+ (5./8*y*q-q/2.)*alat*EZ 
+
+SITE TYPE=EA1, POS= (1/sqrt(3.)/2.)*alat*EX+ (-.5)*alat*EY + (5./16*y*q)*alat*EZ 
+SITE TYPE=EA1, POS= (1/sqrt(3.)/2.)*alat*EX+ (-.5)*alat*EY + ((5./8*y+1.)/2.*q)*alat*EZ 
+
+SITE TYPE=EC1, POS= (0)*alat*EX+ (0)*alat*EY + (5./16*y*q)*alat*EZ 
+SITE TYPE=EC1, POS= (1/sqrt(3.))*alat*EX+ (0)*alat*EY + ((5./8*y+1)/2*q)*alat*EZ 
+
+TYPE C1 ATOM=(30:1.0)  ,RMT=avw*rwc ,LMX=4
+TYPE A1 ATOM=(8:1.0)  ,RMT=avw*rwa ,LMX=4
+TYPE EA1 ATOM=(0:1.0)  ,RMT=avw*rwea ,LMX=2
+TYPE EC1 ATOM=(0:1.0)  ,RMT=avw*rwec ,LMX=-1
+
+
+
+
+
+
+
+
+
+<RASMOL>
+BondMax  =    4.5000 
+RangeMin = [ -0.2000,  -0.2000,  -0.2000]  #[-0.0001,-0.0001,-0.0001]
+RangeMax = [  2.2000,   2.2000,   2.2000]  #[ 0.9999, 0.9999, 0.9999]
+Type A1 Color=1
+Type EA1 Color=0
+Type C1 Color=2
+Type EC1 Color=0
+</RASMOL>

@@ -1,0 +1,6 @@
+#!/bin/csh
+setenv PATH "/home/takao/XtalEdit/Python/bin/:${PATH}"
+echo $PATH
+setenv  PYTHONHOME /home/takao/XtalEdit/Python  # This is necessary.
+#xxx/j2re1.4.2_01/bin/java -cp ./classes XtalEdit
+java -jar ./XtalEdit.jar

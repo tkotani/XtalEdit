@@ -1,0 +1,569 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<HTML>
+<HEAD>
+<META name="GENERATOR" http-equiv="Last-Modified" content="<!--#flastmod file='index.htm'-->">
+
+<TITLE>XtalEdit_USAGE</TITLE>
+</HEAD>
+
+<FONT size="+1">
+<BODY bgcolor="#d2fcff">
+<P><B><FONT size="+3">USAGE for XtalEdit </FONT>(version 0.9*)</B><br>
+<BR></P>
+<BR>
+
+<P align="left"><FONT size="+1">
+
+<A href="#Basic">
+* Basic</A><br>
+
+<A href="#Key">
+* KeyWord for *.csy1</A><br>
+
+<A href="#SystemButtons">
+* SystemButtons, and How to use EditWindow? </A><br>
+<br>
+* UserButtons
+<ol>
+<li><A href="#Generator">* Generator</A></li>
+<li><A href="#ConvTo">* Structure-ConvTo*</A>: Change representaion of atomic positions.<br>
+          EX(cartesian) basis, or PV(primitive), or CV(conventional). </li>
+<li><A href="#SuperCell">* Structure-SuperCell</A>: Make supercell</li>
+<li><A href="#ChkType">* Structure-ChkType</A>: assists to define TYPE.</li>
+<li><A href="#RASMOL">* Viewer-Rasmol</A></li>
+<li><A href="#AkaiKKR">* KKR(Akai)</A>: export/import for input file for AkaiKKR</li>
+<li><A href="#ABINIT">* ABINIT</A>: export/import for input file for ABINIT. Import Output(relaxed structure).</li>
+<li><A href="#LMF">* LMF</A>: export/import for ctrl.* for lmf by Mark van Schilfgaarde</li>
+</ol>
+
+<A href="#customize">
+*How to customize? How to add your module?</A><br>
+
+
+<br>
+<A href="./index.htm">Go Home</A>
+</p>
+</FONT></U>
+
+
+<HR>
+<pre>
+<h2><B><A name="Basic">Basic</A></H2></B></h2>--- How does XtalEdit work? ----------------
+
+XtalEdit consists of
+<B>EditWindow, ResultWindow, and Buttons.</B>
+Buttons consists of SytemButtons and UserButtons.
+(select button from menu).
+At bottom, you will see UserButtons. 
+These button's are also accessible from menu
+(you can hide them with Option-'Button Panel').
+
+SystemButtons are not the essential part of XtalEdit.
+They are rather usual ones in editors.
+They are in File, Edit, RunPython, Option in menu.
+  File: file i/o 
+  Edit: history, clearwindow.
+  RunPython: run the content in editwindow as python script.
+  Option: change the look and feel of GUI. Change font and so.
+Others are UserButtons.
+
+<B>How the XtalEdit work is rather simple!</B>
+You somehow prepare a text file in EditWidow at first.
+The file is mainly  *.csy1. 
+  *.csy1 is the algebrlaic description of the crystal structure
+  (*.csy1 is written with a simple language suitable to describe
+   crystal structure).
+Then choose a button and push it.
+Then the content in the EditWindow is sended to a module 
+which is assigned to the button
+  (the assignment is in a file userset.conf).
+Then the module return texts to EditWindow and also ResultWindow.
+  (The returned test to EditWindow may changes just a bit from the sended one.)
+At the sametime, the module may invoke some external
+program as rasmol, or write some files.
+You can repeat the procedure until you have satisfactory results.
+
+<b>A simple example of *.csy1, which define crystal structure, is as follows.</b>
+============== from here ==============================
+au=  0.529177
+a =  3.82/au   #  a  is in a.u.
+c =  6.26/au   #  c  is in a.u.
+
+CV1 = 1/2.* a * EX - 1/2. *sqrt(3.) * a * EY
+CV2 = 1/2.* a * EX + 1/2. *sqrt(3.) * a * EY
+CV3 = c * EZ
+
+PV1 =  CV1
+PV2 =  CV2
+PV3 =  CV3
+
+SITE TYPE=    Zn, POS=  1/3. *PV1 + 2/3. *PV2 +  PV3
+SITE TYPE=    Zn, POS=  2/3. *PV1 + 1/3. *PV2 + 1/2.   *PV3
+u= 3./8
+SITE TYPE=    S1, POS=  1/3. *PV1 + 2/3. *PV2 +   u  *PV3
+SITE TYPE=    S2, POS=  2/3. *PV1 + 1/3. *PV2 + ( u +1/2. ) *PV3
+
+TYPE Zn  LMX=3, ATOM = (Zn:0.9)(Fe:0.1)
+TYPE S1  LMX=3, ATOM = (S:1.0)
+TYPE S2  LMX=3, ATOM = (S:1.0)
+=============== to here ===============================
+There are some special Keywords.
+EX=(1,0,0), EY=(0,1,0),EZ=(0,0,1): are Cartesian orthnormal basis.
+PV1,PV2,PV3: define the Primitive cell.
+CV1,CV2,CV3: define the Conventional cell (only for rasmol viewer).
+SITE : defines what TYPE you put at positions in the primitive cell.
+TYPE : defines TYPE.
+How the successive UserButton work or not depends on
+each buttons. For example, rasmol viewer does not require 
+TYPE section.
+See Keywowds for csy1.* for detail.
+In addition to the central part to define crystal structure,
+it can also keep tag sections as
+&lt;GEN&gt;
+ i r2z::(1/2,0,-1/2) r2y::(0,1/2,0)
+&lt;/GEN&gt;
+, &lt;AkaiKKR&gt;... &lt;/AkaiKKR&gt;, &lt;RASMOL&gt;...&lt;/RASMOL&gt; or so.
+These sections contains supplimentary informations, 
+related to some specific UserButtons.
+
+In order to calcualte space-group operations related 
+to this *.csy1, push Generator-mode0 (Alt+G+return).
+Then you will have &lt;GEN&gt section, which contains generator 
+of the space-group operation are added.
+
+
+In order to convert e.g. an input file of AkaiKKR 
+(an electronic structure calcualtion engine) to the *.csy1 form, 
+read the inpur file into EditWindow with File-Open at first.
+Then push button KKR(Akai)-import.
+Then the contents of the EditWindow (the input file in this case)
+is sended to the module assigned to KKR(Akai)-import.
+And texts are returned to the EditWindows. Anyway try it.
+Samples of inputs of AkaiKKR are in samples/AkaiKKR directory.
+
+
+Samples of all the space group are in XtalEdit/samples/TSPACE directory.
+You can easily construct *.csy1 if you have
+a crystallographic information on your crystal structure.
+See <A href="http://cst-www.nrl.navy.mil/lattice/">http://cst-www.nrl.navy.mil/lattice/</a> .
+It is a database of crystal structures. With these samples
+and the database, you can easily write *.csy1.
+
+
+<hr>
+<h2><B><A name="Key">KeyWords for csy1.*:</A></H2></B></h2>
+
+a: Required for some buttons.  The basic scall.
+   It should be supposed to be given in bohr unit (0.529177 angstrom)
+   so as to have correct input files for AkaiKKR and so.
+
+EX,EY,EZ:  Cartesian orthnormal basis.
+           You can use them as a basis to construct CV, PV vectors.
+
+CV1,CV2,CV3: Conventional Cells. 
+             Only effective for Rasmol button (just to view).
+
+PV1,PV2,PV3: Required. Primitive translational vectors.
+
+SITE:  defines the atomic sites. Its structure is
+      SITE TYPE={TYPE name}, POS={SITE position in the primitive cell}
+      Be carefule not to forget comma.
+
+TYPE: defines the atomic type (equivalent sites, we say TYPE).
+      TYPE {TYPE name}, ATOM=({atom name}:percentage)(...), LMX={maximun l},RMT={MT radius},RWS={WScell redius}
+      LMX, RMT, RWS... are not necessary required. It depends on UserButtons.
+      The ordering of keywords, ATOM, LMX, RMT, RWS are irrelevant.
+      {atom name} can be given just by Z number.
+      See the section of <A href="#ChkType">ChkType</A> for {atom name}.
+      Be carefule not to forget comma.
+
+----
+In &lt;GEN&gt; section.
+     space-group generators. It can be calculated 
+     if you have all atomic sites. (Push Generator mode0)
+     The construction of symbol is explained here???.
+----
+In &lt;RASMOL&gt; section.
+    Viewer informations for rasmol. Without this section,
+    the default are automatically added when you invoke the Rasmol button.
+----
+In &lt;AkaiKKR&gt; section.
+    Infomation to generate input file for the ab-initio code AkaiKKR.
+=========================================================================
+
+
+
+<hr>
+<h2><B><A name="SystemButtons">SystemButtons and How to use EditWindow?</A></H2></B></h2>
+
+* Current working directory is shown in the title bar.
+
+* Top (or left window) is the EditorWindow.
+  Bottom (or right window) is the ResultWindow.
+  Try Option-'Divide Vertically' button. 
+  It moves EditorWindow to left, and ResultWindow to right.
+  And vise versa with further push.
+
+* RunPython button is to run EditorWindow as python program.
+  Try it. Write "print 1+2" in EditorWindow and push it.
+
+* Edit-Undo Edit-Redo recall the contants of EditorWindows and ResultWindow.
+  XtalEdit keeps histories as for the texts just before pushing a button
+  and just after pushing a button.
+  You can jump to some old history with Edit-History.
+
+* Cut and Paste can be possible in EditorWindow as in usual Windows Editor.
+		select region: shift + move cursor
+		ctrl+c  : copy selected region to buffer
+		ctrl+x  : cut selected region  to buffer
+		ctrl+v  (or ctrl+y in Unix): paste the buffer
+		Home: line top
+		End : line end
+		ctrl+Home: file top
+		ctrl+End:  file end
+  No undo for editing, no search, and no emphasis...
+  In that sense, these are poor as editor...
+
+* Right click of mouse in each windows shows some functions.
+  But these are also accessible from usual menu.
+
+
+<hr>
+<h2><B><A name="Generator">Generator</A></H2></B></h2>
+===These buttons are for space-group operations.===
+
+  mode0   !Search site positions for given generator.
+          !Then find additional symmetry generator.
+          !You can start from no given generators 
+  mode1   !Search site positions for given generator.
+  mode2   !Check consistency. Use given symmetry generator.
+
+These functions add lines, e.g,
+&lt;GEN&gt;
+  i*r3(1,1,-1)::(1/4,1/4,1/4) r4x::(1/4,1/4,1/4)
+&lt;/GEN&gt;
+at top of *.csy1 in EditWindow. 
+Or read these and do something as written above.
+Thing in the section means space-group generators.
+
+--- How to read the expression of space-group generators?---
+A symbol describing a generator for a point group operation has
+the form O(nx,ny,nz) where O is one of M, I or Rj for mirror,
+inversion and j-fold rotation; and nx,ny,nz are a triplet of
+indices specifying the axis of operation.  It can be integer 
+or real numbers. You may use X, Y, Z or
+D as shorthand for (1,0,0), (0,1,0), (0,0,1), (1,1,1).  
+You may also enter products, such as I*R4X.
+
+As for space-group operation, we have to add translation
+after rotation in some cases. 
+They should be given by appending a string in the
+form `::(p1,p2,p3)' to the point group operation.
+These defines the translation \Delta
+in prvec(1:3,1),prvec(1:3,2),prvec(1:3,3) in unit alat.
+\Delta(1:3) = p1*prvec(1:3,1) +p2*prvec(1:3,2) + p3*prvec((1:3,3)
+Parser routine is subs/psymop.f 
+An example for Si is
+    i*r3(1,1,-1)::(1/4,1/4,1/4) r4x::(1/4,1/4,1/4)
+
+ag in SYMOPS.ops is in Cartasian.
+So ag(1:3) = \Delta(1:3) = p1*prvec(1:3,1) +p2*prvec(1:3,2) + p3*prvec((1:3,3)
+
+
+!!!Note!!! 
+Even for supercell that PV* are not the primitive cell,
+these buttons are supposed to calculate point-group operations
+and the related translational vectors for them correctly.
+However, the current version does not calculate primitive
+translations in the case of supercell.
+This means that the calculated translational vectors can be somehow undefinite.
+
+============================================
+See <A href="../UserModule/Generator/Generator/README">UserModule/Generator/Generator/README</A> in detals.
+The generator module in UserModule/Generator calls a fortran routine,
+which contains crystal-symmetry suroutines originally from Anderson group 
+in MPI Stuttgart.
+The matrix elements of space group operations are written to SYMOPS.out.
+
+
+<hr>
+<h2><B><A name="ConvTo">ConvTo*</A></H2></B></h2>
+ConvToEX: express all POS in cartesian.
+ConvToPV: express all POS in primitive vectors PV*.
+ConvToCV: express all POS in conventional Cell CV* (if they are given).
+
+
+<hr>
+<h2><B><A name="SuperCell">SuperCell</A></H2></B></h2>
+This button can make supercell from SV vector.
+Give SV* (supercell vectors) after PV are defined.
+And push this botton.
+Then the SV* is taken as new PV*(primitive vector),
+and atom in the cell are given.
+
+Try to readin SiC_es_zincblend_super_init.csy, 
+and push this button.
+
+
+<hr>
+<h2><B><A name="ChkType">ChkType</A></H2></B></h2>
+If TYPE is not defined but reffered in SITE, this button adds templates of TYPE to *.csy1.
+For example, if "SITE TYPE=AlFe, POS=0. "is given and TYPE of AlFe is not defined,
+"TYPE AlFe ATOM = (Al:1.0)" is added at the end of EditWindow.
+The atom name Al is given by a naive guess from AlFe (so in this case, not good).
+So you will have to change it, e.g. as
+"TYPE AlFe ATOM = (Al:0.95)(Fe:0.05)". 
+If TYPE is defined, it gives the default WS radius.
+The WS radius are given from a table (generated by H.Ebert),
+and rescaled so that the sum of the WS cell equals with the total volume of cell.
+
+Here is the Atmoic data table. LMX and RWS are defaults values.
+Note that Z=0 (empty sphere) has a name Vc.
+######### Atomic Data #################
+"Vc":{"Z":0	,"LMX":2	,"RWS": 1.500},
+"H" :{"Z":1	,"LMX":2	,"RWS": 1.390},
+"He":{"Z":2	,"LMX":2	,"RWS": 2.550},
+"Li":{"Z":3	,"LMX":2	,"RWS": 3.040},
+"Be":{"Z":4	,"LMX":2	,"RWS": 2.270},
+"B" :{"Z":5	,"LMX":2	,"RWS": 1.960},
+"C" :{"Z":6	,"LMX":2	,"RWS": 1.660},
+"N" :{"Z":7	,"LMX":2	,"RWS": 1.900},
+"O" :{"Z":8	,"LMX":2	,"RWS": 1.900},
+"F" :{"Z":9	,"LMX":2	,"RWS": 2.170},
+"Ne":{"Z":10	,"LMX":2	,"RWS": 2.890},
+"Na":{"Z":11	,"LMX":2	,"RWS": 3.760},
+"Mg":{"Z":12	,"LMX":2	,"RWS": 3.250},
+"Al":{"Z":13	,"LMX":2	,"RWS": 2.950},
+"Si":{"Z":14	,"LMX":2	,"RWS": 2.630},
+"P" :{"Z":15	,"LMX":2	,"RWS": 2.560},
+"S" :{"Z":16	,"LMX":2	,"RWS": 2.700},
+"Cl":{"Z":17	,"LMX":2	,"RWS": 2.850},
+"Ar":{"Z":18	,"LMX":2	,"RWS": 3.710},
+"K" :{"Z":19	,"LMX":3	,"RWS": 4.660},
+"Ca":{"Z":20	,"LMX":3	,"RWS": 3.880},
+"Sc":{"Z":21	,"LMX":3	,"RWS": 3.310},
+"Ti":{"Z":22	,"LMX":3	,"RWS": 2.990},
+"V" :{"Z":23	,"LMX":3	,"RWS": 2.760},
+"Cr":{"Z":24	,"LMX":3	,"RWS": 2.640},
+"Mn":{"Z":25	,"LMX":3	,"RWS": 2.570},
+"Fe":{"Z":26	,"LMX":3	,"RWS": 2.520},
+"Co":{"Z":27	,"LMX":3	,"RWS": 2.520},
+"Ni":{"Z":28	,"LMX":3	,"RWS": 2.550},
+"Cu":{"Z":29	,"LMX":3	,"RWS": 2.620},
+"Zn":{"Z":30	,"LMX":3	,"RWS": 2.780},
+"Ga":{"Z":31	,"LMX":3	,"RWS": 2.750},
+"Ge":{"Z":32	,"LMX":3	,"RWS": 2.790},
+"As":{"Z":33	,"LMX":3	,"RWS": 2.830},
+"Se":{"Z":34	,"LMX":3	,"RWS": 2.940},
+"Br":{"Z":35	,"LMX":3	,"RWS": 3.130},
+"Kr":{"Z":36	,"LMX":3	,"RWS": 4.320},
+"Rb":{"Z":37	,"LMX":3	,"RWS": 4.950},
+"Sr":{"Z":38	,"LMX":3	,"RWS": 4.220},
+"Y" :{"Z":39	,"LMX":3	,"RWS": 3.610},
+"Zr":{"Z":40	,"LMX":3	,"RWS": 3.280},
+"Nb":{"Z":41	,"LMX":3	,"RWS": 3.030},
+"Mo":{"Z":42	,"LMX":3	,"RWS": 2.910},
+"Tc":{"Z":43	,"LMX":3	,"RWS": 2.820},
+"Ru":{"Z":44	,"LMX":3	,"RWS": 2.770},
+"Rh":{"Z":45	,"LMX":3	,"RWS": 2.780},
+"Pd":{"Z":46	,"LMX":3	,"RWS": 2.840},
+"Ag":{"Z":47	,"LMX":3	,"RWS": 2.950},
+"Cd":{"Z":48	,"LMX":3	,"RWS": 3.140},
+"In":{"Z":49	,"LMX":3	,"RWS": 3.300},
+"Sn":{"Z":50	,"LMX":3	,"RWS": 3.450},
+"Sb":{"Z":51	,"LMX":3	,"RWS": 3.300},
+"Te":{"Z":52	,"LMX":3	,"RWS": 3.310},
+"I" :{"Z":53	,"LMX":3	,"RWS": 3.500},
+"Xe":{"Z":54	,"LMX":3	,"RWS": 4.310},
+"Cs":{"Z":55	,"LMX":3	,"RWS": 5.300},
+"Ba":{"Z":56	,"LMX":3	,"RWS": 4.200},
+"La":{"Z":57	,"LMX":3	,"RWS": 3.910},
+"Ce":{"Z":58	,"LMX":3	,"RWS": 3.800},
+"Pr":{"Z":59	,"LMX":3	,"RWS": 3.750},
+"Nd":{"Z":60	,"LMX":3	,"RWS": 3.700},
+"Pm":{"Z":61	,"LMX":3	,"RWS": 3.650},
+"Sm":{"Z":62	,"LMX":3	,"RWS": 3.600},
+"Eu":{"Z":63	,"LMX":3	,"RWS": 3.550},
+"Gd":{"Z":64	,"LMX":3	,"RWS": 3.520},
+"Tb":{"Z":65	,"LMX":3	,"RWS": 3.610},
+"Dy":{"Z":66	,"LMX":3	,"RWS": 3.670},
+"Ho":{"Z":67	,"LMX":3	,"RWS": 3.700},
+"Er":{"Z":68	,"LMX":3	,"RWS": 3.730},
+"Tm":{"Z":69	,"LMX":3	,"RWS": 3.750},
+"Yb":{"Z":70	,"LMX":3	,"RWS": 3.560},
+"Lu":{"Z":71	,"LMX":3	,"RWS": 3.440},
+"Hf":{"Z":72	,"LMX":3	,"RWS": 3.230},
+"Ta":{"Z":73	,"LMX":3	,"RWS": 3.040},
+"W" :{"Z":74	,"LMX":3	,"RWS": 2.930},
+"Re":{"Z":75	,"LMX":3	,"RWS": 2.860},
+"Os":{"Z":76	,"LMX":3	,"RWS": 2.820},
+"Ir":{"Z":77	,"LMX":3	,"RWS": 2.830},
+"Pt":{"Z":78	,"LMX":3	,"RWS": 2.880},
+"Au":{"Z":79	,"LMX":3	,"RWS": 2.980},
+"Hg":{"Z":80	,"LMX":3	,"RWS": 3.270},
+"Tl":{"Z":81	,"LMX":3	,"RWS": 3.570},
+"Pb":{"Z":82	,"LMX":3	,"RWS": 3.620},
+"Bi":{"Z":83	,"LMX":3	,"RWS": 3.370},
+"Po":{"Z":84	,"LMX":3	,"RWS": 3.460},
+"At":{"Z":85	,"LMX":3	,"RWS": 3.630},
+"Rn":{"Z":86	,"LMX":3	,"RWS": 4.440},
+"Fr":{"Z":87	,"LMX":3	,"RWS": 5.810},
+"Ra":{"Z":88	,"LMX":3	,"RWS": 4.300},
+"Ac":{"Z":89	,"LMX":3	,"RWS": 3.840},
+"Th":{"Z":90	,"LMX":3	,"RWS": 3.520},
+"Pa":{"Z":91	,"LMX":3	,"RWS": 3.320},
+"U" :{"Z":92	,"LMX":3	,"RWS": 3.130},
+"Np":{"Z":93	,"LMX":3	,"RWS": 3.020},
+"Pu":{"Z":94	,"LMX":3	,"RWS": 2.960},
+"Am":{"Z":95	,"LMX":3	,"RWS": 2.930},
+"Cm":{"Z":96	,"LMX":3	,"RWS": 2.930},
+"Bk":{"Z":97	,"LMX":3	,"RWS": 2.950},
+"Cf":{"Z":98	,"LMX":3	,"RWS": 2.990},
+"Es":{"Z":99	,"LMX":3	,"RWS": 3.050},
+"Fm":{"Z":100	,"LMX":3	,"RWS": 3.170},
+"Md":{"Z":101	,"LMX":3	,"RWS": 0.000},
+"No":{"Z":102	,"LMX":3	,"RWS": 0.000},
+"Lr":{"Z":103	,"LMX":3	,"RWS": 3.500},
+
+
+
+
+<hr>
+<h2><B><A name="RASMOL">RASMOL</A></H2></B></h2>
+===Crystal structure viewer===
+I use RASMOL just as a tool to write ball and lines.
+This is in the similar way by XBAND(H.Ebert et al).
+
+The shown box is in CV*.
+
+RASMOL section is as
+&lt;RASMOL&gt;
+BondMax  =    4.5000 
+RangeMin = [ -0.2000,  -0.2000,  -0.2000]  #[-0.0001,-0.0001,-0.0001]
+RangeMax = [  1.2000,   1.2000,   1.2000]  #[ 0.9999, 0.9999, 0.9999]
+TYPE Vc2 Color=1
+TYPE Vc1 Color=2
+TYPE Si Color=3
+TYPE C Color=4
+&lt;/RASMOL&gt;
+
+This appears in EditorWindow after the first push of this button.
+
+You can change range to write atoms.(in CV unit. 
+However, PV is used if volume of CV* is smaller than PV*)
+
+In addition, colors of atoms can be controlled by Color=?.
+If RasmolColor=0, it means the atoms are not written.
+
+
+<hr>
+<h2><B><A name="AkaiKKR">AkaiKKR</A></H2></B></h2>
+&lt;AkaiKKR&gt;
+go  = 'go'
+edelt = 0.001
+ewidth= 1.0
+reltyp= 'sra'
+sdftyp= 'vwn'
+magtyp= 'nmag'
+record= '2nd'
+outtyp= 'update'
+bzqlty= 't'
+maxitr= 40
+pmix  = 0.020
+TYPE AlFe field=0.000  # Supply your name of TYPE instead of AlFe here.
+TYPE ...  field=...  
+&lt;/AkaiKKR&gt;
+
+The order of keys are irrelevant.
+
+RMT=xxx in TYPE (in the crystal structure section), supplies
+the MT radius used in AkaiKKR. If RMT is not given, it gets 
+to be zero. This means AkaiKKR automatically determine it within the code.
+
+Without &lt;AkaiKKR&gt; section, AkaiKKR button supplies default values.
+(These defalut values are not necessarily to be suitable. 
+ Especially note edelt and ewidth.)
+
+When you see "KeyError: LMX", please push ChkType at first.
+And then push AkaiKKR-Export.
+AkaiKKR requires that LMX should be defined for each TYPE.
+
+c-------------This is taken from readin.f and modified.------------------
+=== KeyWords can be used in &lt;/AkaiKKR&gt; ===
+go:      process is to be executed or not (go/ngo/dos/dsp).
+fname:    Potential file name.
+edelt:   small imaginary part attached to the Fermi energy.
+
+ewidth:   width of the energy window covered by the energy contour.
+reltyp:  type of relativistic treatment (nrl/sra/nrlls/srals).
+sdftyp:  type of the parametrization of xc energy (vbh/mjw/vwn
+         /lmmjw/lmvbh/pymjw/pyvbh/pyvwn). Switch 'asa' can be
+         added, e.g., 'mjwasa' means that the atomic sphere
+         approximation (ASA) is to be exploited.
+magtyp:  magnetic state (mag/nmag/rvrs/-mag/kick) rvrs and -mag
+         are equvalent. kick is used to kick off the system
+         to be magnetic.
+record:  record used as input potential (init/1st/2nd).
+outtyp:  whether to update potential file or not (update/quit).
+bzqlty:  quality of BZ mesh (t/l/m/h/u or any integer number).
+maxitr:  maximum number of the iteration.
+pmix:    mixing parameter.
+
+TYPE {TYPE name} field:   external local magnetic field on this site.
+
+
+
+
+<hr>
+<h2><B><A name="ABINIT">ABINIT</A></H2></B></h2>
+ABINIT-Export, ABINIT-Import can export/import ABINIT input file.
+(Not for series of calculations).
+
+Let us try to readin a sample in sample/ABINIT/*.in with File-Open menu.
+Then push ABINIT-Import. Then you can see it is converted to the csy1 format.
+As you see, data which is not related to the crystal sturcture
+is reserved into the &lt;ABINIT&gt; tag section.
+
+Then try to do Export button.
+You can see you have the same input file is reproduced in ResultWindow.
+The contents in the tag section is used to export ABINIT imput file.
+If it does not exist, default values are used (but they will be not suitable values).
+
+There is another funtion, ABINIT-Output_import.
+Try to readin sample/ABINIT/LaScO3_rt434k_fhi.out,
+and push the button. You can see the crystal structure is converted to csy1 style.
+
+
+<hr>
+<h2><B><A name="LMF">LMF</A></H2></B></h2>
+Testing version.
+LMF-import can readin the input file ctrl.* for lmf by Mark van Schilfgaarde.
+However it is limieted. It just readin structure-related part.
+LMF-export can export the structure-related part of ctrl.*.
+
+
+<hr>
+<h2><B><A name="customize">How to customize? How to add your module?</A></H2></B></h2>
+In userset.conf, we assign each module to each button in menu.
+For example, {"Exe":"AkaiKKR/AkaiKKRexport.py","Menu":"KKR(Akai)@export"}
+means that you add a menu "KKR(Akai)@export" and assign
+to invoke UserModule/AkaiKKR/AkaiKKRexport.py when you push the button in menu.
+So you can customize menu as you like. 
+Short-cut may not work well when the 1st-letter of menu are same with others (sorry).
+
+In order to write your new module copy the whole directory to UserModule/AkaiKKR/
+to UserModule/YourDirectory/, and rename AkaiKKRexport.py to YourModule.py.
+And add a section to userset.conf as
+{"Exe":"YourDirectory/YourModule.py","Menu":"YourButton@button1"}
+. Then you will see a new menu YourButton is added to the menu bar and button1 in it.
+If you push it, the YourModule.py is invoked. At first, it shold work as exactly as 
+AkaiKKRexport.py. Then you can modify it. 
+When you push the button, contents of EditWindow is stored into temp/xxx.csy1 and
+the python program is invoked. See also LMF/lmfexport.py. These and also others 
+are samples when you write your own modules.
+
+</BODY>
+</HTML>
+
+
+

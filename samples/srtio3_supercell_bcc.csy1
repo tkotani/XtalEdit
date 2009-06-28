@@ -1,0 +1,68 @@
+au=0.529177
+d0=1.95/au
+a0=2*d0
+v0=a0**3.
+vfrac=1.
+v=v0*vfrac
+alat=v**(1/3.)
+a=alat
+
+PV1o= alat*EX 
+PV2o= alat*EY 
+PV3o= alat*EZ
+
+SV1n =   + PV1o + PV2o - PV3o
+SV2n =   + PV1o - PV2o + PV3o
+SV3n =   - PV1o + PV2o + PV3o
+PV1 = SV1n
+PV2 = SV2n
+PV3 = SV3n
+
+Trans0 = 0.
+Trans1 =  + PV3o
+Trans2 =  + PV2o
+Trans3 =  + PV1o
+
+# SITE TYPE=Sr, POS= (1/2.)*alat*EX+ (1/2.)*alat*EY + (1/2.)*alat*EZ 
+SITE TYPE= Sr ,POS = (1/2.)*alat*EX+ (1/2.)*alat*EY + (1/2.)*alat*EZ + Trans0
+SITE TYPE= Sr ,POS = (1/2.)*alat*EX+ (1/2.)*alat*EY + (1/2.)*alat*EZ + Trans1
+SITE TYPE= Sr ,POS = (1/2.)*alat*EX+ (1/2.)*alat*EY + (1/2.)*alat*EZ + Trans2
+SITE TYPE= Sr ,POS = (1/2.)*alat*EX+ (1/2.)*alat*EY + (1/2.)*alat*EZ + Trans3
+# SITE TYPE=Ti, POS= 0
+SITE TYPE= Ti ,POS = 0 + Trans0
+SITE TYPE= Ti ,POS = 0 + Trans1
+SITE TYPE= Ti ,POS = 0 + Trans2
+SITE TYPE= Ti ,POS = 0 + Trans3
+# SITE TYPE=O, POS= (1/2.)*alat*EX
+SITE TYPE= O ,POS = (1/2.)*alat*EX + Trans0
+SITE TYPE= O ,POS = (1/2.)*alat*EX + Trans1
+SITE TYPE= O ,POS = (1/2.)*alat*EX + Trans2
+SITE TYPE= O ,POS = (1/2.)*alat*EX + Trans3
+# SITE TYPE=O, POS= (1/2.)*alat*EY 
+SITE TYPE= O ,POS = (1/2.)*alat*EY + Trans0
+SITE TYPE= O ,POS = (1/2.)*alat*EY + Trans1
+SITE TYPE= O ,POS = (1/2.)*alat*EY + Trans2
+SITE TYPE= O ,POS = (1/2.)*alat*EY + Trans3
+# SITE TYPE=O, POS= (1/2.)*alat*EZ 
+SITE TYPE= O ,POS = (1/2.)*alat*EZ + Trans0
+SITE TYPE= O ,POS = (1/2.)*alat*EZ + Trans1
+SITE TYPE= O ,POS = (1/2.)*alat*EZ + Trans2
+#SITE TYPE= O ,POS = (1/2.)*alat*EZ + Trans3
+SITE TYPE= Vc ,POS = (1/2.)*alat*EZ + Trans3
+
+
+TYPE Sr ATOM=(38:1.0)
+TYPE Ti ATOM=(22:1.0)
+TYPE O ATOM=(8:1.0) 
+TYPE Vc ATOM = (Vc:1.0)
+
+
+#CV1=PV1o
+#CV2=PV2o
+#CV3=PV3o
+
+CV1=PV1
+CV2=PV2
+CV3=PV3
+
+

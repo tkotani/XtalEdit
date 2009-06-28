@@ -1,0 +1,80 @@
+### Given by Mark van Schlfgaarde ###
+### Let you import this with LMF-import, and try to push Rasmol ###
+### Then try to change range of view with editing <RASMOL> section ###
+HEADER  Crystal structure of Se and Te.
+        Hexagonal with 3 atoms per unit cell.
+        Space group D_3^4 (C3(_1)21).
+        Cell built refers to clockwise upward spiral.
+        Ref: Wyckoff pg. 36 (rotations here are of rotations the axis).
+EWALD   TOL=1e-9
+Experiment
+  Se  a=8.234 cbya=1.136 u=.217
+  Te  a=8.406 cbya=1.330 u=.269
+VERS    LMFP-4 LMASA-6 FTB-6 LMF-6
+IO      SHOW=F HELP=F VERBOS=30 WKP=F
+HAM     FORCES=1 ELIND=-1 FTMESH=20 XCFUN=2 TOL=1d-5
+        RDSIG=12 SIGP:3,0,0,0,3,0,.09,0
+GW      NKABC=nkgw nkgw nkgw GCUTB=2.7 GCUTX=2.2 MKSIG=3 ECUTS=3
+OPTIONS NSPIN=1 REL=t FRZ=0 TPAN=1 HF=0 ESP=F XCN=0 LMH=0
+SYMGRP  find
+MIX     MODE=A,k=5 AMIX=T BETA=beta CONV=5e-5 CONVC=2e-6
+        NMIX=2
+STRUC   NBAS=3 NCLASS=1 NL=5
+        ALAT=a  PLAT=  1 0 0  -0.5 sr3/2  0  0 0 cbya
+        DALAT=0*a SHEAR=0 0 1 tet
+FIT     WVS=1 1  NFIT=2 EFIT=-.5 -2
+BZ      NKABC=nk BZJOB=0 0  bzj
+        METAL=met TETRA=1  SAVDOS=f DOS=ef0-1.5 ef0+1.5
+        EF0=ef0 DELEF=.2 N.W=.004 NPTS=1001
+SITE    ATOM=X1  POS=  u                  0               0
+        ATOM=X1  POS= -u/2            -u*sr3/2           cbya/3
+        ATOM=X1  POS= -u/2             u*sr3/2          cbya*2/3
+
+        ATOM=E1  POS= -0.5+u              0               0
+        ATOM=E1  POS=  0.25-(u/2)  (sr3/4)-((u*sr3)/2)   cbya/3
+        ATOM=E1  POS=  0.25-(u/2) (-sr3/4)+((u*sr3)/2)  cbya*2/3
+
+        ATOM=E2  POS= -0.25+u           -sr3/4            0
+        ATOM=E2  POS= -0.25-(u/2)  (sr3/4)-((u*sr3)/2)   cbya/3
+        ATOM=E2  POS=  0.5-(u/2)       u*sr3/2          cbya*2/3
+
+        ATOM=E2  POS= -0.25+u           sr3/4             0
+        ATOM=E2  POS=  0.5-(u/2)      -u*sr3/2           cbya/3
+        ATOM=E2  POS= -0.25-(u/2) (-sr3/4)+((u*sr3)/2)  cbya*2/3
+
+CLASS   ATOM=X1 Z=34 R/W=.6 LMXB=321 LMXF=6 EREF=eref A=.015 NR=0
+        LMXL=lmxl C-HOLE=2s C-HQ=0
+        RSMH= 1.3 1.3 1.3 1.3 1.3 EH= -0.2 -0.2 -0.2 -0.2 -0.2 RSMH2= 1.4 1.4 1.4 1.4 EH2= -1 -1 -1 -1
+        PZ=5.5,5.5,5.5
+        P=0,0,4.3 IDMOD=0,0,1
+
+        P=4.88,4.81,4.23,4.10,5.08,6.06 LMXA=lmxa RSMA=rsma KMXA=3
+        RSMG/W=-1 RFOCA/W=-1 LFOCA=2
+        ATOM=E1 Z=0  R/W=.6 LMXB=199 LMXF=6 EREF=0
+        RSMH= 1.3 1.3 1.3 EH= -0.2 -0.2 -0.2
+        ATOM=E2 Z=0  R/W=.6 LMXB=199 LMXF=6 EREF=0
+        RSMH= 1.3 1.3 1.3 EH= -0.2 -0.2 -0.2
+START   NIT=nit
+ ATOM=X1 P=0.88 0.80 dnu 0.20 0.08 0.07 0.06
+         Q=2 0 0  4 0 0 0 0 0  0 0 0  0 0 0  0 0 0  0 0 0
+         TPAN=0 0 2
+ ATOM=E1 P=0.74 0.43 .3 0.11 0.09 0.08 0.07
+         Q=0 0 0  0 0 0 0 0 0  0 0 0  0 0 0  0 0 0  0 0 0
+         TPAN=0 0 0
+ ATOM=E2 P=0.74 0.43 .3 0.11 0.09 0.08 0.07
+         Q=0 0 0  0 0 0 0 0 0  0 0 0  0 0 0  0 0 0  0 0 0
+         TPAN=0 0 0
+ ATOM=E3 P=0.74 0.43 .3 0.11 0.09 0.08 0.07
+         Q=0 0 0  0 0 0 0 0 0  0 0 0  0 0 0  0 0 0  0 0 0
+         TPAN=0 0 0
+CONST   sr3=sqrt(3)  ef0=.1 nk=6 nkgw=4 tet=1
+        cbya=1.136 a=8.234 u=.217 dnu=0.20
+        eref=-4853.467
+        rsma=.9 lmxa=4 lmxl=2 bzj=1 nit=20 beta=1
+        e1=-.1 e2=-1 rsm1=1.3 rsm2=1.4 rsm3=1.4 met=0
+        e1=-.1 e2=-1 rsm1=1.3 rsm2=3.5 rsm3=1.4 met=0
+MAP F  *: \h.\t:g{jm}
+MASTER  dnu=0.20
+        JOB 1 cbya=1.136 a=8.234 u=.217 dnu=0.20
+JOB
+

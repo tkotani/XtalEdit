@@ -1,0 +1,68 @@
+# Se: imported from ctrl.se by Mark van Schilfgaarde.
+sr3=sqrt(3)
+ef0=.1
+nk=6
+nkgw=4
+tet=1
+cbya=1.136
+a=8.234
+u=.217
+dnu=0.20
+eref=-4853.467
+rsma=.9
+lmxa=4
+lmxl=2
+bzj=1
+nit=20
+beta=1
+e1=-.1
+e2=-1
+rsm1=1.3
+rsm2=1.4
+rsm3=1.4
+met=0
+e1=-.1
+e2=-1
+rsm1=1.3
+rsm2=3.5
+rsm3=1.4
+met=0
+
+alat=a
+PV1= alat*(1)*EX + alat*(0)*EY + alat*(0)*EZ
+PV2= alat*(-0.5)*EX + alat*(sr3/2)*EY + alat*(0)*EZ
+PV3= alat*(0)*EX + alat*(0)*EY + alat*(cbya)*EZ
+CV1=PV1
+CV2=PV2
+CV3=PV3
+
+SITE TYPE=X1, POS= (u)*alat*EX+ (0)*alat*EY + (0)*alat*EZ 
+SITE TYPE=X1, POS= (-u/2)*alat*EX+ (-u*sr3/2)*alat*EY + (cbya/3)*alat*EZ 
+SITE TYPE=X1, POS= (-u/2)*alat*EX+ (u*sr3/2)*alat*EY + (cbya*2/3)*alat*EZ 
+SITE TYPE=E1, POS= (-0.5+u)*alat*EX+ (0)*alat*EY + (0)*alat*EZ 
+SITE TYPE=E1, POS= (0.25-(u/2))*alat*EX+ ((sr3/4)-((u*sr3)/2))*alat*EY + (cbya/3)*alat*EZ 
+SITE TYPE=E1, POS= (0.25-(u/2))*alat*EX+ ((-sr3/4)+((u*sr3)/2))*alat*EY + (cbya*2/3)*alat*EZ 
+SITE TYPE=E2, POS= (-0.25+u)*alat*EX+ (-sr3/4)*alat*EY + (0)*alat*EZ 
+SITE TYPE=E2, POS= (-0.25-(u/2))*alat*EX+ ((sr3/4)-((u*sr3)/2))*alat*EY + (cbya/3)*alat*EZ 
+SITE TYPE=E2, POS= (0.5-(u/2))*alat*EX+ (u*sr3/2)*alat*EY + (cbya*2/3)*alat*EZ 
+SITE TYPE=E2, POS= (-0.25+u)*alat*EX+ (sr3/4)*alat*EY + (0)*alat*EZ 
+SITE TYPE=E2, POS= (0.5-(u/2))*alat*EX+ (-u*sr3/2)*alat*EY + (cbya/3)*alat*EZ 
+SITE TYPE=E2, POS= (-0.25-(u/2))*alat*EX+ ((-sr3/4)+((u*sr3)/2))*alat*EY + (cbya*2/3)*alat*EZ 
+TYPE X1 ATOM=(34:1.0) 
+TYPE E1 ATOM=(0:1.0) 
+TYPE E2 ATOM=(0:1.0) 
+
+
+
+
+
+
+
+<RASMOL>
+BondMax  =    4.5000 
+RangeMin = [ -0.2000,  -0.2000,  -0.2000]  #[-0.0001,-0.0001,-0.0001]
+RangeMax = [  3.2000,   2.2000,   2.2000]  #[ 0.9999, 0.9999, 0.9999]
+Type X1 Color=3
+Type E1 Color=0
+Type E2 Color=0
+</RASMOL>

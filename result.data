@@ -1,4 +1,4 @@
-range Min Max=0.0, 1.0
-range Min Max=0.0, 1.0
-range Min Max=0.0, 1.0
-supercell/primitivecell =  1.0 ---This should be the same as number of POSS for each POS
+range Min Max=-1.0, 2.0
+range Min Max=-1.0, 2.0
+range Min Max=-1.0, 2.0
+supercell/primitivecell =  4.0 ---This should be the same as number of POSS for each POS

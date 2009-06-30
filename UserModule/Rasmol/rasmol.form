@@ -30,24 +30,28 @@ RangeMin = RasConf.DefaultRangeMin
 RangeMax = RasConf.DefaultRangeMax
 BondMax  = RasConf.DefaultBondMax
 
+ix=0
 try:
 	Section	= os.path.join("./temp",enginekey+".sec")
+	print ' open rasmol section=',Section
+	ix=1
+except:	pass
+
+if(ix==1):
 	fr=open(Section,"rt")
-	print '# readin <'+ enginekey + '>setion'
-	wtext = string.split(fr.read(), "\n")
+	wtext = string.split(fr.read(),"\n")
+	print 'start-->',wtext,'<---end'
 	for nline in range(len(wtext)):
 		s = wtext[nline]
 		if string.find(s,"#")>=0:	s=s[:string.find(s,"#")]
-		print '# ',s
+		#print 'line: ',s
 		outdata = ConvertTagSec(s,enginekey)
+		if nline !=len(wtext)-1: print 'readin rasmolsection=',outdata
 		try: 
 			exec outdata
 		except: 
 			print ' <' + enginekey + '> section is wrong !',s
-			#return
 	fr.close()
-	#os.remove(Section)
-except:	pass
 
 #	print "RASMOL
 #	print "RASMOLRangeMax =%s" % RangeMax

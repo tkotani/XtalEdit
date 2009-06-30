@@ -56,19 +56,21 @@ def writepdba(pdb, ii,CV,cu_color):
 	ft3	=	f3
 	pdb.write('ATOM  %5d%15d    %8.3f%8.3f%8.3f%6.2f%8.3f\n'  %    (ii,ii,ft1, ft2, ft3,ix,cu_color))
 
-def ConvertTagSec(s,seckey):
-# For convert Tag Section with Type keyword.
-	if (string.find(s,"TYPE")>=0 or string.find(s,"Type")>=0):	# KeyWord: Type
+import string, re
+def ConvertTagSec(s,seckey): # For convert Tag Section with CLASS keyword.
+	if re.search('(Type|TYPE)',s)!=None: #string.find(s,"TYPE")>=0:	# KeyWord: Class
 		n	= string.count(s, ",")
-		st	= string.split(s)						#	remove keyword Type
+		st	= string.split(s)
 		Eq	= string.split(string.join(st[2:]),",")	#
-		TypeName	=	st[1]
+		#print 'eq=',Eq
+		ClassName	=	st[1]
 		outdata = ""
 		for i in range(n+1):
 			EqP = string.split(Eq[i],"=")
 			data = string.replace(string.strip(EqP[1])," ","','")
-			outdata	=	"Type['%s']['%s%s']='%s'" % (TypeName,string.strip(EqP[0]),seckey,data)
+			outdata	= outdata+"Type['%s']['%s%s']='%s'" % (ClassName,string.strip(EqP[0]),seckey,data)
+			outdata = outdata+'\n'
 	else:
 		outdata=s
+	
 	return outdata
-

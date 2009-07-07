@@ -33,12 +33,12 @@ BondMax  = RasConf.DefaultBondMax
 ix=0
 try:
 	Section	= os.path.join("./temp",enginekey+".sec")
+	fr=open(Section,"rt")
 	print ' open rasmol section=',Section
 	ix=1
 except:	pass
 
 if(ix==1):
-	fr=open(Section,"rt")
 	wtext = string.split(fr.read(),"\n")
 	print 'start-->',wtext,'<---end'
 	for nline in range(len(wtext)):

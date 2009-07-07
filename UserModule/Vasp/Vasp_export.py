@@ -5,10 +5,10 @@ import sys
 import os
 import os.path
 import string
-from numpy import *
-from numpy.linalg import *
 #from LinearAlgebra import *
 #from Numeric import *
+from numpy.linalg import *
+from numpy import *
 sys.path.append("./UserModule/Common")
 sys.path.append("./UserModule/Vasp")
 from Converter import Converter
@@ -103,22 +103,36 @@ if __name__ == '__main__':
 	pvecline = setpvecline(PV1,PV2,PV3,a)
 	result = result +pvecline
 ### type lines
-# here we assume TYPE is arranged in one region in csy1.file
 	typeline=''
 	type_name_old=Site[0]['TYPE']
 	ntype = TypeNum
 	type_num=[0]*ntype
+	type_name_set = []
 	j=0
 	for i in range(SiteNum):
-		type_name_new = Site[i]['TYPE']
-		if(type_name_old != type_name_new):
-			j=j+1
-			type_name_old = type_name_new
-			type_num[j]=type_num[j]+1
+		type_name = Site[i]['TYPE']
+		if (len(type_name_set) > 0):
+			ifound = 0
+			for tna in type_name_set:
+				if (tna == type_name):
+					ind = type_name_set.index(type_name)
+					type_num[ind] = type_num[ind] + 1
+					ifound = 1
+			if(ifound==0):
+				type_name_set.append(type_name)
+				ind = type_name_set.index(type_name)
+				type_num[ind] = 1
 		else:
-			type_num[j]=type_num[j]+1
+			type_name_set.append(type_name)
+			ind = type_name_set.index(type_name)
+			type_num[ind]=1
+	
 	for j in type_num:
 		typeline=typeline + str(j)+' '
+	typeline = typeline + "#"
+	for tna in type_name_set:
+		typeline=typeline +tna + " "
+
 	typeline = typeline + '\n'
 	result = result +typeline
 # if need selective dynamics 
@@ -133,9 +147,12 @@ if __name__ == '__main__':
 #		pt=Site[i]['PosData']
 #		siteline= siteline + '%18.12f %18.12f %18.12f  %s \n' % (pt[0],pt[1],pt[2],Site[i]["TYPE"])
 
-	for i in range(SiteNum):
-		pt=dot(mat	,Site[i]["PosData"])
-		siteline= siteline + '%18.12f %18.12f %18.12f\n' % (pt[0],pt[1],pt[2])
+	for tna in type_name_set:
+		for i in range(SiteNum):
+			if (Site[i]['TYPE']==tna):
+				pt=dot(mat	,Site[i]["PosData"])				
+				siteline= siteline + '%18.12f %18.12f %18.12f\n' % (pt[0],pt[1],pt[2])
+		
 	result = result + siteline
 #### main printing from here
 	print result

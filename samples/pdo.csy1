@@ -1,0 +1,19 @@
+
+
+alat=3.0434/0.529177
+a=alat
+PV1= alat*(1)*EX + alat*(0)*EY + alat*(0)*EZ
+PV2= alat*(0)*EX + alat*(1)*EY + alat*(0)*EZ
+PV3= alat*(0)*EX + alat*(0)*EY + alat*(5.3363/3.0434)*EZ
+CV1=PV1
+CV2=PV2
+CV3=PV3
+
+SITE TYPE=Pd, POS=                    + 0.5000000000 *PV2                     
+SITE TYPE=Pd, POS=   0.5000000000 *PV1                     + 0.5000000000 *PV3 
+SITE TYPE=O, POS=                                        + 0.2500000000 *PV3 
+SITE TYPE=O, POS=                                        + 0.7500000000 *PV3 
+TYPE Pd ATOM=(46:1.0)  ,RMT=2.04 ,LMX=3
+TYPE O ATOM=(8:1.0)  ,RMT=1.59 ,LMX=3
+
+

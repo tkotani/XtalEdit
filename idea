@@ -1,0 +1,68 @@
+We need python form of crystal structure.
+
+CV[1] = a*EX
+CV[2]=  b*EY
+CV[3]=  c*EZ
+
+PV[1] = 2.3*CV[1],
+PV[2] = 1/2 *CV2 +1/2 *CV3
+PV[3] = 2.3*CV[1]
+
+'z=1.3'
+SITE[0]=['Fe;0']
+SITE[1]=['Fe:1/2 *CV1 +1/2 *CV2']
+SITE[2]=['Co:1/2 *CV1 +1/2 *CV2 +z *CV3']
+SITE[3]=['Fe:1/2 *CV1 +1/2 *CV2']
+
+---------------------------
+cartesian coordinate
+
+
+
+SITE TYPE=    1b, POS=           +1/2. *CV3  #  1b
+
+SITE TYPE=    1c, POS=              #  1c
+
+SITE TYPE=    1d, POS=      +1/2. *CV2       #  1d
+
+SITE TYPE=    1e, POS=        #  1e
+
+SITE TYPE=    1f, POS=  1/2. *CV1      +1/2. *CV3  #  1f
+
+SITE TYPE=    1g, POS=        #  1g
+
+SITE TYPE=    1h, POS=  1/2. *CV1 +1/2. *CV2 +1/2. *CV3  #  1h
+
+z= 
+SITE TYPE=    2i, POS=           +z *CV3  #  2i
+SITE TYPE=    2i, POS=           -z *CV3  #  2i
+
+z= 
+SITE TYPE=    2j, POS=      +1/2. *CV2 +z *CV3  #  2j
+SITE TYPE=    2j, POS=      +1/2. *CV2 -z *CV3  #  2j
+
+z= 
+SITE TYPE=    2k, POS=  1/2. *CV1      +z *CV3  #  2k
+SITE TYPE=    2k, POS=  1/2. *CV1      -z *CV3  #  2k
+
+z= 
+SITE TYPE=    2l, POS=  1/2. *CV1 +1/2. *CV2 +z *CV3  #  2l
+SITE TYPE=    2l, POS=  1/2. *CV1 +1/2. *CV2 -z *CV3  #  2l
+
+x= 
+y= 
+SITE TYPE=    2m, POS= +x *CV1 +y *CV2       #  2m
+SITE TYPE=    2m, POS= -x *CV1 -y *CV2       #  2m
+
+x= 
+y= 
+SITE TYPE=    2n, POS= +x *CV1 +y *CV2 +1/2. *CV3  #  2n
+SITE TYPE=    2n, POS= -x *CV1 -y *CV2 +1/2. *CV3  #  2n
+
+x= 
+y= 
+z= 
+SITE TYPE=    4o, POS= +x *CV1 +y *CV2 +z *CV3  #  4o
+SITE TYPE=    4o, POS= -x *CV1 -y *CV2 +z *CV3  #  4o
+SITE TYPE=    4o, POS= -x *CV1 -y *CV2 -z *CV3  #  4o
+SITE TYPE=    4o, POS= +x *CV1 +y *CV2 -z *CV3  #  4o

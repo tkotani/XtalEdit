@@ -1,0 +1,41 @@
+u=0.259
+% const coa=1.963
+STRUC	ALAT=5.614*1.89 
+	PLAT= 1.00000  0.00000  0.00000  0.00000 1.00000  0.00000 0.50000  0.50000  1.963/2
+  NBAS= 8  NCLASS=3
+
+SITE	ATOM=Cu POS=0.00000    0.00000    0.00000*1.963
+    	ATOM=Cu POS=.00000    0.50000    0.25000*1.963
+    	ATOM=Ga POS=0.50000    0.50000    0.00000*1.963
+    	ATOM=Ga POS=0.50000    0.00000    0.25000*1.963
+    	ATOM=Se POS=0.259        0.25000    0.12500*1.963
+    	ATOM=Se POS=-0.259      0.75000    0.12500*1.963
+    	ATOM=Se POS=0.25000    0.5+0.259    0.37500*1.963
+    	ATOM=Se POS=0.75000    0.5-0.259    0.37500*1.963
+CLASS
+    ATOM=Cu Z=29 R=2.31 
+      EH=-1 -1 -1 -1  RSMH=1.16 1.16 1.16 1.16 
+      EH2=-2 -2 -2   RSMH2=1.16 1.16 1.16
+      KMXA={kmxa}  LMX=3 LMXA=4 NMCORE=1
+      #MMOM=
+      #NOTE: lmfa(rhocor) generates spin-averaged rho for any MMOM,jun2012
+      #Q= 
+      #MMOM and Q are to set electron population. grep conf: in lmfa output
+
+    ATOM=Ga Z=31 R=2.20 PZ=0,0,3.9  P=0,0,4.2 
+      EH=-1 -1 -1 -1  RSMH=1.10 1.10 1.10 1.10 
+      EH2=-2 -2 -2   RSMH2=1.10 1.10 1.10 
+      KMXA={kmxa}  LMX=3 LMXA=4 NMCORE=1
+      #MMOM=
+      #NOTE: lmfa(rhocor) generates spin-averaged rho for any MMOM,jun2012
+      #Q= 
+      #MMOM and Q are to set electron population. grep conf: in lmfa output
+
+    ATOM=Se Z=34 R=2.31    
+      EH=-1 -1 -1 -1  RSMH=1.15 1.15 1.15 1.15 
+      EH2=-2 -2 -2   RSMH2=1.15 1.15 1.15 
+      KMXA={kmxa}  LMX=3 LMXA=4 NMCORE=1
+      #MMOM=
+      #NOTE: lmfa(rhocor) generates spin-averaged rho for any MMOM,jun2012
+      #Q= 
+      #MMOM and Q are to set electron population. grep conf: in lmfa output

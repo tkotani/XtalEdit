@@ -71,7 +71,9 @@ if __name__ == '__main__':
 	
 	### 2. Create Conveter Object
 	A = Converter(csyFilePath)
-
+#############################3
+        print A.script
+###########################
 	exec A.script
 	flog  = open("./result/ResultWindow.dat","wt")	
 	

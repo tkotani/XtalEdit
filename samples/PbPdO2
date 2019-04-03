@@ -1,0 +1,9 @@
+====== RASMOL OK =====
+<RASMOL>
+BondMax  =    4.5000 
+RangeMin = [ -0.2000,  -0.2000,  -0.2000]  #[-0.0001,-0.0001,-0.0001]
+RangeMax = [  2.2000,   2.2000,   2.2000]  #[ 0.9999, 0.9999, 0.9999]
+Type Pb Color=1
+Type O Color=2
+Type Pd Color=3
+</RASMOL>

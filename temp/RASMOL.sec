@@ -1,0 +1,7 @@
+BondMax  =    4.5000 
+RangeMin = [ -0.2000,  -0.2000,  -0.2000]  #[-0.0001,-0.0001,-0.0001]
+RangeMax = [  1.2000,   1.2000,   1.2000]  #[ 0.9999, 0.9999, 0.9999]
+Type Te1 Color=1
+Type Te2 Color=2
+Type Mn Color=3
+Type Bi Color=4

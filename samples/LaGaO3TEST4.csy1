@@ -1,0 +1,45 @@
+alat=5.485/.529177
+a=alat
+PV1= alat*(1)*EX + alat*(0)*EY + alat*(0)*EZ
+PV2= alat*(0)*EX + alat*(7.770/5.485)*EY + alat*(0)*EZ
+PV3= alat*(0)*EX + alat*(0)*EY + alat*(5.523/5.485)*EZ
+CV1=PV1
+CV2=PV2
+CV3=PV3
+
+SITE TYPE=Ga, POS= (0.0000000)*alat*EX+ (0.0000000)*alat*EY + (0.5034640)*alat*EZ 
+SITE TYPE=Ga, POS= (0.5000000)*alat*EX+ (0.7082954)*alat*EY + (0.0000000)*alat*EZ 
+SITE TYPE=Ga, POS= (0.0000000)*alat*EX+ (0.7082954)*alat*EY + (0.5034640)*alat*EZ 
+SITE TYPE=Ga, POS= (0.5000000)*alat*EX+ (-0.0000000)*alat*EY + (0.0000000)*alat*EZ 
+SITE TYPE=La, POS= (-0.0137386)*alat*EX+ (0.3541477)*alat*EY + (-0.0036591)*alat*EZ 
+SITE TYPE=La, POS= (0.4862614)*alat*EX+ (0.3541477)*alat*EY + (-0.4998049)*alat*EZ 
+SITE TYPE=La, POS= (0.0137386)*alat*EX+ (-0.3541477)*alat*EY + (0.0036591)*alat*EZ 
+SITE TYPE=La, POS= (-0.4862614)*alat*EX+ (-0.3541477)*alat*EY + (0.4998049)*alat*EZ 
+SITE TYPE=O, POS= (0.5034043)*alat*EX+ (0.3541477)*alat*EY + (0.0541058)*alat*EZ 
+SITE TYPE=O, POS= (0.0034043)*alat*EX+ (0.3541477)*alat*EY + (0.4493582)*alat*EZ 
+SITE TYPE=O, POS= (-0.5034043)*alat*EX+ (-0.3541477)*alat*EY + (-0.0541058)*alat*EZ 
+SITE TYPE=O, POS= (-0.0034043)*alat*EX+ (-0.3541477)*alat*EY + (-0.4493582)*alat*EZ 
+SITE TYPE=O, POS= (0.2349564)*alat*EX+ (0.0407728)*alat*EY + (-0.2368557)*alat*EZ 
+SITE TYPE=O, POS= (-0.2650436)*alat*EX+ (0.6675226)*alat*EY + (-0.2666083)*alat*EZ 
+SITE TYPE=O, POS= (-0.2349564)*alat*EX+ (-0.6675226)*alat*EY + (0.2368557)*alat*EZ 
+SITE TYPE=O, POS= (0.2650436)*alat*EX+ (-0.0407728)*alat*EY + (0.2666083)*alat*EZ 
+SITE TYPE=O, POS= (-0.2349564)*alat*EX+ (-0.0407728)*alat*EY + (0.2368557)*alat*EZ 
+SITE TYPE=O, POS= (0.2650436)*alat*EX+ (-0.6675226)*alat*EY + (0.2666083)*alat*EZ 
+SITE TYPE=O, POS= (0.2349564)*alat*EX+ (0.6675226)*alat*EY + (-0.2368557)*alat*EZ 
+SITE TYPE=O, POS= (-0.2650436)*alat*EX+ (0.0407728)*alat*EY + (-0.2666083)*alat*EZ 
+
+TYPE Ga ATOM=(31:1.0)  ,RMT=2.000
+TYPE La ATOM=(57:1.0)  ,RMT=3.00
+TYPE O ATOM=(8:1.0)  ,RMT=1.500
+
+
+
+
+<RASMOL>
+BondMax  =    4.5000 
+RangeMin = [ -0.2000,  -0.2000,  -0.2000]  #[-0.0001,-0.0001,-0.0001]
+RangeMax = [  1.2000,   1.2000,   1.2000]  #[ 0.9999, 0.9999, 0.9999]
+Type O Color=1
+Type Ga Color=2
+Type La Color=3
+</RASMOL>

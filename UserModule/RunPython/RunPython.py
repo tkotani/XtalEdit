@@ -16,20 +16,12 @@ from addSite import addSite
 #############################################################
 ## Main Routinue ############################################
 if __name__ == '__main__':
-
-	### 1. User set CSY File PATH
-	csyFilePath = "./temp/xxx.csy1"
-	
-	### 2. Create Conveter Object
-	A = Converter(csyFilePath)
-
-	### 3. Execute Traslated Script ###
-	exec A.script
-	
-	### 4. Execute Module ###
-	fw = open("./result/EditWindow.dat","wt")
-	fw.write(A.csy)
-	fw.close()
+	# read Edit window
+	fw = open("./temp/xxx.csy1","rt")
+	EditWindow = fw.read()
+	# run ccc as python, output is going to ResultWindow.
+	print "======== This is a test (UserModule/RunPython/RunPython.py) ====="
+	exec EditWindow
 	
 	
 	

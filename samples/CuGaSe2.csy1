@@ -1,0 +1,23 @@
+
+
+alat=5.614*1.89
+a=alat
+PV1= alat*(1.00000)*EX + alat*(0.00000)*EY + alat*(0.00000)*EZ
+PV2= alat*(0.00000)*EX + alat*(1.00000)*EY + alat*(0.00000)*EZ
+PV3= alat*(0.50000)*EX + alat*(0.50000)*EY + alat*(1.963/2)*EZ
+CV1=PV1
+CV2=PV2
+CV3=PV3
+
+SITE TYPE=Cu, POS= (0.00000)*alat*EX+ (0.00000)*alat*EY + (0.00000*1.963)*alat*EZ 
+SITE TYPE=Cu, POS= (.00000)*alat*EX+ (0.50000)*alat*EY + (0.25000*1.963)*alat*EZ 
+SITE TYPE=Ga, POS= (0.50000)*alat*EX+ (0.50000)*alat*EY + (0.00000*1.963)*alat*EZ 
+SITE TYPE=Ga, POS= (0.50000)*alat*EX+ (0.00000)*alat*EY + (0.25000*1.963)*alat*EZ 
+SITE TYPE=Se, POS= (0.259)*alat*EX+ (0.25000)*alat*EY + (0.12500*1.963)*alat*EZ 
+SITE TYPE=Se, POS= (-0.259)*alat*EX+ (0.75000)*alat*EY + (0.12500*1.963)*alat*EZ 
+SITE TYPE=Se, POS= (0.25000)*alat*EX+ (0.5+0.259)*alat*EY + (0.37500*1.963)*alat*EZ 
+SITE TYPE=Se, POS= (0.75000)*alat*EX+ (0.5-0.259)*alat*EY + (0.37500*1.963)*alat*EZ 
+TYPE Cu ATOM=(29:1.0)  ,RMT=2.31 ,LMX=3
+TYPE Ga ATOM=(31:1.0)  ,RMT=2.20 ,LMX=3
+TYPE Se ATOM=(34:1.0)  ,RMT=2.31 ,LMX=3
+

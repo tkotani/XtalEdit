@@ -1,0 +1,8 @@
+====== RASMOL OK =====
+<RASMOL>
+BondMax  =    4.5000 
+RangeMin = [ -0.2000,  -0.2000,  -0.2000]  #[-0.0001,-0.0001,-0.0001]
+RangeMax = [  1.2000,   1.2000,   1.2000]  #[ 0.9999, 0.9999, 0.9999]
+Type H Color=2
+Type Si Color=1
+</RASMOL>
